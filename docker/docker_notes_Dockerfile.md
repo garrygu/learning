@@ -1,6 +1,6 @@
 ## Dockerfile examples
 
-https://www.javacodegeeks.com/2015/08/getting-started-with-docker-from-a-developer-point-of-view-how-to-build-an-environment-you-can-trust.html
+https://www.javacodegeeks.com/2015/08/getting-started-with-docker-from-a-developer-point-of-view-how-to-build-an-environment-you-can-trust.html  
 **PHP**  
 >01  # Based on an example found at https://github.com/CentOS/CentOS-Dockerfiles  
 >02  FROM centos:centos6  
@@ -26,7 +26,7 @@ https://www.javacodegeeks.com/2015/08/getting-started-with-docker-from-a-develop
 >09  ADD ./config_db.sh /config_db.sh  
 >10  RUN chmod +x /config_db.sh  
 >11  RUN /etc/init.d/mysqld start && /config_db.sh && /etc/init.d/mysqld stop  
->12
+>12  
 >13  # Start Mysql and open a mysql shell just to keep the process alive:  
 >14  # this is a poor-man trick and you probably want to do something smarter  
 >15  CMD /etc/init.d/mysqld start && mysql  
