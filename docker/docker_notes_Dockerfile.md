@@ -23,7 +23,7 @@ Dockerfile contains instructions to be performed when an image is built.
             echo $HOME'
 - **ADD**  *Copy new files, directories or remote file URLs and adds them to the filesystem of the container*
     - Usage: ADD <src>... <dest>
-    - Example:
+    - Example:  
     -       ADD hom* /mydir/        # adds all files starting with "hom"
             ADD hom?.txt /mydir/    # ? is replaced with any single character, e.g., "home.txt"
             ADD test relativeDir/   # adds "test" to `WORKDIR`/relativeDir/
