@@ -18,7 +18,7 @@ Dockerfile contains instructions to be performed when an image is built.
     - Usage: `MAINTAINER <name>`
 - **RUN**  *Execute any commands in a new layer on top of the current image*
     - **Usage**: `RUN <command>`
-    - Example: 
+    - Example:  
         ```
         RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'  
         or  
@@ -27,7 +27,7 @@ Dockerfile contains instructions to be performed when an image is built.
         ```
 - **ADD**  *Copy new files, directories or remote file URLs and adds them to the filesystem of the container*
     - Usage: `ADD <src>... <dest>`
-    - Example:
+    - Example:  
         ```    
         ADD hom* /mydir/        # adds all files starting with "hom"  
         ADD hom?.txt /mydir/    # ? is replaced with any single character, e.g., "home.txt"  
