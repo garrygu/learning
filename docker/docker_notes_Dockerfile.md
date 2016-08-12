@@ -7,9 +7,11 @@ Dockerfile contains instructions to be performed when an image is built.
 
 ## Dockerfile Commands (Instructions)
 - **FROM**  *Set base image*  
-    - Usage: FROM `<image>`
-    - Example: 
-    -       FROM ubuntu:latest
+    - Usage: `FROM <image>`
+    - Example:
+        ```
+        FROM ubuntu:latest
+        ```
     - A valid Dockerfile must have **FROM** as its first non-comment instruction
     - **FROM** can appears multiple times within a single Dockerfile in order to create multiple images
 - **MAINTAINER**  *Set author of iamge to be generated*
