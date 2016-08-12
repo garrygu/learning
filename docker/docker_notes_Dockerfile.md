@@ -10,8 +10,10 @@ Dockerfile contains instructions to be performed when an image is built.
 ## Dockerfile Commands (Instructions)
 - **FROM**  *Set base image*  
     - Usage: `FROM <image>`
-    - Example:  
-          FROM ubuntu:latest
+    - Example:
+    ```  
+      FROM ubuntu:latest
+    ```
     - A valid Dockerfile must have `FROM` as its first non-comment instruction
     - `FROM` can appears multiple times within a single Dockerfile in order to create multiple images  
 
@@ -22,12 +24,15 @@ Dockerfile contains instructions to be performed when an image is built.
 
 - **RUN**  *Execute any commands in a new layer on top of the current image*
     - Usage: `RUN <command>`
-    - Example:  
-          RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'  
+    - Example:
+    ```  
+      RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'  
+    ```
         or  
-          RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line  
-          echo $HOME'
-
+    ```
+      RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line  
+      echo $HOME'
+    ```
 
 - **ADD**  *Copy new files, directories or remote file URLs and adds them to the filesystem of the container*
     - Usage: `ADD <src>... <dest>`
