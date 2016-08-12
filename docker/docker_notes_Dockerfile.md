@@ -15,21 +15,25 @@ Dockerfile contains instructions to be performed when an image is built.
     - A valid Dockerfile must have **FROM** as its first non-comment instruction
     - **FROM** can appears multiple times within a single Dockerfile in order to create multiple images
 - **MAINTAINER**  *Set author of iamge to be generated*
-    - Usage: MAINTAINER <name>
+    - Usage: `MAINTAINER <name>`
 - **RUN**  *Execute any commands in a new layer on top of the current image*
-    - **Usage**: RUN <command>
+    - **Usage**: `RUN <command>`
     - Example: 
-    -       RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
+        ```
+        RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
         or
-    -       RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line
-            echo $HOME'
+        RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line
+        echo $HOME'
+        ```
 - **ADD**  *Copy new files, directories or remote file URLs and adds them to the filesystem of the container*
-    - Usage: ADD <src>... <dest>
+    - Usage: `ADD <src>... <dest>`
     - Example:
-    -       ADD hom* /mydir/        # adds all files starting with "hom"
-            ADD hom?.txt /mydir/    # ? is replaced with any single character, e.g., "home.txt"
-            ADD test relativeDir/   # adds "test" to `WORKDIR`/relativeDir/
-            ADD test /absoluteDir/  # adds "test" to /absoluteDir/
+        ```    
+        ADD hom* /mydir/        # adds all files starting with "hom"
+        ADD hom?.txt /mydir/    # ? is replaced with any single character, e.g., "home.txt"
+        ADD test relativeDir/   # adds "test" to `WORKDIR`/relativeDir/
+        ADD test /absoluteDir/  # adds "test" to /absoluteDir/
+        ```
 - **COPY**  *Copy new files or directories and adds them to the filesystem of the container *
     - Usage: COPY <src>... <dest>
     - Example:
