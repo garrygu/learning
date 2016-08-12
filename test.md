@@ -1,7 +1,7 @@
 ## Dockerfile Commands (Instructions)
 - **FROM**  *Set base image*  
     - Usage: FROM '<image>'
-    - Example:
+    - Example:  
         ```
         FROM ubuntu:latest
         ```
