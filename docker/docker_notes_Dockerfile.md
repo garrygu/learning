@@ -8,7 +8,7 @@ Dockerfile contains instructions to be performed when an image is built.
 ## Dockerfile Commands (Instructions)
 - **FROM**  *Set base image*  
     - Usage: `FROM <image>`
-    - Example:
+    - Example:  
         ```
         FROM ubuntu:latest
         ```
