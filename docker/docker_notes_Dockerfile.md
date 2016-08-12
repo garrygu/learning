@@ -61,20 +61,20 @@ Dockerfile contains instructions to be performed when an image is built.
 
 - **CMD**  *Provide defaults for an executing container*
     - Usage:   
-      ```
+    ```
       CMD ["executable","param1","param2"]    (exec form, this is the preferred form)    
       CMD ["param1","param2"]                 (as default parameters to ENTRYPOINT)  
       CMD command param1 param2               (shell form)
-      ```
+    ```
     - Example:
-      ```    
+    ```    
       FROM ubuntu
       CMD echo "This is a test." | wc -   # shell form, execute in /bin/sh -c
-      ```
+    ```
       or
-      ```                
+    ```                
       CMD ["/usr/bin/wc","--help"]        # must express the command as a JSON array to run the <command> without a shell
-      ```          
+    ```          
     - If used more than once, the last CMD in the Dokcerfile will be launched (good for one process per container rule)
 
 
@@ -82,13 +82,13 @@ Dockerfile contains instructions to be performed when an image is built.
 For example, start nginx with its default content, listening on port 80:  
 `docker run -i -t --rm -p 80:80 nginx`
     - Usage:  
-      ```
+    ```
       ENTRYPOINT ["executable", "param1", "param2"]   (exec form, preferred)
       ENTRYPOINT command param1 param2                (shell form)
-      ```
+    ```
     - Example:  
-      **Exec form ENTRYPOINT example**
-      ```
+    **Exec form ENTRYPOINT example**
+    ```
       # can use the exec form of ENTRYPOINT to set fairly stable default commands and arguments and then use either form of CMD to set additional defaults that are more likely to be changed:
       FROM ubuntu
       ENTRYPOINT ["top", "-b"]
@@ -100,14 +100,14 @@ For example, start nginx with its default content, listening on port 80:
       EXPOSE 80 443
       VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
       ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-      ```
+    ```
 
-      **Shell form ENTRYPOINT example**
-      ```
+    **Shell form ENTRYPOINT example**
+    ```
       FROM ubuntu
       ENTRYPOINT exec top -b  
       # start with exec to ensure that docker stop will signal any long running ENTRYPOINT executable correctly
-      ```
+    ```
     - Command line arguments to `docker run <image>` will be appended after all elements in an exec form `ENTRYPOINT`, and will override all elements specified using `CMD`. This allows arguments to be passed to the entry point, i.e., `docker run <image> -d` will pass the -d argument to the entry point.
     - Can override the `ENTRYPOINT` instruction using the `docker run --entrypoint` flag
     - The shell form prevents any `CMD` or run command line arguments from being used (but the executable will not receive a SIGTERM from `docker stop <container>`)
