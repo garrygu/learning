@@ -20,9 +20,9 @@ Dockerfile contains instructions to be performed when an image is built.
     - **Usage**: `RUN <command>`
     - Example:  
         ```
-            RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
-            or
-            RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line
+            RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'  
+            or  
+            RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line  
             echo $HOME'
         ```
 
