@@ -19,12 +19,12 @@ Dockerfile contains instructions to be performed when an image is built.
 - **RUN**  *Execute any commands in a new layer on top of the current image*
     - **Usage**: `RUN <command>`
     - Example:  
-    ```
-            RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
-            or
-            RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line
-            echo $HOME'
-    ```
+        ```
+        RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
+        or
+        RUN /bin/bash -c 'source $HOME/.bashrc;\    # use \ to continue on a new line
+        echo $HOME'
+        ```
     
 - **ADD**  *Copy new files, directories or remote file URLs and adds them to the filesystem of the container*
     - Usage: `ADD <src>... <dest>`
