@@ -60,20 +60,20 @@ Dockerfile contains instructions to be performed when an image is built.
 
 
 - **CMD**  *Provide defaults for an executing container*
-    - Usage:   
+    - Usage:
     ```
-      CMD ["executable","param1","param2"]    (exec form, this is the preferred form)    
-      CMD ["param1","param2"]                 (as default parameters to ENTRYPOINT)  
-      CMD command param1 param2               (shell form)
+      CMD ["executable","param1","param2"]    # exec form, this is the preferred form  
+      CMD ["param1","param2"]                 # as default parameters to ENTRYPOINT  
+      CMD command param1 param2               # shell form  
     ```
     - Example:
     ```    
       FROM ubuntu
-      CMD echo "This is a test." | wc -   # shell form, execute in /bin/sh -c
+      CMD echo "This is a test." | wc -       # shell form, execute in /bin/sh -c  
     ```
       or
     ```                
-      CMD ["/usr/bin/wc","--help"]        # must express the command as a JSON array to run the <command> without a shell
+      CMD ["/usr/bin/wc","--help"]             # must express the command as a JSON array to run the <command> without a shell  
     ```          
     - If used more than once, the last CMD in the Dokcerfile will be launched (good for one process per container rule)
 
