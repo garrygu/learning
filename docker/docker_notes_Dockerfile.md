@@ -1,5 +1,6 @@
-Dockerfile contains instructions to be performed when an image is built.  
-[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+A Dockerfile is a text file that has a series of instructions on how to build your image.  
+- [Official Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+- [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 
 
 ## Dockerfile Format
@@ -71,12 +72,13 @@ Dockerfile contains instructions to be performed when an image is built.
       FROM ubuntu
       CMD echo "This is a test." | wc -       # shell form, execute in /bin/sh -c  
     ```
-      or
+      or  
     ```                
       CMD ["/usr/bin/wc","--help"]             # must express the command as a JSON array to run the <command> without a shell  
     ```          
-    - If used more than once, the last CMD in the Dokcerfile will be launched (good for one process per container rule)
-
+    - If used together with `ENTRYPOINT`, the `CMD` will then provide only the parameter list to that `ENTRYPOINT` application
+    - You could override the default `CMD` at the command line when executing `docker run`
+    - If used more than once, the last `CMD` in the Dokcerfile will be launched (good for one process per container rule)
 
 - **ENTRYPOINT**  *Allow you to configure a container that will run as an executable*  
 For example, start nginx with its default content, listening on port 80:  
@@ -217,3 +219,6 @@ RUN echo moo > oink
 
 # You᾿ll now have two images, 907ad6c2736f with /bar, and 695d7793cbe4 with /oink.
 ```
+
+## References
+- [Docker Explained: Using Dockerfiles to Automate Building of Images](https://www.digitalocean.com/community/tutorials/docker-explained-using-dockerfiles-to-automate-building-of-images)
