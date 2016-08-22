@@ -80,6 +80,7 @@ A Dockerfile is a text file that has a series of instructions on how to build yo
     - You could override the default `CMD` at the command line when executing `docker run`
     - If used more than once, the last `CMD` in the Dokcerfile will be launched (good for one process per container rule)
 
+
 - **ENTRYPOINT**  *Allow you to configure a container that will run as an executable*  
 For example, start nginx with its default content, listening on port 80:  
 `docker run -i -t --rm -p 80:80 nginx`

@@ -1,12 +1,23 @@
-## Sites
-- [Docker](https://www.docker.com)
+## Resources
+- [Docker Homepage](https://www.docker.com)
 > Docker is the world’s leading software containerization platform
+- [Docker Documentation](http://docs.docker.com/)
+- [Docker Getting Started Guide](http://www.docker.com/gettingstarted/)
+- [Docker Cheatsheet](https://github.com/wsargent/docker-cheat-sheet)    
+- [Docker Weekly Archives](https://blog.docker.com/docker-weekly-archives/)
+> Docker Weekly is a newsletter wÂith the latest content on Docker and the agenda for the upcoming weeks.
+- [Docker Blog](http://blog.docker.com/)
+- [Docker Code on GitHub](https://github.com/docker/docker)  
+- [Docker Mailing list](https://groups.google.com/forum/#!forum/docker-user)  
+- Docker on IRC: irc.freenode.net and channels #docker and #docker-dev
+- [Docker on Twitter](http://twitter.com/docker)  
+- [Get Docker Help on Stack Overflow](http://stackoverflow.com/search?q=docker)
 - [Docker Hub](https://hub.docker.com/)
 > Thousands of the most popular software tools in the Docker Image Library
-- [Docker Weekly Archives](https://blog.docker.com/docker-weekly-archives/)
-> Docker Weekly is a newsletter with the latest content on Docker and the agenda for the upcoming weeks.
 - [Kitematic](https://kitematic.com/)
 > Run containers through a simple, yet powerful graphical user interface.
+
+
 
 ## Tutorials
 - [**Docker Tutorial Series** (07/19/2015)](http://rominirani.com/2015/07/19/docker-tutorial-series/)
