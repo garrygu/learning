@@ -16,7 +16,7 @@ A Dockerfile is a text file that has a series of instructions on how to build yo
       FROM ubuntu:latest
     ```
     - A valid Dockerfile must have `FROM` as its first non-comment instruction
-    - `FROM` can appears multiple times within a single Dockerfile in order to create multiple images  
+    - `FROM` can appears multiple times within a single Dockerfile to create multiple images  
 
 
 - **MAINTAINER**  *Set author of iamge to be generated*
@@ -38,12 +38,20 @@ A Dockerfile is a text file that has a series of instructions on how to build yo
 - **ADD**  *Copy new files, directories or remote file URLs and adds them to the filesystem of the container*
     - Usage: `ADD <src>... <dest>`
     - Example:
-    ```  
+    ```
+      ADD /src/webapp /opt/webapp   
+      # /src/webapp/ is not relative to the host filesystem, but to the directory containing the Dockerfile
+
+      ADD http://www.example.com/webapp /opt/ # get remote files
+
       ADD hom* /mydir/        # adds all files starting with "hom"  
       ADD hom?.txt /mydir/    # ? is replaced with any single character, e.g., "home.txt"  
       ADD test relativeDir/   # adds "test" to `WORKDIR`/relativeDir/  
       ADD test /absoluteDir/  # adds "test" to /absoluteDir/  
     ```
+    - ADD is cached
+    - If the local source is a zip file or a tarball it'll be unpacked to the destination (Sources that are URLs and zipped will not be unpacked)
+
 
 - **COPY**  *Copy new files or directories and adds them to the filesystem of the container*
     - Usage: `COPY <src>... <dest>`
@@ -58,6 +66,8 @@ A Dockerfile is a text file that has a series of instructions on how to build yo
 - **EXPOSE**  *Inform Docker that the container listens on the specified network ports at runtime*
     - Usage: `EXPOSE <port> [<port>...]`
     - `EXPOSE` does not make the ports of the container accessible to the host. Must use either the -p flag to publish a range of ports or the -P flag to publish all of the exposed ports.
+      - When you 'docker run -p <port> ...', that port becomes public. (Even if it was not declared with EXPOSE.)
+      - When you 'docker run -P ...' (without port number), all ports declared with EXPOSE become public.
 
 
 - **CMD**  *Provide defaults for an executing container*

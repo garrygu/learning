@@ -4,7 +4,7 @@
 - Docker image
 - Docker container
 - Docker CLI
-- Docker reg istry hub
+- Docker registry hub
 
 **Analogy with dev：**  
 image: class   
@@ -129,7 +129,10 @@ Can be declared in two ways:
 `VOLUME /var/lib/postgres `
 
 - Use the -v flag for docker run  
-`docker run -d -v /var/lib/postgres training/postgres `
+```
+docker run -d -v /var/lib/postgres training/postgres
+ddocker run -it -v /:/hostfs -w /hostfs ubuntu bash
+```
 
 Share volumes across containers:
 ```
@@ -203,14 +206,40 @@ Find the port
 - Remove all containers including running
 `docker rm -f $(docker ps -qa)`
 
+
+
 ## Docker Registry Hub
 https://hub.docker.com/ - Where you can share, find and extend docker images
+
+- Login to Docker Hub  
+`docker login`  
+Credentials will be stored in ~/.docker/config.json
+
+- Pulling images  
+`docker pull ubuntu:14.04`
+
+- Pushing images
+  - Name image properly  
+  `docker tag ipinfo garrygu/ipinfo`
+  - Login
+  - Push image  
+  `docker push garrygu/ipinfo`
 
 ## Tools for Docker Orchestration
 ### Docker Machine
 ### Docker Compose
 ### Docker Swarm
 ### Kubernetes
+
+
+## Security
+http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
+
+### Secure docker with TLS
+
+
+## Docker API
+The API binds locally to `unix:///var/run/docker.sock` but can also be bound to a network interface.
 
 
 
@@ -269,3 +298,17 @@ server {
     }                                                                         
 }
 ```
+
+
+## Docker Daemon
+- Running as a service  
+`sudo service docker start/stop/restart`  
+
+- Running the daemon interactively  
+`sudo docker daemon [options] &`
+
+- Start up options  
+- Logging  
+  - parameter: `--log-level`
+  - options: Debug /Info /Warn /Error /Fatal  
+  `sudo docker daemon --log-level=debug`
