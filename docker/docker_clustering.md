@@ -1,10 +1,11 @@
 ## Docker Swarm
+### Architecture
+- Swarm master
+- Swarm hosts
+
 ### Create a Swarm cluster
 - Manually  
 Ref: https://docs.docker.com/swarm/install-manual/  
-
-- Use `docker-machine`  
-Ref: https://docs.docker.com/swarm/install-w-machine/  
 
 ```
 # create the swarm master
@@ -31,6 +32,21 @@ docker –H tcp://172.17.0.2:<swarm port>
 docker info
 ```
 
+### [Create a Swarm using Docker Machine](https://docs.docker.com/swarm/install-w-machine/)
+- Get a new token  
+`docker run --rm swarm create`
+
+- Create Swarm nodes
+```
+docker-machine create -d virtualbox \
+    --swarm \
+    --swarm-discovery token://<token> \
+    swarm-node-1
+docker-machine create -d virtualbox \
+    --swarm \
+    --swarm-discovery token://<token> \
+    swarm-node-2
+```
 
 
 ## Kubernetes
