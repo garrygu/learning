@@ -18,8 +18,13 @@
 > Run containers through a simple, yet powerful graphical user interface.
 
 
+## Tools
+- [Kitematic](https://kitematic.com)
+> Run containers through a simple, yet powerful graphical user interface.
+> Now part of the Docker Toolbox.
 
-## Tutorials
+
+## Articles & Tutorials
 - [**Docker Tutorial Series** (07/19/2015)](http://rominirani.com/2015/07/19/docker-tutorial-series/)
 
 
@@ -35,3 +40,6 @@ Simulate a production setup (php + mysql) with two linked containers
 - [Scaling To Infinity with Docker Swarm, Docker Compose and Consul (Part 1/4) – A Taste of What Is To Come (07/05/2015)](https://www.javacodegeeks.com/2015/07/scaling-to-infinity-with-docker-swarm-docker-compose-and-consul-part-14-a-taste-of-what-is-to-come.html)
 
 - [Continuous Integration and Delivery with Docker (05/28/2015)](https://blog.codeship.com/continuous-integration-and-delivery-with-docker/)
+
+## Articles & Tutorials (Chinese)
+- [比拼Mesos/Marathon？基于Docker 1.12 Swarm集群管理深度实践](http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&mid=2653547756&idx=1&sn=9acadd6807694463a1e82796a5082a6d&scene=0#wechat_redirect)

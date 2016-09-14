@@ -1,15 +1,16 @@
-# Docker Notes
+# Docker General Notes
 
-## Docker Components
-- Docker image
-- Docker container
-- Docker CLI
-- Docker registry hub
-
+## Basic Concepts
 **Analogy with dev：**  
-image: class   
-layer: inheritance  
-container: instance
+  image: class   
+  layer: inheritance  
+  container: instance
+
+
+## Docker Commands
+`docker help`
+`docker COMMAND --help`
+`docker version`
 
 
 ## Docker Image
@@ -42,24 +43,25 @@ container: instance
 
 - `docker import`
 
-- Notes
+**Notes:**
   - Can assume a common port
   - Difficult to spin multiple images if images specify a port
 
 
 ### Other Image Commands
-- `docker images`  
-  Showing current images
+- List out all the images (on the host machine)  
+`docker images`  
 
-- `docker search <image_name>`  
-  Searching for image  
+- Searching for image  
+`docker search <image_name>`  
+
   "Stars" indicates the popularity of the images; "Official" images are those in the root namespace; "Automated" images are built automatically by the Docker Hub
 
-- `docker history <image_name>`  
-  Viewing image history
+- Viewing image history  
+`docker history <image_name>`  
 
-- `docker rmi [OPTIONS] IMAGE [IMAGE...]`  
-  Delete docker image  
+- Delete docker image  
+`docker rmi [OPTIONS] IMAGE [IMAGE...]`  
 
   Options:  
   -f (--force): force removal of the image      
@@ -68,15 +70,45 @@ container: instance
   `docker rmi -f nginx`
 
 
+### Image Storage  
+#### Docker Registry Hub  
+https://hub.docker.com/ - Where you can share, find and extend docker images
+
+- Login to Docker Hub  
+`docker login`  
+Credentials will be stored in ~/.docker/config.json
+
+- Pulling images  
+`docker pull ubuntu:14.04`
+
+- Pushing images
+  - Name image properly  
+  `docker tag ipinfo garrygu/ipinfo`
+  - Login
+  - Push image  
+  `docker push garrygu/ipinfo`
+
+#### The locally run Docker registry
+Locally run by yourself to storage images
+
+
+
 
 ## Docker Container
 - A Docker container is created when execute `docker run <image-name>`
 - To optimize docker boot time, copy-on-write is used instead of regular copy
 - Two states: **running** or **exited**
 
-### Commands
-##### Run a command in a new container
-$docker run [OPTIONS] IMAGE [COMMAND] [ARGS...]  
+
+### Create a container
+```
+docker create [OPTIONS] IMAGE [COMMAND] [ARGS...]
+```
+
+### Run a command in a new container
+```
+docker run [OPTIONS] IMAGE [COMMAND] [ARGS...]
+```
 
 |Options|Description|
 |---|---|
@@ -87,7 +119,9 @@ $docker run [OPTIONS] IMAGE [COMMAND] [ARGS...]
 |-P (--publish-all)  |   Publish all exposed ports to random ports|
 |-p (--publish=[])   |   Publish a container's port(s) to the host|
 |-v             |Mount a directory from host to container|
-**Examples**  
+
+
+Examples
 ```
 docker run -d -P nginx  
 docker run -d -p 80:80 nginx
@@ -97,7 +131,95 @@ docker run -d -v $(pwd):/opt/namer -p 80:9292 training/namer
 # rw|ro: write status of the volume (rw by default)
 ```
 
-## Network
+
+### Container management
+- Start a running container  
+`docker start <name>`  
+
+- shutdown a container gracefully
+`docker stop <name>`
+
+- kill a container immediately  
+`docker kill <name>`    
+
+- Re-connect to a container running in the background  
+`dokcer attach <name>`
+
+- Rename a container  
+`docker rename <old_name> <new_name>`
+
+- Remove a container  
+`dokcer rm [-f] <name>`  
+Example:  
+`docker rm -f nginx1 nginx2 nginx3`
+
+- Remove all containers  
+`docker rm $(docker ps -qa)`  
+
+- Remove all containers including running  
+`docker rm -f $(docker ps -qa)`
+
+
+
+### Container monitoring
+- List all running containers  
+`docker ps`
+
+- List all containers, including stopped  
+`docker ps -a`
+
+- See the ID of the last container running  
+`docker ps -lq`  
+
+- Display a live stream of container(s) resource usage statistics  
+`docker stats <container_name>`
+
+- Display the running processes of a container  
+`docker top <container_name>`
+
+- Access everything written to the **STDOUT** from within a container  
+`docker logs <container-id|name>`  
+
+- Display the last line of the log  
+`docker logs --tail 1`  
+
+- Inspect docker container   
+`docker inspect <containerID`  
+`docker inspect <containerID | jq .`  # parsing JSON with the shell  
+`docker inspect --format '{{ json .Created }}' <containerID>`  
+`docker inspect --format '{{ .NetworkSettings.IPAddress}}' <containerID>`  
+The expression starts with a dot representing the JSON object  
+The optional json keyword asks for valid JSON output. (e.g. here it adds the surrounding double-quotes.)
+
+- Get real time events from the server
+`docker events`
+
+- Find the port  
+`docker port <containerID> 8000`
+
+- Export a container's file system as a tar archive and send it to **STDOUT**  
+`docker export <container-id|name>`  
+
+- Copy files/folders between a container and the local file system  
+`docker cp <container:path> <hostpath>`  
+Use `docker cp` instead of `export` if only one directory or file is needed from a container
+
+
+### Automatic restarts  
+Ref: [Ensuring Containers Are Always Running with Docker's Restart Policy](https://blog.codeship.com/ensuring-containers-are-always-running-with-dockers-restart-policy/)  
+
+- Restart policy to apply when a container exits (default "no")  
+`docker run -d --restart=always ...`  
+
+- Use docker update (from v1.11.0)  
+`docker update --restart=always <CONTAINER ID>`  
+
+
+
+
+## Networking/linking
+How containers are networked or linked together
+
 #### Network models
 - Bridge
 - None
@@ -123,6 +245,7 @@ ping redis
 # Links also provides a DNS entry corresponding to the name of the container
 ```
 
+
 ## Volume
 Can be declared in two ways:
 - Within a Dockerfile, with a VOLUME instruction  
@@ -143,7 +266,7 @@ docker run -it --name alpha - /var/log ubuntu bash
 docker run --volumes-from alpha ubuntu cat /var/log/now
 ```
 
-Share a socket
+Share a socket  
 `docker run -it -v /var/run/docker.sock:/docker.sock ubuntu bash `
 
 Data container  
@@ -157,10 +280,10 @@ docker run -d --volumes-from wwwdata ftpserver
 docker run -d --volumes-from wwwlogs logstash
 ```
 
-Check volumes defined by an image
+Check volumes defined by an image  
 `docker inspect <image_name>`
 
-Check volumes used by a container
+Check volumes used by a container  
 `docker inspect <containerID>`
 
 
@@ -169,67 +292,6 @@ More info:
 - https://docs.docker.com/engine/reference/builder/#volume  
 
 
-
-## Docker CLI
-- `docker ps -a`  
-List all containers, including stopped
-- `docker ps -lq`  
-See the ID of the last container running
-
-- `docker logs <container-id|name>`  
-Access everything written to the **STDOUT** from within a container
-- `docker logs --tail 1`  
-See the last line of the log
-
-- `docker export <container-id|name>`  
-Archive a container data (tar) and send it to **STDOUT**
-
-- `docker cp <container:path> <hostpath>`  
-Use **docker cp** instead of **export** if only one directory or file is needed from a container
-
-- Inspect docker container   
-  `docker inspect <containerID`  
-  `docker inspect <containerID | jq .`  # parsing JSON with the shell  
-  `docker inspect --format '{{ json .Created }}' <containerID> `
-    - The expression starts with a dot representing the JSON object
-    - The optional json keyword asks for valid JSON output. (e.g. here it adds the surrounding double-quotes.)
-
-
-- `docker port <containerID> 8000`
-Find the port
-- `docker inspect --format '{{ .NetworkSettings.IPAddress}}' <containerID`
-
-- Remove container
-`docker rm <containerID`
-- Remove all containers
-`docker rm $(docker ps -qa)`
-- Remove all containers including running
-`docker rm -f $(docker ps -qa)`
-
-
-
-## Docker Registry Hub
-https://hub.docker.com/ - Where you can share, find and extend docker images
-
-- Login to Docker Hub  
-`docker login`  
-Credentials will be stored in ~/.docker/config.json
-
-- Pulling images  
-`docker pull ubuntu:14.04`
-
-- Pushing images
-  - Name image properly  
-  `docker tag ipinfo garrygu/ipinfo`
-  - Login
-  - Push image  
-  `docker push garrygu/ipinfo`
-
-## Tools for Docker Orchestration
-### Docker Machine
-### Docker Compose
-### Docker Swarm
-### Kubernetes
 
 
 ## Security

@@ -36,6 +36,15 @@ docker info
 - Get a new token  
 `docker run --rm swarm create`
 
+- Create Swarm master
+```
+docker-machine create -d virtualbox \
+    --swarm \
+    --swarm-master \
+    --swarm-discovery token://<token> \
+    swarm-master
+```
+
 - Create Swarm nodes
 ```
 docker-machine create -d virtualbox \
@@ -47,6 +56,24 @@ docker-machine create -d virtualbox \
     --swarm-discovery token://<token> \
     swarm-node-2
 ```
+
+- Connect to Swarm master
+```  
+evel $(docker-machine env --swarm swarm-master)
+docker info
+```
+
+- Create containers
+```
+docker run -d -p 80:80 --name nginx1 nginx
+docker run -d -p 80:80 --name nginx2 nginx
+docker run -d -p 80:80 --name nginx3 nginx
+docker ps
+```
+
+
+### Swarm Manager failover
+Use the —replication and —advertise flags. This tells Swarm that there will be other managers for failover. It will also tell Swarm what address to advertise on, so the other managers know on what IP address to connect for other Swarm managers.
 
 
 ## Kubernetes

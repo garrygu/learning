@@ -7,28 +7,29 @@ Docker Machine can be used to create Docker hosts.
   https://github.com/docker/machine/releases/
 
 
-## Commands
-- Create a machine
-  ```
-  docker-machine create --driver <driver> <machine_name>  
+## Setting up hosts
+```
+docker-machine create --driver <driver> <machine_name>  
 
-  # examples:
-  # local vm
-  docker-machine create --driver virtualbox default
+# examples:
+# local vm
+docker-machine create --driver virtualbox default
 
-  # cloud providers (https://docs.docker.com/machine/drivers/)
-  docker-machine create --driver digitalocean --digitalocean-access-token xxxxx docker-sandbox
-  docker-machine create --driver amazonec2 --amazonec2-access-key AKI******* --amazonec2-secret-key 8T93C*******  aws-sandbox
+# cloud providers (https://docs.docker.com/machine/drivers/)
+docker-machine create --driver digitalocean --digitalocean-access-token xxxxx docker-sandbox
+docker-machine create --driver amazonec2 --amazonec2-access-key AKI******* --amazonec2-secret-key 8T93C*******  aws-sandbox
+docker-machine create --driver amazonec2 --amazonec2-access-key <AWS_ACCESS_KEY> --amazonec2-secret-key <AWS_SECRET_KEY> --amazonec2-subnet-id east-1b amazonhost
 
-  # Add a host without a driver
-  docker-machine create --url=tcp://50.134.234.20:2376 custombox
-  ```
+# Add a host without a driver
+docker-machine create --url=tcp://50.134.234.20:2376 custombox
+```
 
-- List all docker machines  
-`docker-machine ls`
 
-- Start a docker machine  
-`docker-machine start <machine_name>`
+## Host management
+- Start/stop/restart a docker machine  
+`docker-machine start <machine_name>`  
+`docker-machine stop <machine_name>`  
+`docker-machine restart <machine_name>`
 
 - Get docker machine environment settings  
 `docker-machine env <machine_name>`
@@ -36,10 +37,26 @@ Docker Machine can be used to create Docker hosts.
 - Get docker machine ip  
 `docker-machine ip <machine_name>`   
 
-- Ssh onto a docker-machine  
+- Destroy a docker machine  
+`docker-machine rm <machine_name>`
+
+- Ssh into a docker-machine  
 `docker-machine ssh`
 
-### Port Forwarding with a Docker Machine
+
+
+## Host monitoring
+- List all docker machines  
+`docker-machine ls`
+
+- GUI tools  
+[Shipyard](https://shipyard-project.com/)  
+[DockerUI](https://github.com/crosbymichael/dockerui)  
+[Panamax](http://panamax.io/)
+
+
+
+## Port Forwarding with a Docker Machine
 **Use SSH**
 ```
 # machine name: default

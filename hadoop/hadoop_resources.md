@@ -1,0 +1,1 @@
+- [Hadoop Summit 2016 (video & slides)](http://hadoopsummit.org/dublin/agenda/)
