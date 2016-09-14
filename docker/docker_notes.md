@@ -226,6 +226,14 @@ How containers are networked or linked together
 - Host
 - Container-to-Container
 
+When starting a container, we have a few modes to select its networking:  
+* --net=bridge: This is the default mode.
+`docker run -i -t --net=bridge centos /bin/bash`
+
+* --net=host: Docker does not create a network namespace for the container; instead, the container will network stack with the host.
+`docker run -i -t --net=host centos bash`
+
+
 #### Network commands
 `docker network --help`  
 More info:
@@ -299,6 +307,17 @@ http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
 
 ### Secure docker with TLS
 
+### Security best practices
+- Run Docker containers or attach containers to Docker volumes using the read-only modes  
+`docker run -d -v /opt/uploads:ro nginx`  
+`docker run -d —volumes-from data:ro nginx`  
+- Utilize the Docker security benchmark application
+- Utilize the Docker command-line tools to see what has changed in a particular image  
+`docker diff`  
+`docker inspect`  
+`docker history`  
+
+
 
 ## Docker API
 The API binds locally to `unix:///var/run/docker.sock` but can also be bound to a network interface.
@@ -317,3 +336,15 @@ The API binds locally to `unix:///var/run/docker.sock` but can also be bound to 
   - parameter: `--log-level`
   - options: Debug /Info /Warn /Error /Fatal  
   `sudo docker daemon --log-level=debug`
+
+
+
+## Tools
+### [DockerUI](https://github.com/kevana/ui-for-docker)
+> UI For Docker is a web interface for the Docker Remote API. The goal is to provide a pure client side implementation so it is effortless to connect and manage docker.
+
+Installation:  
+`$ docker run -d -p 9000:9000 --privileged -v /var/run/docker.sock:/var/run/docker.sock dockerui/dockerui`
+
+### [ImageLayers](https://imagelayers.io)
+> Visualize Docker Images and the layers that compose them
