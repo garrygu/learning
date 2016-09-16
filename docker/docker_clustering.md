@@ -76,4 +76,4 @@ docker ps
 Use the —replication and —advertise flags. This tells Swarm that there will be other managers for failover. It will also tell Swarm what address to advertise on, so the other managers know on what IP address to connect for other Swarm managers.
 
 
-## Kubernetes
+## [Kubernetes](http://kubernetes.io/)

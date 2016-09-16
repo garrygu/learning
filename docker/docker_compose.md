@@ -3,6 +3,11 @@
 - Allow you to define how applications are structured into Docker containers while bundling everything up into an easy-to-deploy configuration
 
 
+## Usages
+- Development environments
+- Scaling environments
+
+
 ## Commands
 - Build a project  
 `docker-compose up -d`
@@ -23,3 +28,24 @@
 
 ## docker-compose.yml
 [Compose file reference](http://docs.docker.com/compose/compose-file/)
+
+Example:
+```
+varnish:
+  image: jacksoncage/varnish
+  ports:
+    - "82:80"
+  links:
+    - web
+environment:
+    VARNISH_BACKEND_PORT: 80
+    VARNISH_BACKEND_IP: web
+    VARNISH_PORT: 80
+web:
+   image: scottpgallagher/php5-mysql-apache2
+   volumes:
+     - .:/var/www/html/
+```
+
+Scaling:  
+`docker-compose scale web=3`

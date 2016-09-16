@@ -121,7 +121,7 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARGS...]
 |-v             |Mount a directory from host to container|
 
 
-Examples
+Examples:
 ```
 docker run -d -P nginx  
 docker run -d -p 80:80 nginx
@@ -130,6 +130,42 @@ docker run -d -v $(pwd):/opt/namer -p 80:9292 training/namer
 # [host-path]:[container-path]:[rw|ro]
 # rw|ro: write status of the volume (rw by default)
 ```
+
+
+### Passing parameters to containers
+#### Baking the Configuration into the Container  
+You can have a setup script as `ENTRYPOINT` or a foreground script configuring container settings.   
+
+Dockerfile example:  
+```
+FROM debian:latest
+ADD ./case.sh /root/case.sh
+RUN chmod +x /root/case.sh
+ENTRYPOINT /root/case.sh
+```
+
+#### Via Environment Variables  
+Can pass environment variables to containers with the -e flag.  
+
+```
+docker run --name mysql-one -e MYSQL_ROOT_PASSWORD=pw -d mysql
+
+#-e can pull in the value from the current environment if you just give it without the =
+docker run --name mysql-one -e MYSQL_ROOT_PASSWORD -d mysql
+```
+>The container’s entry point (startup script) will look for the environment variables, and “sed” or “echo” them into  relevant configuration files the application uses before actually starting the app.  
+The container’s entry point script should contain reasonable defaults for each of the environment variables if the invoker does not pass those environment variables in.
+
+**For more complex configurations**  
+The container’s startup script will reach out to a key-value (KV) store on the network like Consul or etcd to get configuration parameters.
+
+
+#### Map the Config Files in Directly via Docker Volumes
+`docker run -v /home/dan/my_statsd_config.conf:/etc/statsd.conf hopsoft/graphite-statsd`
+
+
+Reference:  
+[How Should I Get Application Configuration into my Docker Containers?](https://dantehranian.wordpress.com/2015/03/25/how-should-i-get-application-configuration-into-my-docker-containers/)
 
 
 ### Container management
@@ -213,92 +249,6 @@ Ref: [Ensuring Containers Are Always Running with Docker's Restart Policy](https
 
 - Use docker update (from v1.11.0)  
 `docker update --restart=always <CONTAINER ID>`  
-
-
-
-
-## Networking/linking
-How containers are networked or linked together
-
-#### Network models
-- Bridge
-- None
-- Host
-- Container-to-Container
-
-When starting a container, we have a few modes to select its networking:  
-* --net=bridge: This is the default mode.
-`docker run -i -t --net=bridge centos /bin/bash`
-
-* --net=host: Docker does not create a network namespace for the container; instead, the container will network stack with the host.
-`docker run -i -t --net=host centos bash`
-
-
-#### Network commands
-`docker network --help`  
-More info:
-- https://docs.docker.com/engine/userguide/networking/work-with-networks/
-- https://docs.docker.com/engine/userguide/networking/dockernetworks/
-- http://www.slideshare.net/bbsali0/docker-networking-with-new-ipvlan-and-macvlan-drivers
-
-
-#### Connecting Containers
-```
-docker run -d --name mycache redis
-
-docker run -it --link mycache:redis nathanleclaire/redisonrails rails console
-# The –link flag connects one container to another (in the format name:alias)
-
-ping redis
-# Links also provides a DNS entry corresponding to the name of the container
-```
-
-
-## Volume
-Can be declared in two ways:
-- Within a Dockerfile, with a VOLUME instruction  
-`VOLUME /var/lib/postgres `
-
-- Use the -v flag for docker run  
-```
-docker run -d -v /var/lib/postgres training/postgres
-ddocker run -it -v /:/hostfs -w /hostfs ubuntu bash
-```
-
-Share volumes across containers:
-```
-# from terminal 1
-docker run -it --name alpha - /var/log ubuntu bash
-
-# from terminal 2
-docker run --volumes-from alpha ubuntu cat /var/log/now
-```
-
-Share a socket  
-`docker run -it -v /var/run/docker.sock:/docker.sock ubuntu bash `
-
-Data container  
-Container created for the sole purpose of referencing one (or many) volumes.
-```
-docker run --name wwwdata -v /var/lib/www busybox true
-docker run --name wwwlogs -v /var/log/www busybox true
-
-docker run -d --volumes-from wwwdata --volumes-from wwwlogs webserver
-docker run -d --volumes-from wwwdata ftpserver
-docker run -d --volumes-from wwwlogs logstash
-```
-
-Check volumes defined by an image  
-`docker inspect <image_name>`
-
-Check volumes used by a container  
-`docker inspect <containerID>`
-
-
-More info:
-- https://docs.docker.com/engine/userguide/containers/dockervolumes/ 
-- https://docs.docker.com/engine/reference/builder/#volume  
-
 
 
 
