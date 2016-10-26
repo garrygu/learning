@@ -17,6 +17,7 @@
 - [Kitematic](https://kitematic.com/)
 > Run containers through a simple, yet powerful graphical user interface.
 - [Dockercast](https://soundcloud.com/docker-run)
+- [Intro to Docker Monitoring](https://dzone.com/storage/assets/3203196-dzone-rc236-docker-monitoring.pdf)
 
 
 ## Tools

@@ -8,3 +8,18 @@
 You'll love the slick user interface, extraordinary features and amazing performance.
 - [Notepad++](https://notepad-plus-plus.org/)
 > Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. Running in the MS Windows environment, its use is governed by GPL License.
+
+
+## Atom
+- Config Settings
+```
+apm config list
+apm config set proxy "http://domain\user:pass@host:port/"
+apm config set https_proxy "http://domain\user:pass@host:port/"
+```
+file (windows): ~\.atom\.apmrc
+```
+http-proxy="http://localhost:3128"
+https-proxy="http://localhost:3128"
+strict-ssl=false
+```

@@ -35,6 +35,9 @@
 - [Apache NiFi - Part 2 (Twitter Flow)](https://www.linkedin.com/pulse/apache-nifi-part-2-twitter-flow-neeraj-sabharwal)
 >To display Tweets related to particular search terms.
 
+- [Lets FLOW! Moving Files from Amazon S3 to HDFS Using Hortonworks DataFlow (HDF) / Apache NiFi](http://zdatainc.com/2016/02/move-files-from-amazon-s3-to-hdfs-using-hortonworks-dataflow-hdf-apache-nifi/)
+
+
 **Get Started**
 - [Getting Started With Apache Nifi](http://www.nifi.rocks/getting-started-with-apache-nifi/) (01/16/2015)
 > Goto: Building your first Apache Nifi dataflow
