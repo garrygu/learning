@@ -21,9 +21,6 @@
 ## Articles & Tutorials
 - [Apache NiFi: Thinking Differently About DataFlow](https://blogs.apache.org/nifi/entry/basic_dataflow_design)
 
-- [Apache NiFi, Not From Scratch](https://dzone.com/articles/apache-nifi-not-from-scratch)
-> An introduction to implementing Apache NiFi, a flow-based data processing that analyzes your data in motion.
-
 - [LEARNING THE ROPES OF APACHE NIFI](http://hortonworks.com/hadoop-tutorial/learning-ropes-apache-nifi/)
 
 - [Apache Nifi (aka HDF) data flow across data center](http://blog.bikashagrawal.com.np/2016/01/29/apache-nifi-aka-hdf-data-flow-across-data-center/)
@@ -33,8 +30,20 @@
 > To build an easy twitter stream data flow that will collect tweets that mentions the word “hadoop” over time and push these tweets into json file in HDFS.
 
 - [Apache NiFi - Part 1 (Introduction)](https://www.linkedin.com/pulse/apache-nifi-part-1-introduction-neeraj-sabharwal)
+> Very basic uses case: Copy files from local filesystem into HDFS
+
 - [Apache NiFi - Part 2 (Twitter Flow)](https://www.linkedin.com/pulse/apache-nifi-part-2-twitter-flow-neeraj-sabharwal)
 >To display Tweets related to particular search terms.
+
+**Get Started**
+- [Getting Started With Apache Nifi](http://www.nifi.rocks/getting-started-with-apache-nifi/) (01/16/2015)
+> Goto: Building your first Apache Nifi dataflow
+
+**About Custom NiFi Processor**
+- [Apache NiFi, Not From Scratch](https://dzone.com/articles/apache-nifi-not-from-scratch) (06/07/16)
+> An introduction to wrap current business logic into a custom Apache NiFi processor.
+- [Developing a Custom Apache Nifi Processor (JSON)](http://www.nifi.rocks/developing-a-custom-apache-nifi-processor-json/) (02/07/2015)
+> A basic processor that takes a json file as input and a json path as a parameter to place into the contents and an attribute. [Source Code on Github](https://github.com/pcgrenier/nifi-examples)
 
 **Slides**
 - [Building Data Pipelines for Solr with Apache NiFi](http://www.slideshare.net/BryanBende/building-data-pipelines-for-solr-with-apache-nifi)
