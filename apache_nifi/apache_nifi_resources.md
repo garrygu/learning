@@ -56,6 +56,8 @@
 
 - [Bulk Data Drops](https://www.safaribooksonline.com/library/view/analytic-data-storage/9781771375214/part24.html)
 
+- [Apache Nifi Crash Course (YouTube)](https://www.youtube.com/watch?v=Q8SEFERMGOI)
+
 
 ## Apache Nifi Dockerfile
 - https://github.com/mkobit/docker-nifi  
@@ -69,6 +71,11 @@ Apache NiFi Docker Environment
 
 - https://github.com/aperepel/docker-nifi  
 Apache NiFi and Hortonworks Data Flow (HDF) Docker Environment with Clustering http://hortonworks.com/hdf/
+
+
+## Processors
+- [nifi-edireader](https://github.com/mrcsparker/nifi-edireader-bundle)
+> Apache NIFI processor that converts EDI ASC X12 and EDIFACT documents into XML
 
 
 ## Similar Products
