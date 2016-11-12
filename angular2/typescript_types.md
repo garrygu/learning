@@ -188,3 +188,43 @@ f({a: "yes"}) // ok, default b = 0
 f() // ok, default to {a: ""}, which then defaults b = 0
 f({}) // error, 'a' is required if you supply an argument
 ```
+
+## Interfaces
+### Optional Properties
+```
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+//
+function createSquare(config: SquareConfig): {color: string; area: number} {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+//
+let mySquare = createSquare({color: "black"});
+```
+
+### Readonly properties
+```
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+```
+
+*ReadonlyArray<T>* 
+```
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+```
+
+*readonly vs const*  
+Variables use const whereas properties use readonly.
