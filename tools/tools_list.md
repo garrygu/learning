@@ -10,6 +10,12 @@ You'll love the slick user interface, extraordinary features and amazing perform
 > Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. Running in the MS Windows environment, its use is governed by GPL License.
 
 
+## Online Web Dev Tools
+- http://plnkr.co/
+- https://jsfiddle.net/
+- [Online Javascript Editor](https://js.do/)
+- [CodePad](https://codepad.remoteinterview.io/)
+
 ## Atom
 - Config Settings
 ```
