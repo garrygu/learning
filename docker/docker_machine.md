@@ -32,7 +32,8 @@ docker-machine create --url=tcp://50.134.234.20:2376 custombox
 `docker-machine restart <machine_name>`
 
 - Get docker machine environment settings  
-`docker-machine env <machine_name>`
+`docker-machine env <machine_name>`  
+`docker-machine active`
 
 - Get docker machine ip  
 `docker-machine ip <machine_name>`   

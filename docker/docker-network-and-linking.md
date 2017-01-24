@@ -84,3 +84,7 @@ Look up the public-facing port:
 
 look at all the network settings of a container:  
 `docker inspect -f "{{ .NetworkSettings }}" f20`
+
+
+### Links
+- [Docker Networking 101 – The defaults](http://www.dasblinkenlichten.com/docker-networking-101/)

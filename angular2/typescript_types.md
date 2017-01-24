@@ -1,3 +1,19 @@
+
+
+## General
+- Optional static type notation  
+The language element that allows us to declare the type of a variable is known as **optional static type notation**. For a variable, the type notation comes after the variable name and is preceded by a colon:
+```
+var counter;               // unknown (any) type
+var counter = 0;           // number (inferred)
+var counter : number;      // number
+var counter : number = 0;  // number
+```
+
+- Type inference  
+The process in which types are automatically detected is known as **Type inference**, when a type cannot be inferred the especial type `any` is used as the type of the variable.
+
+
 ## Basic Types
 - Boolean  
 - Number  
@@ -219,7 +235,7 @@ interface Point {
 }
 ```
 
-*ReadonlyArray<T>* 
+*ReadonlyArray<T>*
 ```
 let a: number[] = [1, 2, 3, 4];
 let ro: ReadonlyArray<number> = a;

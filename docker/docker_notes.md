@@ -1,4 +1,9 @@
 # Docker General Notes
+- Write using Go
+- Namespaces isolate process, network, etc.
+- Cgroups manage resource allocation
+- Union File System combine separate file systems to logically form a union file system
+- Copy on Write for containers & images
 
 ## Basic Concepts
 **Analogy with dev：**  
@@ -6,7 +11,7 @@
   layer: inheritance  
   container: instance
 
-
+Â
 ## Docker Commands
 `docker help`
 `docker COMMAND --help`
