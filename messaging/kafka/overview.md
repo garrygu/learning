@@ -2,6 +2,7 @@
 - https://kafka.apache.org/
 - https://kafka-summit.org/kafka-summit-2016/schedule/
 - https://groups.google.com/forum/#!forum/confluent-platform
+- https://kafka-tools.readthedocs.io/en/latest/
 
 
 ## Terminology
@@ -70,11 +71,21 @@ Data can not be seen (fetched) until it is committed
 - The Consumer Offset keeps track of the latest message Replicated  
 - If necessary, the Consumer Offset can be changed
 - The Consumer Offset is stored in a special Kafka topic (Kafka 0.9+)
+
 #### Consumer groups
 - Consumers in the group are typically on separate machines
 - Each Consumer will read from one or more partitions for a given topic
 - Data from a Partition will go to a single Consumer in the group
+
 #### Consumer group coordinator
+
+#### Consumer API  
+https://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html  
+- Each message in a partition has an offset
+- The Consumer Offset is the value of the next message the Consumer will read (not the last one)
+- Kafka tracks the Consumer Offset for each partition of a topic the Consumer (or Consumer Group) has subscribed to (tracks the values in a special topic)
+- KafkaConsumer is not thread-safe
+
 ### Kafka Broker
 
 
