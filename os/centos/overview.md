@@ -17,11 +17,23 @@ reboot
 > EPEL (Extra Packages for Enterprise Linux) is open source and free community based repository project from Fedora team which provides 100% high quality add-on software packages for Linux distribution including RHEL (Red Hat Enterprise Linux), CentOS, and Scientific Linux. [[source link]](http://www.tecmint.com/how-to-enable-epel-repository-for-rhel-centos-6-5/)
 
 **How to enable EPEL**
-````
+```
 ## RHEL/CentOS 7 64-Bit ##
 # wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
 # rpm -ivh epel-release-7-9.noarch.rpm
+
+## verify repository
+# yum repolist
+
+## The epel configuration file is located under /etc/yum.repos.d/epel.repo
 ```
+
+**Search and install packages using epel repo**  
+```
+yum --enablerepo=epel info zabbix
+yum --enablerepo=epel install zabbix
+```
+
 
 ## Package Manager
 ### YUM
@@ -34,6 +46,12 @@ yum info httpd
 ```
 
 ### RPM
+### GUI Software Manager
+#### yumex (epel repository)
+```
+yum --enablerepo=epel info yumex
+yum --enablerepo=epel install yumex
+```
 
 
 ## Network
