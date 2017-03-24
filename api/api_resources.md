@@ -1,4 +1,8 @@
 
+
+## OpenAPI
+- [OpenAPI-Specification](https://github.com/OAI/OpenAPI-Specification)
+
 ## API
 - [The API Stack](http://theapistack.com/)
 
@@ -24,3 +28,11 @@
 - [API craft google group](https://groups.google.com/forum/#!forum/api-craft)
 - [ProgrammableWeb](http://www.programmableweb.com/)
 - [The New Stack](http://thenewstack.io/)
+
+
+## Frameworks
+- [swagger](http://swagger.io/)
+
+## Tools
+### Documentation
+- [readme](https://readme.io/)
