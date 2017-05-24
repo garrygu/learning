@@ -11,6 +11,20 @@ grubby --update-kernel=ALL --args="video=hyperv_fb:1024x768"
 # A reboot is required to apply the changes:
 reboot
 ```
+- Check hostname   
+`hostname`  
+`hostname -f`
+
+- Update system  
+`sudo yum clean all`  
+`sudo yum -y update`
+
+- Make backup of a file  
+`cp /etc/httpd/conf/httpd.conf ~/httpd.conf.backup`
+
+- Find all socket files on your system
+`sudo find / -type s`
+
 
 ## Repository
 ### EPEL
@@ -46,6 +60,22 @@ yum info httpd
 ```
 
 ### RPM
+- Install a package  
+`rpm -i package-1.2.3.rpm`
+
+- Remove a package-1  
+`rpm -e package-1.2.3.rpm`
+
+- Find the full path to the file if not known, such as for an executable in $PATH  
+`type -path awk`
+
+- Find the name, including version, of the package containing the file  
+`rpm -qf /usr/bin/awk`
+
+- Query for info from that package  
+`rpm -qi gawk`
+
+
 ### GUI Software Manager
 #### yumex (epel repository)
 ```
@@ -98,4 +128,45 @@ systemctl status network.service
 - journalctl
 ```
 journalctl -xe
+```
+
+
+## Frequently Used Tools
+### Text Editor
+- Atom  
+```
+wget https://github.com/atom/atom/releases/download/v1.6.0/atom.x86_64.rpm
+# Install dependency package
+yum install lsb-core-noarch
+sudo rpm -ivh atom.x86_64.rpm
+```
+
+- Nano
+`nano /etc/httpd/conf/httpd.conf`
+
+
+## Security
+- sudo
+```
+su -
+vi /etc/sudoers
+# Add: username        ALL=(ALL)      ALL
+```
+
+### User and Group permissions
+#### chmod  
+`chmod -flags permissions /path/to/dir/or/file`
+
+- permissions
+```
+  u = user
+  g = group
+  o = other  
+  
+  + will add permissions
+  - will remove permissions
+
+  r = read
+  w = write
+  x = execute
 ```

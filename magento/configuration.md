@@ -53,10 +53,6 @@ pub/static
 - Command line: `rm -R pub/static/*`
 
 
-## Find the docroot for Apache 2.4
-- Open: `/etc/apache2/sites-available/default/000-default.conf`
-- Search for `DocumentRoot`, such as: `DocumentRoot /var/www/html`
-
 ## File system ownership and permissions
 - In version 2.0.6 and later, Magento does not explicitly set file or directory permissions.
 - Owner: a user who owns and can write to files in the Magento file system
@@ -69,3 +65,7 @@ pub/static
   - A common suggestion is to use a value of `022` in the magento_umask file, which means:
     * `755` for directories: full control for the user, and everyone else can traverse directories.
     * `644` for files: read-write permissions for the user, and read-only for everyone else.
+
+
+## Display the Admin URI
+`bin/magento info:adminuri`
