@@ -42,7 +42,7 @@ Angular 2 built-in router
 
 
 ## 3rd-party libraries
-- es6-shim  
+- **es6-shim**  
 Introduces ECMAScript 6 compatibility polyfills for legacy JavaScript engines (mostly Microsoft Internet Explorer).
 
 - zone.js  

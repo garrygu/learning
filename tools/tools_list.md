@@ -29,3 +29,19 @@ http-proxy="http://localhost:3128"
 https-proxy="http://localhost:3128"
 strict-ssl=false
 ```
+
+- Setup  
+  * [The Ultimate Atom Editor Setup (+for JS/React)](https://medium.com/productivity-freak/my-atom-editor-setup-for-js-react-9726cd69ad20)
+
+
+## PowerShell
+- Set environment variables  
+http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/
+```
+$env:Path  
+$env:Path += ";C:\Program Files\GnuWin32\bin"  
+#List all environment variables
+Get-ChildItem Env:  
+#Set environment variables  
+setx EC2_CERT "%USERPROFILE%\aws\cert.pem"
+```
