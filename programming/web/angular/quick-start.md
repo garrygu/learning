@@ -24,3 +24,10 @@ for /f %i in (non-essential-files.txt) do del %i /F /S /Q
 rd .git /s /q
 rd e2e /s /q
 ```
+
+## Starter Sites
+Some of the notable starter sites plus build setups created by the community are as follows:
+
+angular2-webpack-starter      http://bit.ly/ng2webpack  
+angular2-seed                 http://bit.ly/ng2seed  
+angular-cli                   http://bit.ly/ng2-cli  

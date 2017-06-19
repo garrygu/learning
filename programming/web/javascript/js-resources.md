@@ -1,6 +1,8 @@
 ## Libraries & Frameworks  
 - [10 Best JavaScript Libraries For Web Developers](http://devcodegeek.com/best-javascript-libraries-for-web-developers.html)
 
+- [The State Of JavaScript: Front-End Frameworks](https://medium.com/@sachagreif/the-state-of-javascript-front-end-frameworks-1a2d8a61510)
+
 - [highlight.js](https://highlightjs.org/)  
 Syntax highlighting for the Web  
 
@@ -26,6 +28,7 @@ A powerful, interactive charting and visualization library for browser http://ec
 ## General
 - [2016 JavaScript Rising Stars](https://risingstars2016.js.org/)
 - [A Brief History of JavaScript](https://auth0.com/blog/a-brief-history-of-javascript/)
+- [The State Of JavaScript: JavaScript Flavors](https://medium.com/@sachagreif/the-state-of-javascript-javascript-flavors-1e02b0bfefb6)
 
 
 ## Compilers

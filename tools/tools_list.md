@@ -6,6 +6,10 @@
 - [Sublime Text](https://www.sublimetext.com/)
 > Sublime Text is a sophisticated text editor for code, markup and prose.   
 You'll love the slick user interface, extraordinary features and amazing performance.
+
+  - [A Collection of Sublime Text 3 Plugins for Frontend Devs](https://github.com/jfilter/Sublime-Text-Plugins-for-Frontend-Web-Development)
+
+
 - [Notepad++](https://notepad-plus-plus.org/)
 > Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. Running in the MS Windows environment, its use is governed by GPL License.
 
@@ -15,6 +19,8 @@ You'll love the slick user interface, extraordinary features and amazing perform
 - https://jsfiddle.net/
 - [Online Javascript Editor](https://js.do/)
 - [CodePad](https://codepad.remoteinterview.io/)
+- [JS Bin](https://jsbin.com)
+
 
 ## Atom
 - Config Settings
