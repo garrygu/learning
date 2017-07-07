@@ -24,3 +24,7 @@
 - [API craft google group](https://groups.google.com/forum/#!forum/api-craft)
 - [ProgrammableWeb](http://www.programmableweb.com/)
 - [The New Stack](http://thenewstack.io/)
+
+
+## Developer Platform
+- https://zapier.com/developer/

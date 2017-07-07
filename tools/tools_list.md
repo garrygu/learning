@@ -29,3 +29,7 @@ http-proxy="http://localhost:3128"
 https-proxy="http://localhost:3128"
 strict-ssl=false
 ```
+
+## Misc
+- [ngrok](https://ngrok.com/)  
+> Secure tunnels to localhost

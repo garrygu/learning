@@ -6,3 +6,7 @@
 ## Debugging
 - https://augury.angular.io/
 > A Google Chrome Dev Tools extension for debugging Angular 2 applications.
+
+
+## Links
+- [Angular 2 Cookbook](http://ngcookbook.herokuapp.com/)
