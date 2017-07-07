@@ -5,7 +5,10 @@ With the exception of the `script` tag, almost any piece of HTML can act as a te
 interpolation symbols: `{{ }}`  
 Interpolations in fact are a special case of property binding, which allows us to bind HTML element/custom component properties to a model. We can consider interpolation as syntactical sugar over property binding.   
 
-This is how Angular interprets an interpolation: `<h3>Main heading - {{heading}}</h3>`==> `<h3 [text-content]="' Main heading - '+heading"></h3>` Angular translates the interpolation in the first statement into the `textContent` property binding (second statement).
+This is how Angular interprets an interpolation: `<h3>Main heading - {{heading}}</h3>`==> `<h3 [text-content]="' Main heading - '+heading"></h3>` Angular translates the interpolation in the first statement into the `textContent` property binding (second statement).  
+
+Angular did not render the interpolation as HTML; instead, it escaped the HTML characters.
+Use Property binding for HTML.
 
 ### Property binding
 #### **Property versus Attribute**  
@@ -32,10 +35,10 @@ We can enable property binding using the `bind-` syntax, which is a canonical fo
 
 
 #### **Guidelines for binding an expression to a property target**  
-- Quick expression evaluation  
+- **Quick expression evaluation**  
  Angular's change detection system will evaluate your expression binding multiple times during the life cycle of the application, while your component is alive. Hence it becomes imperative that the expressions we use evaluate quickly.
 
-- Side-effect-free binding expressions  
+- **Side-effect-free binding expressions**  
 Bad example:    
 `<div [innerHTML]="getContent()"></div>`
 

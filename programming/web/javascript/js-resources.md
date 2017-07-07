@@ -13,8 +13,11 @@ Syntax highlighting for the Web
 The Progressive JavaScript Framework https://github.com/vuejs/vue
 
 - [Electron](https://electron.atom.io/)
-
 > Electron is an open source library developed by GitHub for building cross-platform desktop applications with HTML, CSS, and JavaScript. Electron accomplishes this by combining **Chromium** and **Node.js** into a single runtime and apps can be packaged for Mac, Windows, and Linux.
+
+- [RE:DOM](https://redom.js.org/)
+
+
 
 ## Visualization
 - [ECharts](https://github.com/ecomfe/echarts)  
@@ -33,6 +36,9 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## Compilers
 - http://babeljs.io
+
+## JS Quality Tool
+- http://jshint.com/
 
 
 ## Module Bundler

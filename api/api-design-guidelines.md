@@ -22,3 +22,20 @@
   - Create a Resource for Metadata
 - [Joshua Bloch: Bumper-Sticker API Design
 ](https://www.infoq.com/articles/API-Design-Joshua-Bloch)
+
+- [7 Rules for REST API URI Design](http://blog.restcase.com/7-rules-for-rest-api-uri-design/)
+  - Rule #1: A trailing forward slash (/) should not be included in URIs
+  - Rule #2: Forward slash separator (/) must be used to indicate a hierarchical relationship
+  - Rule #3: Hyphens (-) should be used to improve the readability of URIs
+  - Rule #4: Underscores (_) should not be used in URIs
+  - Rule #5: Lowercase letters should be preferred in URI paths
+  - Rule #6: File extensions should not be included in URIs
+  - Rule #7: Should the endpoint name be singular or plural?  
+
+
+- [5 Basic REST API Design Guidelines](http://blog.restcase.com/5-basic-rest-api-design-guidelines/)
+  - 1.Resources (URIs)
+  - 2.HTTP methods
+  - 3.HTTP headers
+  - 4.Query parameters
+  - 5.Status Codes
