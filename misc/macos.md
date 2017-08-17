@@ -1,4 +1,12 @@
 
+## Environment Variables
+```
+env | grep DOCKER
+
+//Unset env variable
+unset DOCKER_TLS_VERIFY
+```
+
 ## Keyboard Shortcuts
 (Make `Option` key act like `Meta` in Terminal preferences)  
 `alt ⌥+F` to jump Forward by a word  
@@ -32,3 +40,9 @@ brew install node
 brew update && brew upgrade node  
 brew switch node 0.10.26  
 ```
+
+- Open an app  
+`open -a Docker`
+
+- Quit an app  
+`osascript -e 'quit app "Docker"'`
