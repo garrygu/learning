@@ -198,8 +198,9 @@ Example:
 `docker rm $(docker ps -qa)`  
 
 - Remove all containers including running  
-`docker rm -f $(docker ps -qa)`
-
+`docker rm -f $(docker ps -qa)`  
+Remove all volumes on file system:  
+`docker rm -v $(docker ps -a -q)`  
 
 
 ### Container monitoring
