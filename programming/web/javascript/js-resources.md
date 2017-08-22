@@ -32,10 +32,12 @@ A powerful, interactive charting and visualization library for browser http://ec
 - [2016 JavaScript Rising Stars](https://risingstars2016.js.org/)
 - [A Brief History of JavaScript](https://auth0.com/blog/a-brief-history-of-javascript/)
 - [The State Of JavaScript: JavaScript Flavors](https://medium.com/@sachagreif/the-state-of-javascript-javascript-flavors-1e02b0bfefb6)
+- [Daily JS](https://medium.com/dailyjs)
 
 
 ## Compilers
 - http://babeljs.io
+
 
 ## JS Quality Tool
 - http://jshint.com/

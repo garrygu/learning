@@ -81,7 +81,85 @@ For example:
 
 
 ### Event binding
+Examples:
+```
+<div id="pause-overlay" (keyup)= "onKeyPressed($event)">
+<div id="pause-overlay" (window:keyup)= "onKeyPressed($event)">
+```
 
+Notes:
+- Like properties, there is a canonical form for events too. Instead of using round brackets, the `on-` prefix can be used: `on-click="pauseResumeToggle()"`
+
+#### Event bubbling
+Notes:  
+- Event bubbling stops if the expression assigned to the target evaluates to a falsey value (such as void, false). Therefore, to continue propagation, the expression should evaluate to true:  
+```
+<div id="parent" (click)="doWork($event) || true">
+```
+- Custom events created on Angular components do not support event bubbling.
+
+#### $event
+- The `$event` object contains the details of the event that occurred.
+- The shape of the `$event` object is decided based on the event type. For HTML elements, it is a [DOM event object](https://developer.mozilla.org/en-US/docs/Web/Events), which may vary based on the actual event; But if it is a custom component event, what is passed in the `$event` object is decided by the component implementation.
+
+
+## Two-way binding with ngModel
+```
+<input [(ngModel)]="workout.name">
+```
+equals to
+```
+<input [value]="workout.name"  
+(input)="workout.name=$event.target.value" >
+```
+
+
+## Template
+### Template reference variables
+Template reference variables are created on the view template and are mostly consumed from the view. These variables can be identified by the `#` prefix used to declare them. (The `ref-` prefix is the canonical alternative to #. The `#runner` variable can also be declared as `ref-runner`.)  
+
+One of the greatest benefits of template variables is that they facilitate cross-component communication at the view template level. Once declared, such variables can be referenced by sibling elements/components and their children.   
+
+### Template variable assignment
+- If a directive is present on the element, the directive sets the value.   
+For example:
+```
+// The MyAudioDirective directive sets the ticks variable to an instance of MyAudioDirective
+<audio #ticks="MyAudio" loop src="/static/audio/tick10s.mp3"></audio>
+//
+@Directive({
+    selector: 'audio',
+    exportAs: 'MyAudio'
+})
+export class MyAudioDirective {...}
+```
+- If there is no directive present, either the underlying HTML DOM element is assigned or a component object is assigned  
+For example:
+```
+<input #emailId type="email">Email to {{emailId.value}}
+<workout-runner #runner></workout-runner>
+```
+
+### Using the @ViewChild decorator
+The `@ViewChild` decorator informs the Angular DI framework to search for the child component/directive/element in the component tree and inject them into the parent.   
+
+The selector parameter on `ViewChild` can be a string value, in which case Angular searches for a matching template variable; or it can be a type.   
+```
+ @ViewChild('ticks') private ticks: MyAudioDirective;
+ @ViewChild(MyAudioDirective) private ticks: MyAudioDirective;
+```
+
+If there are multiple same directives, the first match is injected.  
+
+Properties decorated with `@ViewChild` are sure to be set before the `ngAfterViewInit` event hook on the component is called. This implies such properties are `null` if accessed inside the constructor.
+
+
+### The @ViewChildren decorator
+`@ViewChildren` works similarly to `@ViewChild` except it's used when the view has multiple child components/directives of one type.  
+```
+@ViewChildren(MyAudioDirective) allAudios: QueryList<MyAudioDirective>;
+```
+`QueryList` is an immutable collection of components/directives that Angular was able to locate. The best thing about this list is that Angular will keep this list in sync with the state of the view. When directives/components get added/removed from the view dynamically this list is updated too.   
 
 ## References
 https://www.packtpub.com/mapt/book/Web%20Development/9781785887192/2/ch02lvl1sec28/building-the-7-minute-workout-view

@@ -50,6 +50,8 @@
 ### Documentation
 - [readme](https://readme.io/)
 - [3scale ActiveDocs](https://www.3scale.net/api-management/interactive-api-documentation/)
+- [lord/slate](https://github.com/lord/slate)
+> Beautiful static documentation for your API
 
 ### Search and Discovery
 - http://apis.io/

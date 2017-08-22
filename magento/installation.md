@@ -24,3 +24,8 @@ chmod u+x bin/magento
 
 ## Clear cache
 `rm -rf var/cache/* var/generation/*`
+
+
+## Misc
+- Softaculous: 1-Click Application Installation   
+- http://www.inmotionhosting.com/
