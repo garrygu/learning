@@ -30,7 +30,7 @@
 #### Required PHP settings
 -  Find the PHP configuration file, `php.ini`  
   *  Run a phpinfo.php file:   
-  http://localhost/phpinfo.php  
+  http://localhost/phpinfo.php  mysql
   ```
   <?php
   // Show all information, defaults to INFO_ALL
@@ -42,7 +42,7 @@
   Locate: `Loaded Configuration File:         /etc/php.ini`
 
 - To find OPcache configuration settings
-  * Apache web server
+--versionyum -y   * Apache web server
   For CentOS with Apache or nginx, OPcache settings are typically located in `/etc/php.d/opcache.ini`  
   Or `sudo find / -name 'opcache.ini'`
 
@@ -85,7 +85,7 @@ mysql -u root -p
 ```
 /etc/my.cnf:  
   datadir=/var/lib/mysql  
-  socket=/var/lib/mysql/mysql.sock  
+  socket=/var/lib/mysql/mysql.sock  :q
 
   log-error=/var/log/mysqld.log  
   pid-file=/var/run/mysqld/mysqld.pid  
@@ -106,5 +106,13 @@ GRANT ALL ON magento.* TO magento@localhost IDENTIFIED BY 'magento';
 ## Verify the database:
 mysql -u magento -p
 ```
+
+### Install Composer
+```
+curl -sS https://getcomposer.org/installer | php
+sudo chmod 755 composer.phar
+mv composer.phar /usr/local/bin/composer
+```
+
 
 ## Get your authentication keys

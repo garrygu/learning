@@ -57,6 +57,8 @@ yum update
 yum repolist
 yum search httpd
 yum info httpd
+yum -y update
+yum -y upgrade
 ```
 
 ### RPM
@@ -82,6 +84,72 @@ yum info httpd
 yum --enablerepo=epel info yumex
 yum --enablerepo=epel install yumex
 ```
+
+### Installing Alien and Dependencies
+https://www.tecmint.com/convert-from-rpm-to-deb-and-deb-to-rpm-package-using-alien/  
+```
+# yum install epel-release
+# rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+# rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+# yum update && yum install alien
+```
+
+#### Converting from .deb to .rpm Package
+```
+# alien --to-rpm --scripts dateutils_0.3.1-1.1_amd64.deb
+```
+
+- Try to install
+```
+# rpm -Uvh dateutils-0.3.1-2.1.x86_64.rpm 
+```
+
+- Solve Errors
+```
+# yum --enablerepo=epel-testing install rpmrebuild
+# rpmrebuild -pe dateutils-0.3.1-2.1.x86_64.rpm
+```
+Go to the %files section and delete the lines that refer to the directories mentioned in the error message, then save the file and exit.   
+
+- Install the package
+```
+# rpm -Uvh /root/rpmbuild/RPMS/x86_64/dateutils-0.3.1-2.1.x86_64.rpm
+# rpm -qa | grep dateutils
+```
+
+
+### Install Google Chrome
+https://www.tecmint.com/install-google-chrome-on-redhat-centos-fedora-linux/  
+- Enable Google YUM repository  
+Create a file called /etc/yum.repos.d/google-chrome.repo and add the following lines of code to it.  
+```
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+```
+
+- Installing Chrome Web Browser  
+```
+# yum info google-chrome-stable
+# yum install google-chrome-stable
+```
+
+- Automatically download and install latest Google Chrome browser  
+The Google Chrome browser no longer supports RHEL 6.x and its free clones such as CentOS and Scientific Linux.
+```
+# wget http://chrome.richardlloyd.org.uk/install_chrome.sh
+# chmod u+x install_chrome.sh
+# ./install_chrome.sh
+```
+
+- Starting Google Web browser
+```
+# google-chrome &
+```
+
 
 
 ## Network
@@ -162,7 +230,7 @@ vi /etc/sudoers
   u = user
   g = group
   o = other  
-  
+
   + will add permissions
   - will remove permissions
 

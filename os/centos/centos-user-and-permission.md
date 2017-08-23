@@ -38,7 +38,8 @@ or:
 `passwd testuser`
 
 - Ensure user added to group
-`id testuser`
+`id testuser`  
+`groups testuser`
 
 
 ## Add a new user to primary group
@@ -47,7 +48,9 @@ Small g (-g) option add user to initial login group (primary group).
 
 
 ## Add a existing user to existing group
-`# usermod -a -G developers garrygu`
+`usermod -a -G developers <username>`  
+Add the user to sudo group:  
+`usermod -aG wheel <username>`  
 
 **Options**:  
 `-a --append`	 
@@ -79,3 +82,32 @@ Change `SELINUX=enforcing` to `SELINUX=disabled`
 
 - Rebooting your linux system to take effect
 `reboot`
+
+- Or, Permissive mode
+`setenforce 0`
+
+
+
+## Access Control
+http://www.cis.rit.edu/class/simg211/unixintro/Access_Permissions.html  
+Note: a directory must have both r and x permissions if the files it contains are to be accessed.  
+
+File access permissions can also be changed by a numerical (octal) chmod specification. Read permission is given the value 4, write permission the value 2 and execute permission 1.
+
+     r  w  x
+     4  2  1
+
+These values are added together for any one user category:
+
+    0   =   no permissions
+    1   =   execute only
+    2   =   write only
+    3   =   write and execute (1+2)
+    4   =   read only
+    5   =   read and execute (4+1)
+    6   =   read and write (4+2)
+    7   =   read and write and execute (4+2+1)
+
+For example:
+664: rw-rw-r
+775: rwx-rwx-rw

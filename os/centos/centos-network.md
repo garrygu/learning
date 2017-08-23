@@ -1,4 +1,4 @@
-## Setup
+## Network Setup
 - `nmcli d`  
 output:
 ```
@@ -25,3 +25,19 @@ Edit `/etc/sysconfig/network-scripts/ifcfg-eth0`:
 
 - Check which network interface is managed by Network Manager
 `nmcli dev status`
+
+
+## Web Proxy
+```
+# vi /etc/environment
+export http_proxy=https://user:pwd@proxy_address/
+export https_proxy=https://user:pwd@proxy_address/
+export ftp_proxy=https://user:pwd@proxy_address/
+export no_proxy=".mylan.local,.domain1.com,host1,host2"
+```
+```
+# vi /etc/yum.conf
+proxy=http://proxysrv:8080/
+proxy_username=***
+proxy_password=***
+```

@@ -12,6 +12,12 @@ magento setup:install --base-url=http://127.0.0.1/magento/ \
 --currency=USD --timezone=America/Los_Angeles --use-rewrites=1
 ```
 
+## Get the metapackage
+```
+cd <web server docroot directory>
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento2  (need public/private keys)
+```
+
 
 ## Set permissions for shared hosting (one user)
 ```
@@ -22,8 +28,12 @@ find var vendor pub/static pub/media app/etc -type d -exec chmod u+w {} \;
 chmod u+x bin/magento
 ```
 
+**Note**:  
+Need to disable SELinux or set SELinux to permissive mode (setenforce 0)  
+
+
 ## Clear cache
-`rm -rf var/cache/* var/generation/*`
+`rm -rf var/cache/* var/generation/*`ls
 
 
 ## Misc
