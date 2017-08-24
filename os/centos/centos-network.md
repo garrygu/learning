@@ -25,3 +25,7 @@ Edit `/etc/sysconfig/network-scripts/ifcfg-eth0`:
 
 - Check which network interface is managed by Network Manager
 `nmcli dev status`
+
+
+## Tools
+- CanYouSeeMe.org
