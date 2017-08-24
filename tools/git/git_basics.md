@@ -3,6 +3,9 @@
 # configure user name and email address
 git config --global user.name "Your Name"
 git config --global user.email you@example.com
+
+# HTTP proxy  
+git config --global http.proxy http://proxy.mycompany:80
 ```
 
 
@@ -31,7 +34,7 @@ Check out the specified branch (This makes &lt;existing-branch&gt; the current b
 
 - `git checkout -b <new-branch`  
 Create and check out &lt;new-branch&gt;
-https://neg-payment/PaymentAPI/TransactionRecipts/285576877/Both <https://neg-payment/PaymentAPI/TransactionRecipts/285576877/Both> PaymentAPI/TransactionRecipts/285576877/Both <http://172.16.70.174/PaymentAPI/TransactionRecipts/285576877/Both> 
+https://neg-payment/PaymentAPI/TransactionRecipts/285576877/Both <https://neg-payment/PaymentAPI/TransactionRecipts/285576877/Both> PaymentAPI/TransactionRecipts/285576877/Both <http://172.16.70.174/PaymentAPI/TransactionRecipts/285576877/Both>
 
 
 #### git merge

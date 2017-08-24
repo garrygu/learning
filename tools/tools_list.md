@@ -6,6 +6,10 @@
 - [Sublime Text](https://www.sublimetext.com/)
 > Sublime Text is a sophisticated text editor for code, markup and prose.   
 You'll love the slick user interface, extraordinary features and amazing performance.
+
+  - [A Collection of Sublime Text 3 Plugins for Frontend Devs](https://github.com/jfilter/Sublime-Text-Plugins-for-Frontend-Web-Development)
+
+
 - [Notepad++](https://notepad-plus-plus.org/)
 > Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. Running in the MS Windows environment, its use is governed by GPL License.
 
@@ -15,6 +19,9 @@ You'll love the slick user interface, extraordinary features and amazing perform
 - https://jsfiddle.net/
 - [Online Javascript Editor](https://js.do/)
 - [CodePad](https://codepad.remoteinterview.io/)
+- [JS Bin](https://jsbin.com)
+- [StackBlitz](https://stackblitz.com) Online VS Code IDE for Angular & React.
+
 
 ## Atom
 - Config Settings
@@ -28,4 +35,20 @@ file (windows): ~\.atom\.apmrc
 http-proxy="http://localhost:3128"
 https-proxy="http://localhost:3128"
 strict-ssl=false
+```
+
+- Setup  
+  * [The Ultimate Atom Editor Setup (+for JS/React)](https://medium.com/productivity-freak/my-atom-editor-setup-for-js-react-9726cd69ad20)
+
+
+## PowerShell
+- Set environment variables  
+http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/
+```
+$env:Path  
+$env:Path += ";C:\Program Files\GnuWin32\bin"  
+#List all environment variables
+Get-ChildItem Env:  
+#Set environment variables  
+setx EC2_CERT "%USERPROFILE%\aws\cert.pem"
 ```
