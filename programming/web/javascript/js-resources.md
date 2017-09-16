@@ -26,6 +26,7 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## Others
 - [2016年度最受欢迎中国开源软件评选 - 开源中国社区](http://www.oschina.net/project/top_cn_2016)
+- [A set of best practices for JavaScript projects](https://github.com/wearehive/project-guidelines)
 
 
 ## General

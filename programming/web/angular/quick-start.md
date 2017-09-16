@@ -31,3 +31,5 @@ Some of the notable starter sites plus build setups created by the community are
 angular2-webpack-starter      http://bit.ly/ng2webpack  
 angular2-seed                 http://bit.ly/ng2seed  
 angular-cli                   http://bit.ly/ng2-cli  
+
+angular2-seed                 https://stackblitz.com/edit/angular-seed

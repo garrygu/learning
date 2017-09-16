@@ -43,3 +43,14 @@ Merge the specified branch into the current branch
 
 - `git merge --no-ff <branch>`  
 Merge the specified branch into the current branch, but always generate a merge commit (even if it was a fast-forward merge)
+
+
+## A clean, usable history that makes sense
+https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa
+Four main tools:
+```
+git commit --amend
+git merge, with or without --no-ff
+git rebase, especially git rebase -i and git rebase -p
+git cherry-pick (which is functionally inseparable from rebase)
+```

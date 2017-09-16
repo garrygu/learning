@@ -20,3 +20,10 @@ API lifecycle
 - http://apievangelist.com/2017/04/28/a-view-of-the-api-lifecycle-from-james-higginbotham/
 
 API chaining
+
+onboarding, registration, API key provisioning, payments
+
+the scope of the developer portal:
+   having a list of endpoints is not enough, give users the opportunity to learn and understand how an API works:
+
+Additional guides, getting started, best practices, FAQ, etc were other parts of the overall developer docs set. 
