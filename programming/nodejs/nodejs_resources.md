@@ -1,3 +1,4 @@
+
 ## Install
 ### Homebrew (Mac)
 
@@ -6,7 +7,7 @@
 - Install N  
 `npm install -g n`
 
-- Install nodejs versions 
+- Install nodejs versions
 ```
 n 0.10.26
 n 0.8.17
@@ -35,3 +36,9 @@ nvm use (create an .nvmrc file containing version number in the project root fol
 nvm run 0.10
 nvm ls
 ```
+
+
+## Frameworks
+- [fastify](http://www.fastify.io)  
+https://github.com/fastify/fastify  
+> Fast and low overhead web framework, for Node.js
