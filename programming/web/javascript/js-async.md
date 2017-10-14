@@ -1,5 +1,6 @@
 ## Articles
 - [You Need ES2017’s Async Functions. Here’s Why](https://derickbailey.com/2017/04/18/you-need-es7s-async-functions-heres-why/?imm_mid=0f1021&cmp=em-web-na-na-newsltr_20170419)
+- [Await and Async Explained with Diagrams and Examples (10/01/2017)](http://nikgrozev.com/2017/10/01/async-await/)
 
 #### Using Async Functions
 
@@ -47,7 +48,7 @@
 
 #### Async With Flexibility
 ```
-1 function createEmployeeWorkflow(cb){ 
+1 function createEmployeeWorkflow(cb){
 2    
 3   createEmployee()
 4     .then((employee) => {

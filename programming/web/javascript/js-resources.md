@@ -1,3 +1,8 @@
+## History
+- [A Brief, Incomplete History of JavaScript](https://closebrace.com/articles/2017-09-11/a-brief-incomplete-history-of-javascript)
+- [A Brief History of JavaScript](https://auth0.com/blog/a-brief-history-of-javascript/)
+
+
 ## Libraries & Frameworks  
 - [10 Best JavaScript Libraries For Web Developers](http://devcodegeek.com/best-javascript-libraries-for-web-developers.html)
 
@@ -31,19 +36,28 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## General
 - [2016 JavaScript Rising Stars](https://risingstars2016.js.org/)
-- [A Brief History of JavaScript](https://auth0.com/blog/a-brief-history-of-javascript/)
 - [The State Of JavaScript: JavaScript Flavors](https://medium.com/@sachagreif/the-state-of-javascript-javascript-flavors-1e02b0bfefb6)
 - [Daily JS](https://medium.com/dailyjs)
 
 
 ## Compilers
 - http://babeljs.io
+> Babel is a JavaScript compiler
 
 
 ## JS Quality Tool
 - http://jshint.com/
 
 
+## Style Guide
+- https://github.com/airbnb/javascript
+
 ## Module Bundler
 - [webpack](https://webpack.js.org/)
+> Powerful tool for both development and website deployment
 - [rollup](https://rollupjs.org/)
+
+
+## Tutorials
+- [The Modern JavaScript Tutorial](https://javascript.info)
+- https://github.com/EthanRBrown/ora-training-practical-javascript
