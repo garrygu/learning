@@ -235,4 +235,206 @@ Sections are responsible for rendering their blocks by looping over `section.blo
 #### JavaScript and stylesheet tags
 Sections can bundle their own script and style assets using the `javascript` and `stylesheet` tags.   
 Each section can have one `javascript` tag and one `stylesheet` tag.   
-The scripts for all sections are concatenated into a single file by Shopify and injected into `content_for_header`. 
+The scripts for all sections are concatenated into a single file by Shopify and injected into `content_for_header`.
+
+
+### Configuring theme settings
+#### settings_schema.json
+`settings_schema.json` controls the organization and content of the menu on the theme's Customize theme page.  
+
+`settings_schema.json` lists all settings that are available for your theme, grouped into sections. The grouping of the settings in `settings_schema.json` is reflected in the `Customize theme` page menu.   
+
+There are two categories of theme setting:  
+- Input settings  
+These control the settings that can be configured by merchants.  
+
+- Sidebar settings  
+They control informational elements (headers and paragraphs), which you can use to add detail and clarity to the `Customize theme` page's sidebar.  
+
+##### Defining a theme setting
+Each `settings` entry contains definitions for individual settings.  
+Each individual setting has a few attributes, which vary depending on whether the setting is for `merchant input` or `sidebar styling`.  
+
+##### Attributes for input settings
+- type*		
+Name of the type of settings.
+- id*		
+The unique name for this setting. The id is exposed to the liquid templates via the settings object. It must only contain alphanumeric characters, underscores, and dashes.
+- label*		
+You can create links in labels using the pattern `[link text](link URL)`.  
+- placeholder		
+A value for the input's placeholder text. This is for text-based setting types only.
+- default		
+- info  
+Additional information about the setting. Use sparingly, as it's better to use only informative labels whenever you can.
+
+##### Input setting types
+**Basic input setting types**
+- text
+Single-line text fields
+- textarea
+Multi-line text areas
+- image_picker
+Image uploads
+- radio
+Radio buttons
+- select
+Selection drop-downs
+- checkbox
+- range
+Range sliders
+
+**Specialized input setting types**
+- color
+input:
+```
+{
+   "type":      "color",
+   "id":        "id",
+   "label":     "Text",
+   "default":   "value",
+   "info":      "Text"
+}
+```
+Example:
+```
+{
+   "type": "color",
+   "id": "background_color",
+   "label": "Background color",
+   "default": "#ffffff"
+}
+```
+- font
+- collection
+Collections drop-down  
+- product
+Products drop-down  
+- blog
+- page
+- link_list
+"Link lists" are called "menus" in the Navigation page of the Shopify admin.  
+- snippet
+- url
+- video_url
+- richtext
+- html
+- article
+
+
+##### Sidebar settings
+Use these settings to add organizational information to your sidebar so that merchants can easily find the input settings they require.  
+- type*		
+- content*
+- info
+
+
+### Add theme info
+#### Required theme info
+The `theme_info` object must include the following:  
+- "name": "theme_info"
+- theme_name
+- theme_author
+- theme_version
+- theme_documentation_url
+- theme_support_email
+
+
+#### Adding theme info to settings_schema.json
+Theme info is stored in `settings_schema.json` as an object named `theme_info`:  
+```
+{
+  "name": "theme_info",
+  "theme_name": "Debut",
+  "theme_author": "Shopify",
+  "theme_version": "1.0.0",
+  "theme_documentation_url": "https://help.shopify.com/manual/using-themes/themes-by-shopify/debut",
+  "theme_support_email": "theme-support@shopify.com"
+}
+```
+
+### Working with other theme files  
+If you want to use theme setting values in  Liquid templates, CSS, and JavaScript files, you must:
+- Append the appropriate `id` attribute to the settings object.
+- Amend the filenames.
+
+#### Appending the id attribute to the settings object
+```
+# A text input in settings_schema.json
+{
+  "type":      "text",
+  "id":        "tagline",
+  ...
+},
+# The value of this text input can be output using the following format in your Liquid templates:
+{{ settings.tagline }}
+```
+
+#### Amending filenames of CSS or JavaScript files
+If you want your CSS or JavaScript files to access the global `settings` object, you must append a `.liquid` extension to their file names.
+
+
+####  Special-case user selections
+- None
+```
+# in config/settings_data.json file:
+"fp_page": "",
+# To determine if the theme setting is empty, compare the appropriate settings attribute to blank as follows:
+{% if settings.fp_page == blank %}
+  <!-- The merchant does not want to add a page here. His fp_page theme setting was set to None. -->
+{% endif %}
+```
+- Non-existent or hidden  
+ A theme can't tell the difference between a hidden resource and one that does not exist.  
+ ```
+ {% assign front_page = settings.fp_page %}
+{% unless pages[front_page] == empty %}
+  <h1>{{ page.title }}</h1>
+  <div>{{ page.content }}</div>
+{% endunless %}
+ ```
+
+
+## Theme layouts
+There is only ever one active layout on your store at any given time.  The active layout changes when your online visitors begin the checkout process.  
+
+### theme.liquid
+The `theme.liquid` file is the default active layout. It usually renders the header content, footer content, navigation, and other global variables.  
+
+The `theme.liquid` can be thought of as the master template; all other templates are rendered inside of `theme.liquid`. Any elements that are repeated in a theme (ex: site navigations, header, footer, etc.) should be placed inside `theme.liquid`.
+
+#### Template Considerations
+##### content_for_header and content_for_layout
+- Required
+- The `{{ content_for_header }}` variable must be placed between the opening and closing `<head>` tag. It inserts the necessary Shopify scripts into the `<head>`.
+- The `{{ content_for_layout }}` variable must be placed between the opening and closing `<body>` tag. It outputs dynamic content generated by all of the other templates (index.liquid, product.liquid, and so on).
+
+
+### checkout.liquid (SHOPIFY PLUS)
+This becomes the active layout during the checkout process.  
+
+
+## Theme templates
+### Theme structure
+- assets
+- config
+- layout
+- locales
+- sections  
+Reusable modules of content that can be customized and re-ordered by users of the theme.
+- snippets
+- templates
+
+### Alternate templates
+For example, you might want a sidebar on one product page but not in another. The workaround for this is to create alternate templates.  
+
+There might be cases where you have several versions of a template and want to write an if statement that applies to all of them. The `template` object has several convenient attributes to help with this.  
+```
+{% if template.name == 'product' %}
+We are on a product page!
+{% endif %}
+
+{% if template.suffix != blank %}
+We are on an alternate template!
+{% endif %}
+```

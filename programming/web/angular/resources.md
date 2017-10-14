@@ -6,6 +6,9 @@ https://angular.io/cheatsheet
 - [Webpack: An Introduction](https://angular.io/docs/ts/latest/guide/webpack.html)
 
 
+## Tools
+- [Best VS Code Extensions for Angular v2+ Development](https://scotch.io/bar-talk/best-vs-code-extensions-for-angular-v2-development)
+
 ## Debugging
 - https://augury.angular.io/
 > A Google Chrome Dev Tools extension for debugging Angular 2 applications.

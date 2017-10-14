@@ -42,16 +42,22 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## Compilers
 - http://babeljs.io
+> Babel is a JavaScript compiler
 
 
 ## JS Quality Tool
 - http://jshint.com/
 
 
+## Style Guide
+- https://github.com/airbnb/javascript
+
 ## Module Bundler
 - [webpack](https://webpack.js.org/)
+> Powerful tool for both development and website deployment
 - [rollup](https://rollupjs.org/)
 
 
 ## Tutorials
 - [The Modern JavaScript Tutorial](https://javascript.info)
+- https://github.com/EthanRBrown/ora-training-practical-javascript
