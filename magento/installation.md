@@ -30,10 +30,17 @@ chmod u+x bin/magento
 
 **Note**:  
 Need to disable SELinux or set SELinux to permissive mode (setenforce 0)  
-
+http://devdocs.magento.com/guides/v2.0/install-gde/prereq/security.html
 
 ## Clear cache
 `rm -rf var/cache/* var/generation/*`ls
+
+## Uninstall Magento
+```
+bin/magento setup:Uninstall
+or
+php bin/magento setup:uninstall
+```
 
 
 ## Misc
