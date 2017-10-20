@@ -53,3 +53,7 @@ Get-ChildItem Env:
 #Set environment variables  
 setx EC2_CERT "%USERPROFILE%\aws\cert.pem"
 ```
+
+
+## Deployment
+- https://www.softaculous.com
