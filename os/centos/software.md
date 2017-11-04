@@ -67,3 +67,9 @@ yum groupinstall "GNOME Desktop"
 ```
 yum install openssh-clients
 ```
+
+- Enable full screen mode on Linux CentOS 7 VM
+```
+$sudo grubby --update-kernel=ALL --args="video=hyperv_fb:2560x1440"
+$sudo reboot
+```

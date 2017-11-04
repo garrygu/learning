@@ -33,7 +33,7 @@ Need to disable SELinux or set SELinux to permissive mode (setenforce 0)
 http://devdocs.magento.com/guides/v2.0/install-gde/prereq/security.html
 
 ## Clear cache
-`rm -rf var/cache/* var/generation/*`ls
+`rm -rf var/cache/* var/generation/*`
 
 ## Uninstall Magento
 ```
