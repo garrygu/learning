@@ -1,1 +1,2 @@
 - [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
+- [The Mega HTML5 Cheatsheet](https://medium.com/level-up-web/the-mega-html5-cheatsheet-e8c479b1c521)

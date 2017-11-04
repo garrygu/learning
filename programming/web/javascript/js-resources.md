@@ -47,7 +47,7 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## JS Quality Tool
 - http://jshint.com/
-
+- [JavaScript error tracking with Sentry](https://sentry.io/for/javascript/)
 
 ## Style Guide
 - https://github.com/airbnb/javascript
@@ -56,8 +56,13 @@ A powerful, interactive charting and visualization library for browser http://ec
 - [webpack](https://webpack.js.org/)
 > Powerful tool for both development and website deployment
 - [rollup](https://rollupjs.org/)
+- [Migrating towards Yarn and Webpack](http://engineering.wingify.com/posts/migrating-towards-yarn-webpack/)
 
 
 ## Tutorials
 - [The Modern JavaScript Tutorial](https://javascript.info)
 - https://github.com/EthanRBrown/ora-training-practical-javascript
+
+
+## Cheatsheet
+- [ES2015+ cheatsheet](https://devhints.io/es6)
