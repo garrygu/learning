@@ -58,3 +58,7 @@ To make the necessary changes, create **extending** and **overriding** layout fi
 - Determines the sequence of inherited themes `[<parent_theme>, ..., <parent1_theme>] <current_theme>`
 - Iterates the sequence of themes from last ancestor to current
 - Merges all layout files from the list
+
+
+## Layout instructions and types
+Two  ways to customize a layout on your Magento project. The first is to change the layout configuration files (XML); the second is to change the template files (phtml).
