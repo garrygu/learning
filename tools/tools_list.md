@@ -57,3 +57,7 @@ setx EC2_CERT "%USERPROFILE%\aws\cert.pem"
 
 ## Deployment
 - https://www.softaculous.com
+
+
+## Logo
+- https://logomakr.com/
