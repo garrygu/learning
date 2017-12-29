@@ -26,4 +26,4 @@ onboarding, registration, API key provisioning, payments
 the scope of the developer portal:
    having a list of endpoints is not enough, give users the opportunity to learn and understand how an API works:
 
-Additional guides, getting started, best practices, FAQ, etc were other parts of the overall developer docs set. 
+Additional guides, getting started, best practices, FAQ, etc were other parts of the overall developer docs set.

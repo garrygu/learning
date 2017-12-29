@@ -1,14 +1,21 @@
 # API Design Guidelines
 > Move beyond the database-oriented thinking and closer to a more RESTful design for your API
 
-## Links
-- [5 Basic REST API Design Guidelines (10/04/2016)](https://dzone.com/articles/5-basic-rest-api-design-guidelines)
+## Design Guidelines By Company
 - [API Design Guides](http://design.apievangelist.com/tools/design-guides/)
 - [Google Cloud APIs Design Guide](https://cloud.google.com/apis/design/)
-
+- [PayPal API Design Guidelines](https://github.com/paypal/api-standards/blob/master/api-style-guide.md)
 - [https://apihandyman.io/](https://apihandyman.io/)
 - [http://apistylebook.com/design/guidelines/](http://apistylebook.com/design/guidelines/)
 
+## Links
+- [5 Basic REST API Design Guidelines (10/04/2016)](https://dzone.com/articles/5-basic-rest-api-design-guidelines)
+
+- http://jsonapi.org
+> A SPECIFICATION FOR BUILDING APIS IN JSON
+
+- http://www.odata.org
+> OData - the best way to REST
 
 ## Best Practices
 - [The Brilliance of Spotify Internal APIs to Mitigate Payments](http://nordicapis.com/the-brilliance-of-spotify-internal-apis-to-mitigate-payments/)
@@ -39,3 +46,22 @@
 - [RESTful API 设计与工程实践 (03/02/2017)](http://blog.m31271n.com/2017/03/02/RESTful-API-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/)
 - [服务端指南 | 良好的 API 设计指南](http://spring4all.com/article/172)
 - [一种RESTful接口的约定](https://bungder.github.io/2017/07/24/REST/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+
+- [Commit to API Contracts](https://blog.apisyouwonthate.com/guessing-api-contracts-ac1b7eaebced)
+  - [JSON Schema](http://json-schema.org)
+  - [API Blueprint](https://apiblueprint.org)
+  - [OpenAPI (formerly Swagger)](https://www.openapis.org)
+  - [RAML](https://raml.org)
+  - [GraphQL Types](http://graphql.org)
+  - [Protobuff](https://developers.google.com/protocol-buffers/)
+  - [JSON-LD](https://www.w3.org/TR/json-ld/) / [Hydra](http://www.markus-lanthaler.com/hydra/)
+  - [XML Schema](https://www.w3.org/standards/techs/xmlschema#w3c_all)
+  - [WSDL](https://www.w3.org/TR/2007/REC-wsdl20-20070626/)
+  - [OData](http://www.odata.org)
+
+- [How to GET a Cup of Coffee](https://www.infoq.com/articles/webber-rest-workflow)
+
+
+## Discussions
+- [REST APIs must be hypertext-driven (10/20/2008)](http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven)
+> In other words, if the engine of application state (and hence the API) is not being driven by hypertext, then it cannot be RESTful and cannot be a REST API.

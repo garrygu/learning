@@ -43,7 +43,8 @@ A powerful, interactive charting and visualization library for browser http://ec
 ## Compilers
 - http://babeljs.io
 > Babel is a JavaScript compiler
-
+- Articles
+  - [Gentle introduction into compilers. Part 1: Lexical analysis and Scanner](https://medium.com/dailyjs/gentle-introduction-into-compilers-part-1-lexical-analysis-and-scanner-733246be6738)
 
 ## JS Quality Tool
 - http://jshint.com/

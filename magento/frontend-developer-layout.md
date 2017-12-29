@@ -28,14 +28,58 @@ A block represents each feature on a page and employs templates to generate the 
 - `<Magento_Theme_module_dir>/view/frontend/layout/default_head_blocks.xml`: defines the scripts, images, and meta data included in pages’ <head> section.
 
 
+# Layout instructions and types
+## Layout instructions
+http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/xml-instructions.html  
+Two  ways to customize a layout on your Magento project. The first is to change the layout configuration files (XML); the second is to change the template files (phtml).
+
+The layout configuration files have the following instructions in tags format and attributes:
+- `<block>`: Refers to the specific block of content that can be in HTML format and uses templates (phtml) to render its contents
+- `<container>`: Groups elements that can be blocks and even other containers
+- `before` and `after` attributes: Attributes are used to define the display order of blocks and containers
+- `<referenceBlock>` and `<referenceContainer>`: Allows you to create references to blocks that you have already created earlier, even if the blocks belongs to other layout configuration files
+- `<move>`: Allows you to move a block or container inside another block or container
+- `<remove>`: Removes static elements, such as CSS and JS, particularly header blocks or containers
+- `<update>`: Includes a new template in the block or container
+- `<argument>`: Makes the transfer of arguments to the template directly
+
+Example:  
+catalog_product_index.xml:  
+```
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">
+Magento_Catalog::catalog_products
+</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="page.title">
+            <action method="setTitleClass">
+             <argument name="class" xsi:type="string">
+complex
+</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <uiComponent name="product_listing"/>
+            <block class="Magento\Catalog\Block\Adminhtml\Product" name="products_list"/>
+        </referenceContainer>
+    </body>
+</page>
+```
+
 ## Layout file types: by role  
 For a particular page, its layout is defined by two major layout components: **page layout file** and **page configuration file** (or **generic layout** for pages returned in AJAX requests, emails, and so on).
 
-- Page layout  
+- **Page layout**  
 An XML file declaring a page wireframe inside the <body> section of the HTML page markup, for example, two-column page layout.
-- Page configuration
+- **Page configuration**
 An XML file declaring detailed structure, contents and meta-information of a page (includes the <html>, <head>, and <body> sections of the HTML page markup).
-- Generic layout  
+- **Generic layout**  
 An XML file declaring page detailed structure and contents inside the body section of the HTML page markup. Used for pages returned by AJAX requests, emails, HTML snippets, and so on.
 
 
@@ -50,7 +94,15 @@ The following terms are used to distinguish layouts provided by different applic
 
 
 ## Customize layout  
-To make the necessary changes, create **extending** and **overriding** layout files in your custom theme
+To make the necessary changes, create **extending** and **overriding** layout files in your custom theme.
+
+###
+http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/layout-extend.html  
+When seeking punctual change, it is highly recommended to use the extend technique.  
+
+### Override a layout
+http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/layout-override.html  
+When the changes are much deeper both in layout behavior and parameters, it is recommended to adopt the override technique.  
 
 
 ## Layout files processing
@@ -58,7 +110,3 @@ To make the necessary changes, create **extending** and **overriding** layout fi
 - Determines the sequence of inherited themes `[<parent_theme>, ..., <parent1_theme>] <current_theme>`
 - Iterates the sequence of themes from last ancestor to current
 - Merges all layout files from the list
-
-
-## Layout instructions and types
-Two  ways to customize a layout on your Magento project. The first is to change the layout configuration files (XML); the second is to change the template files (phtml).

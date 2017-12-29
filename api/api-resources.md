@@ -3,6 +3,8 @@
 ## OpenAPI
 - [www.openapis.org](https://www.openapis.org/)
 - [OpenAPI-Specification](https://github.com/OAI/OpenAPI-Specification)
+- https://github.com/Microsoft/OpenAPI.NET
+
 
 ## API
 - [The API Stack](http://theapistack.com/)
@@ -36,11 +38,16 @@
 ## Frameworks
 - [swagger](http://swagger.io/)
 
+
 ## Description Formats
 - Swagger (Open API)
 - RAML
 - API Blueprint
+  - [MSON](https://github.com/apiaryio/mson)
+  > Markdown Syntax for Object Notation (MSON), a Markdown syntax compatible with describing JSON and JSON Schema.
+
 - WADL
+
 
 ## Tools
 ### Design
@@ -73,6 +80,7 @@
 - https://www.apiscience.com/
 - https://smartbear.com/
 
+
 ## Media Types
 - [Media Types](http://amundsen.com/media-types/)
 - [Collection+JSON - Hypermedia Type](http://amundsen.com/media-types/collection/)
@@ -80,4 +88,22 @@
 
 
 ## Misc
+- http://apibusters.com
+> A no-nonsense podcast about APIs, HTTP, service-orientated architecture, Internet of Things, etc.
+
 - http://nordicapis.com/
+
+- https://streamdata.io/doc/
+>SSE
+
+- https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm
+> Representational State Transfer (REST)
+
+- [AWS SDK for Go 2.0 Developer Preview](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-2-0-developer-preview/?sc_channel=sm&sc_campaign=Developer_Blog&sc_publisher=TWITTER&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&trk=_TWITTER&sc_content=blog&linkId=46195064)
+
+- [JSON Patch]https://tools.ietf.org/html/draft-ietf-appsawg-json-patch-10)
+- [PATCH Method for HTTP](https://tools.ietf.org/html/rfc5789)
+> PATCH is neither safe nor idempotent as defined by [RFC2616], Section 9.1.  
+> Clients using this kind of patch application SHOULD use a conditional request such that the request will fail if the resource has been updated since the client last accessed the resource.  For example, the client    can use a strong ETag [RFC2616] in an If-Match header on the PATCH request.
+
+- [HTTP/1.1, part 1: URIs, Connections, and Message Parsing](https://tools.ietf.org/html/draft-ietf-httpbis-p1-messaging-16#page-43)
