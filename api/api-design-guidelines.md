@@ -59,7 +59,14 @@
   - [WSDL](https://www.w3.org/TR/2007/REC-wsdl20-20070626/)
   - [OData](http://www.odata.org)
 
-- [How to GET a Cup of Coffee](https://www.infoq.com/articles/webber-rest-workflow)
+
+- [Let’s Stop Building APIs Around a Network Hack (10/20/2017)](https://blog.apisyouwonthate.com/lets-stop-building-apis-around-a-network-hack-9a68f7e83dd2)
+
+### Partials
+- [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)
+
+## Examples
+- [How to GET a Cup of Coffee (10/02/2008)](https://www.infoq.com/articles/webber-rest-workflow)
 
 
 ## Discussions

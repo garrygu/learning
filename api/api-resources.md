@@ -1,3 +1,19 @@
+- [Representational State Transfer (REST)](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+
+
+## Specifications
+- [HTTP/1.1, part 3: Message Payload and Content Negotiation](https://tools.ietf.org/html/draft-ietf-httpbis-p3-payload-20)
+
+### HTTP/2
+- [HTTP/2 Frequently Asked Questions](https://http2.github.io/faq/#what-are-the-key-differences-to-http1x)  
+At a high level, HTTP/2:
+  - is binary, instead of textual
+  - is fully multiplexed, instead of ordered and blocking
+  - can therefore use one connection for parallelism
+  - uses header compression to reduce overhead
+  - allows servers to “push” responses proactively into client caches  
+
+  Currently not 100% of browsers support HTTP/2 in it’s entirety, but the situation is pretty good.  
 
 
 ## OpenAPI
@@ -47,6 +63,8 @@
   > Markdown Syntax for Object Notation (MSON), a Markdown syntax compatible with describing JSON and JSON Schema.
 
 - WADL
+
+
 
 
 ## Tools
@@ -107,3 +125,20 @@
 > Clients using this kind of patch application SHOULD use a conditional request such that the request will fail if the resource has been updated since the client last accessed the resource.  For example, the client    can use a strong ETag [RFC2616] in an If-Match header on the PATCH request.
 
 - [HTTP/1.1, part 1: URIs, Connections, and Message Parsing](https://tools.ietf.org/html/draft-ietf-httpbis-p1-messaging-16#page-43)
+
+## Concepts
+- [What Is REST? (video)](http://www.restapitutorial.com/lessons/whatisrest.html)  
+
+The REST architectural style describes six constraints. These constraints, applied to the architecture, were originally communicated by Roy Fielding in his doctoral dissertation (see http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm) and defines the basis of RESTful-style.
+
+The six constraints are: (click the constraint to read more)
+  - Uniform Interface
+  - Stateless
+  - Cacheable
+  - Client-Server
+  - Layered System
+  - Code on Demand (optional)
+
+- [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
+- [Richardson Maturity Model](https://www.martinfowler.com/articles/richardsonMaturityModel.html)  
+A model (developed by Leonard Richardson) that breaks down the principal elements of a REST approach into three steps. These introduce resources, http verbs, and hypermedia controls.
