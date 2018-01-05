@@ -55,3 +55,7 @@ A “resource identifier object” MUST contain `type` and `id` members.
 
 ### Compound Documents
 To reduce the number of HTTP requests, servers MAY allow responses that include related resources along with the requested primary resources.   
+
+
+# Links
+- [Making the Most of JSON-API](https://blog.apisyouwonthate.com/making-the-most-of-json-api-7fb51f4407aa)
