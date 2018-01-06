@@ -55,3 +55,5 @@ What to version
   5. Relations with other resources (e.g., Links)
 
 - [Your API versioning is wrong, which is why I decided to do it 3 different wrong ways (02/10/2014)](https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/)
+
+- [Commit to API Contracts (09/15/2017)](https://blog.apisyouwonthate.com/guessing-api-contracts-ac1b7eaebced)

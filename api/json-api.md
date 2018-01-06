@@ -1,5 +1,6 @@
 http://jsonapi.org  
 http://jsonapi.org/format/  
+https://github.com/json-api/json-api  
 
 # Latest Specification (v1.0)
 > to minimize both the number of requests and the amount of data transmitted between clients and servers.
@@ -59,3 +60,4 @@ To reduce the number of HTTP requests, servers MAY allow responses that include 
 
 # Links
 - [Making the Most of JSON-API](https://blog.apisyouwonthate.com/making-the-most-of-json-api-7fb51f4407aa)
+- [](http://discuss.jsonapi.org)

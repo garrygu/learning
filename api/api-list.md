@@ -14,3 +14,6 @@ https://docs.openstack.org/pike/api/
 
 - Facebook  
 https://developers.facebook.com/docs/graph-api
+
+- Slack  
+https://api.slack.com/web  

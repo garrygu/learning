@@ -4,17 +4,6 @@
 ## Specifications
 - [HTTP/1.1, part 3: Message Payload and Content Negotiation](https://tools.ietf.org/html/draft-ietf-httpbis-p3-payload-20)
 
-### HTTP/2
-- [HTTP/2 Frequently Asked Questions](https://http2.github.io/faq/#what-are-the-key-differences-to-http1x)  
-At a high level, HTTP/2:
-  - is binary, instead of textual
-  - is fully multiplexed, instead of ordered and blocking
-  - can therefore use one connection for parallelism
-  - uses header compression to reduce overhead
-  - allows servers to “push” responses proactively into client caches  
-
-  Currently not 100% of browsers support HTTP/2 in it’s entirety, but the situation is pretty good.  
-
 
 ## OpenAPI
 - [www.openapis.org](https://www.openapis.org/)
@@ -63,8 +52,6 @@ At a high level, HTTP/2:
   > Markdown Syntax for Object Notation (MSON), a Markdown syntax compatible with describing JSON and JSON Schema.
 
 - WADL
-
-
 
 
 ## Tools
@@ -119,10 +106,10 @@ At a high level, HTTP/2:
 
 - [AWS SDK for Go 2.0 Developer Preview](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-2-0-developer-preview/?sc_channel=sm&sc_campaign=Developer_Blog&sc_publisher=TWITTER&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&trk=_TWITTER&sc_content=blog&linkId=46195064)
 
-- [JSON Patch]https://tools.ietf.org/html/draft-ietf-appsawg-json-patch-10)
-- [PATCH Method for HTTP](https://tools.ietf.org/html/rfc5789)
-> PATCH is neither safe nor idempotent as defined by [RFC2616], Section 9.1.  
-> Clients using this kind of patch application SHOULD use a conditional request such that the request will fail if the resource has been updated since the client last accessed the resource.  For example, the client    can use a strong ETag [RFC2616] in an If-Match header on the PATCH request.
+- [JSON Patch](https://tools.ietf.org/html/draft-ietf-appsawg-json-patch-10)  
+- [JSON Merge Patch](https://tools.ietf.org/html/rfc7386)  
+The merge patch format is primarily intended for use with the HTTP PATCH method as a means of describing a set of modifications to a target resource's content.  
+
 
 - [HTTP/1.1, part 1: URIs, Connections, and Message Parsing](https://tools.ietf.org/html/draft-ietf-httpbis-p1-messaging-16#page-43)
 

@@ -17,6 +17,8 @@
 - http://www.odata.org
 > OData - the best way to REST
 
+- https://restful-api-design.readthedocs.io/en/latest/intro.html
+
 ## Best Practices
 - [The Brilliance of Spotify Internal APIs to Mitigate Payments](http://nordicapis.com/the-brilliance-of-spotify-internal-apis-to-mitigate-payments/)
 - [7 Tips for Designing a Better REST API](http://www.kennethlange.com/posts/7_tips_for_designing_a_better_rest_api.html)  
