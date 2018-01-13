@@ -31,6 +31,7 @@ The concept of a “compound document” — in the API world at least —
 
 尽量避免在资源中包含计算字段。它可能造成大量资源消耗。
 
+
 ## 资源粒度
 从客户和网络的角度来确定合适的资源粒度(granularity)。其他因素：
 - 缓存(Cacheability)

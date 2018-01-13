@@ -21,8 +21,8 @@ REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`
 |方法   |Safe     |Idempotent |描述|
 |------ |:------: |:------:   |------|
 |GET    |Y        |Y          |根据URL获取资源的一个呈现。<br>GET请求永远不应导致资源状态的改变。|
-|HEAD   |Y        |Y           ||
-|OPTIONS|Y        |Y           ||
+|HEAD   |Y        |Y           |返回Response头|
+|OPTIONS|Y        |Y           |返回资源的可用方法|
 |PUT    |N        |Y          |更新资源（如果指定资源不存在，在允许的条件下创建新资源）|
 |DELETE |N        |Y          |删除资源|
 |POST   |N        |N          |提交数据到服务器，对指定资源进行处理。用于创建新资源或者向已有资源添加数据。|
@@ -32,26 +32,53 @@ REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`
 [Why PATCH method is not idempotent?](https://softwareengineering.stackexchange.com/questions/260818/why-patch-method-is-not-idempotent)  
 > Whether PATCH can be idempotent or not depends strongly on how the required changes are communicated. For example, if the patch format is in the form of {change: ‘Name’ from: ‘benjamin franklin’ to: ‘john doe’}, then any PATCH request after the first one would have a different effect (a failure response) than the first request.  
 
-DELETE
-The problem with DELETE, which if successful would normally return a 200 (OK) or 204 (No Content), will often return a 404 (Not Found) on subsequent calls, unless the service is configured to "mark" resources for deletion without actually deleting them. However, when the service actually deletes the resource, the next call will not find the resource to delete it and return a 404. However, the state on the server is the same after each DELETE call, but the response is different.
+
+# GET
+请求：
+请求消息中只能有头，不能有消息体。
 
 
-We've discussed using Expect and OPTIONS to guard against race conditions as much as possible. Besides these, we can also attach If-Unmodified-Since or If-Match headers to our PUT to convey our intentions to the receiving service. If-Unmodified-Since uses the timestamp and If-Match the ETag1 of the original order.   
+# HEAD
+除了没有内容（body），HEAD的返回和GET一样. 客户端可以用该方法来检查资源是否存在，或者获取资源的元数据（metadata）。
 
-Checking OPTIONS and using the Expect header can't totally shield us from a situation where a change at the service causes subsequent requests to fail.
-
-General consensus is that OPTIONS metadata isn't that fine-grained in time.
+请求消息中只能有头，不能有消息体。
 
 
-# POST方法
+# POST
+使用POST执行controller资源。
+
 如果使用POST方法创建一个新资源，应该返回：
 - 201，以及另一个超文本资源呈现（新资源的链接，以及下一步可以做什么）
 - 204，以及包含新资源URI的`Location` header.
 
 
 
-# DELETE方法
+# DELETE
    A payload within a DELETE request message has no defined semantics;sending a payload body on a DELETE request might cause some existing implementations to reject the request.
+
+   DELETE
+   The problem with DELETE, which if successful would normally return a 200 (OK) or 204 (No Content), will often return a 404 (Not Found) on subsequent calls, unless the service is configured to "mark" resources for deletion without actually deleting them. However, when the service actually deletes the resource, the next call will not find the resource to delete it and return a 404. However, the state on the server is the same after each DELETE call, but the response is different.
+
+
+   We've discussed using Expect and OPTIONS to guard against race conditions as much as possible. Besides these, we can also attach If-Unmodified-Since or If-Match headers to our PUT to convey our intentions to the receiving service. If-Unmodified-Since uses the timestamp and If-Match the ETag1 of the original order.   
+
+   Checking OPTIONS and using the Expect header can't totally shield us from a situation where a change at the service causes subsequent requests to fail.
+
+   General consensus is that OPTIONS metadata isn't that fine-grained in time.
+
+如果资源彻底删除，GET和HEAD请求应返回404("Not Found")状态。
+如果不是彻底删除（soft delete），不能使用DELETE（用 POST+controller代替），以符合HTTP语义？
+
+
+# PUT
+Q: PUT请求消息必须和GET请求得到的消息一致吗？
+不需要。可以只包含资源状态的可变部分。
+
+conditional PUT requests
+
+# OPTIONS
+获取资源的元数据：
+`Allow: GET, PUT, DELETE`
 
 
 # 自定义HTTP方法

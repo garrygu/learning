@@ -1,6 +1,11 @@
 # 统一接口
 
-1）	支持GET, POST, PUT, DELETE四种HTTP方法。使用GET查询资源；POST创建资源；PUT更新资源；DELETE删除资源  
+1）	支持GET, POST, PUT, DELETE四种HTTP方法。
+- 使用GET查询资源；
+- POST创建资源；
+- PUT更新资源；
+- DELETE删除资源
+ 
 2）	如果服务器、防火墙或网络不支持PUT和DELETE操作，应允许使用method参数，通过POST方法执行相应操作。例如：
 POST https://graph.facebook.com/COMMENT_ID?method=delete.
 3）	DELETE with payload

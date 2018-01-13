@@ -17,3 +17,6 @@ https://developers.facebook.com/docs/graph-api
 
 - Slack  
 https://api.slack.com/web  
+
+
+- [mypurecloud](https://developer.mypurecloud.com/api/rest/v2/)
