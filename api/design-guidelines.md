@@ -7,6 +7,11 @@
 - [PayPal API Design Guidelines](https://github.com/paypal/api-standards/blob/master/api-style-guide.md)
 - [https://apihandyman.io/](https://apihandyman.io/)
 - [http://apistylebook.com/design/guidelines/](http://apistylebook.com/design/guidelines/)
+- [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)
+- [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
+  - https://github.com/zalando/restful-api-guidelines  
+-
+
 
 ## Links
 - [5 Basic REST API Design Guidelines (10/04/2016)](https://dzone.com/articles/5-basic-rest-api-design-guidelines)
