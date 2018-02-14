@@ -1,4 +1,8 @@
-资源(Resource)是REST架构的基础，是系统中所有可用URI来定位的具体或抽象实体。所有的操作都是面向资源而不是对象或活动。设计REST API的第一步是设计资源模型。这个过程类似于对一个关系数据库系统的数据建模，或对一个面向对象系统的对象建模。
+避免Action, 想想资源。
+
+资源(Resource)是REST架构的基础，是系统中所有可用URI来定位的具体或抽象实体。所有的操作都是面向资源而不是对象或活动。
+
+设计REST API的第一步是设计资源模型。这个过程类似于对一个关系数据库系统的数据建模，或对一个面向对象系统的对象建模。
 
 资源包括：
 - 类型
@@ -32,6 +36,26 @@ The concept of a “compound document” — in the API world at least —
 尽量避免在资源中包含计算字段。它可能造成大量资源消耗。
 
 
+Instead of thinking of actions (verbs), it’s often helpful to think about putting a message in a letter box: e.g., instead of having the verb cancel in the url, think of sending a message to cancel an order to the cancellations letter box on the server side.
+
+## Sub-resources
+某些API可能含有或者引用子资源。  
+每一个子路径都是对一个资源或者资源集合的有效引用。例如：
+如果/a/b/c/d是一个有效路径，那/a/b/c, /a/b, /a 原则上也应是有效的。
+
+如果子资源只能通过父资源访问，或者只能因父资源存在，使用nested url。如果可以通过ID访问，应该暴露成顶层资源。
+
+
+## Misc
+只有在必要时才使用UUID。
+我们应该总是使用字符串而不是数字类型作为标识符。   
+Usually, random UUID is used - see UUID version 4 in RFC 4122
+
+限制资源数量；  
+限制资源层级（<=3）
+
+
+
 ## 资源粒度
 从客户和网络的角度来确定合适的资源粒度(granularity)。其他因素：
 - 缓存(Cacheability)
@@ -42,6 +66,8 @@ The concept of a “compound document” — in the API world at least —
 例如：客户和地址。是把地址数据作为客户资源的一部分，还是把客户和地址作为两个不同的资源呢？如果我们要把客户缓存到gateway上面，包含address数据可能就太大了。
 
 基于用户的使用模式而不是数据库或对象模型来设计资源。
+
+API应该包含完整的业务流程，包含涉及流程的所有资源。这防止API只是database的一个简单包装，避免将业务逻辑移往客户端。
 
 # 关于Tunneling
 Tunneling: 用同一URI，使用同样的方法，来完成不同的事情。例如：

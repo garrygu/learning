@@ -8,9 +8,11 @@
 - [https://apihandyman.io/](https://apihandyman.io/)
 - [http://apistylebook.com/design/guidelines/](http://apistylebook.com/design/guidelines/)
 - [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)
+  - http://apistylebook.com/design/guidelines/microsoft-rest-api-guidelines  
+  - https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design  
 - [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
   - https://github.com/zalando/restful-api-guidelines  
--
+- [RESTful API guidelines](https://byrondover.github.io/post/restful-api-guidelines/)
 
 
 ## Links
@@ -68,6 +70,9 @@
 
 
 - [Let’s Stop Building APIs Around a Network Hack (10/20/2017)](https://blog.apisyouwonthate.com/lets-stop-building-apis-around-a-network-hack-9a68f7e83dd2)
+- [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+- [5 Basic REST API Design Guidelines](http://blog.restcase.com/5-basic-rest-api-design-guidelines/)
+- [RESTful API Designing guidelines — The best practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)

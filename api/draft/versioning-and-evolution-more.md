@@ -110,7 +110,18 @@ include Content-Type in the Vary header to enable proxy caches to differ between
 提示：直到不兼容的更改是必要的，建议留在标准application/json的媒体类型。
 
 
-# Deprecation
+# Deprecation（弃用）
+只要用户还在使用API，就不允许破坏性更新（breaking changes）。
+关闭（API的或版本）的API之前，生产者必须确保，所有客户端已同意关闭端点。所有客户端都迁移后，生产者可以关闭过时的API。
+
+API弃用是API定义的一部分。如果路径上的一个方法，一整条路径，甚至整个API端点（多个路径）需要被弃用，生产者必须将被弃用的每个方法/路径元素设置deprecated=true。如果deprecated设置为true，生产者必须在API定义中描述客户应该使用什么端口替代，以及什么时候该API将被关闭。
+
+## 必须监控已过时的API使用
+直到API被关闭之前，生产环境中API的所有者必须监控失效API的使用，以避免出现破坏性更新效果。
+
+## 应该在响应中添加一个警告标头
+在弃用阶段，生产者应该添加一个Warning标头（https://tools.ietf.org/html/rfc7234#section-5.5）。 添加Warning标题时，warn-code必须为299，warn-text应该为"The path/operation/parameter/…​ {name} is deprecated and will be removed by {date}. Please see {link} for details."。该link链接到一个文档描述为什么API不再支持，以及客户应该如何处理。
+
 
 
 
