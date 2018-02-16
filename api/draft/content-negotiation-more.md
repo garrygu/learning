@@ -77,10 +77,11 @@ Accept: application/vnd.newegg.customer+xml
 
 Vendor-Specific Media Types也可以通过IANA注册.
 
+除非是版本控制需要，首选标准媒体类型名称application/json
+
 
 ## Media Type设计
 除了具有XML或者JSON等格式外，REST API请求或者返回的HTTP消息体通常也有特别的语义（semantics）。诸如Content-Type：application/json固然可以精准地描述消息体内容的语法（syntax），但是完全忽略了资源呈现的语义和结构。
-
 
 
 # 用于内容协商的HTTP头
@@ -97,12 +98,17 @@ Vendor-Specific Media Types也可以通过IANA注册.
 
 |HTTP响应头（Content-*）|	描述|	示例|
 |------|------|------|
-|Content-Type|	媒体类型(或称media-type, MIME type)，可以有charset等参数。例如：如果是application/xml或者以+xml结尾，则可以用XML解析器处理消息。JSON媒体类型application/json不指定charset参数，默认使用UTF-8 。|	application/xml;charset=UFT-8<br>application/json|
+|Content-Type|	指示正文内容的媒体类型(或称media-type, MIME type)，可以有charset等参数。例如：如果是application/xml或者以+xml结尾，则可以用XML解析器处理消息。JSON媒体类型application/json不指定charset参数，默认使用UTF-8 。|	application/xml;charset=UFT-8<br>application/json|
 |Content-Length|	内容长度（bytes）|
 |Content-Language|	本地化语言。使用两个字母的RFC5646语言标签。“-”+ 两个字母的国家代码是可选的。|	en-US|
 |Content-MD5|	内容的MD5摘要，用于一致性检查（注：TCP用户使用传输级别的校验和（checksum）进行一致性检查）。接收方可以用这个头校验数据的完整性，特别是在不稳定的网络上发送或接受大量数据时。（由于可能被篡改，不能用于安全控制目的）|bbdc7bbb8ea589666e33ac922c0f83|
-|Content-Encoding|	gzip, compress或deflate编码。如果是gzip，接收方在解析消息前必须先对消息进行解压。客户端可用Accept-Encoding来设置对Content-Encoding的偏好。避免在HTTP请求中使用这个头，除非服务端支持。|	gzip|
+|Content-Encoding|	指示应用于内容的压缩或加密算法。gzip, compress或deflate编码。如果是gzip，接收方在解析消息前必须先对消息进行解压。客户端可用Accept-Encoding来设置对Content-Encoding的偏好。避免在HTTP请求中使用这个头，除非服务端支持。|	gzip|
 |Last-Modified|	服务端最近一次修改资源或呈现的时间	|Sun, 29 Mar 2009 04:51:38 GMT|
+|
+|Content-Disposition  | 可以指示该表示应该被保存为文件，以及建议的文件名。 | |
+|Content-Location |指示body可以在其他地方找到。使用Content-Location时也必须设置Content-Type  | |
+|Content-Range  |用于范围请求的响应，以指示请求资源表示的哪一部分与正文一起传递| ||
+
 
 `Accept-*`通常指定的是一个范围 (Range) ； `Content-*`通常返回的是一个特定的值。
 例如，如果客户：  

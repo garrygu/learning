@@ -8,7 +8,7 @@
 
 API Owner
 breaking Changes
-
+Resource & Representation
 
 
 要开发良好的基于HTTP的服务，需理解REST架构风格背后的理念。

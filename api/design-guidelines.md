@@ -73,6 +73,7 @@
 - [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
 - [5 Basic REST API Design Guidelines](http://blog.restcase.com/5-basic-rest-api-design-guidelines/)
 - [RESTful API Designing guidelines — The best practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
+- [Thoughts on RESTful API Design](http://restful-api-design.readthedocs.io/en/latest/)
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)
