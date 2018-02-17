@@ -1,3 +1,4 @@
+面向资源的设计（Resource Oriented Design）
 避免Action, 想想资源。
 
 资源(Resource)是REST架构的基础，是系统中所有可用URI来定位的具体或抽象实体。所有的操作都是面向资源而不是对象或活动。
@@ -12,13 +13,27 @@
 
 
 # 识别资源
+面向资源的API通常建模为资源层次结构（resource hierarchy），其中每个节点都是简单资源或集合资源 。通常分别被称为资源和集合。
+
+资源是命名实体（named entities），资源名称（resource names）是它们的标识符（identifiers）。每个资源必须具有自己唯一的资源名称。资源名称由资源本身的ID，任何父资源的ID以及其API服务名称组成。
+
+集合是一种特殊的资源，其中包含相同类型的子资源列表。例如，目录是文件资源的集合。 集合的资源ID称为集合ID。
+
+资源名称使用由正斜杠（'/'）分隔的集合ID和资源ID进行分层次组织。 如果资源包含子资源，则通过指定父资源名称和子资源的ID来形成子资源的名称 - 再次用正斜杠分隔。
+
+应尽可能使用URL友好的资源ID
+
 资源模型识别和归类所有客户需要和服务进行交互的资源。目的是找出值得识别、呈现和操作的资源。
 
 - 个体资源  
 和集合资源相对而言。例如单一一个Customer，一张Sales Order，客户的一个Shipping Address等。每个个体资源都有唯一的ID。
 
-- 集合资源(Collections)  
-集合本身也是资源，包含0到多个个体资源。例如所有Customers，一个客户的所有Sales Orders等。通常将集合作为一个工厂，通过向集合提交一个HTTP POST请求来创建一个新成员。  
+资源有一些状态和零个或多个子资源。 每个子资源可以是简单资源或集合资源。
+
+- 集合资源(Collections)  （collection resource）
+集合包含相同类型的资源列表。 例如，用户拥有一组联系人。
+
+包含0到多个个体资源。例如所有Customers，一个客户的所有Sales Orders等。通常将集合作为一个工厂，通过向集合提交一个HTTP POST请求来创建一个新成员。  
 The concept of a “compound document” — in the API world at least — is the art of squashing related data into the main requested resources. This is done to reduce the number of HTTP calls a client has to make.
 
 - 复合资源(Composites)  
@@ -44,6 +59,9 @@ Instead of thinking of actions (verbs), it’s often helpful to think about putt
 如果/a/b/c/d是一个有效路径，那/a/b/c, /a/b, /a 原则上也应是有效的。
 
 如果子资源只能通过父资源访问，或者只能因父资源存在，使用nested url。如果可以通过ID访问，应该暴露成顶层资源。
+
+资源能否被单独创建？还是必须和父资源一起创建？
+在一个事务中分别创建多个资源？
 
 
 ## Misc

@@ -7,3 +7,9 @@ GET请求返回应总是提供该header.
 
 
 Custom HTTP headers must not be used to change the behavior of HTTP methods
+
+
+
+
+# 其他
+- 空字段的处理

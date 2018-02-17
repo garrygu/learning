@@ -1,3 +1,79 @@
+
+# 标准方法
+
+|Standard Method	|HTTP Mapping	|HTTP Request Body	|HTTP Response Body |
+|------|------|------|------|
+|List	|GET <collection URL>	    |N/A	|Resource* list
+|Get	|GET <resource URL>	      |N/A	|Resource*
+|Create	|POST <collection URL>	|Resource	|Resource*
+|Update	|PUT or PATCH <resource URL>	|Resource	|Resource*
+|Delete	|DELETE <resource URL>	|N/A	|Empty**
+
+\*如果方法支持响应字段掩码（response field masks）（指定要返回的字段子集），则从List ， Get ， Create和Update方法返回的资源可能包含部分数据。
+\**从不立即删除资源的Delete方法返回的响应（例如更新标志或创建长时间运行的删除操作） 应包含长时间运行的操作或修改后的资源。
+
+对在单个API调用的时间跨度内未完成的请求，标准方法也可能会返回一个长时间运行的操作。
+
+## 推荐返回格式
+- GET
+单个资源，返回的资源将映射到整个响应主体。
+```
+get /sales-order/{so#}
+{
+  _self: ...
+  _next: ...
+  sales_order: {
+    ...
+  }
+
+}
+```
+
+- LIST
+响应主体应该包含资源列表以及可选的元数据。
+```
+get /sales-order?dateFrom={x}&DateTo={x}
+{
+  _self: ...
+  _next: ...
+  sales_orders: [
+    sales-order:{}
+    sales-order:{}
+  ]  
+}
+```
+
+- 创建 (Create)
+它在指定的父项下创建一个新资源，并返回新创建的资源。  
+返回的资源将映射到整个响应主体。  
+
+如果Create方法支持客户端分配的资源名称并且该资源已存在，则该请求应该失败并显示错误代码ALREADY_EXISTS  
+
+
+- 更新（Update）
+它更新指定的资源及其属性，并返回更新后的资源。  
+任何重命名或移动资源的功能都不得在Update方法中发生，而应由自定义方法处理。  
+
+- 标准Update方法应支持部分资源更新，并使用名为update_mask的FieldMask字段使用HTTP动词PATCH 。
+- Update方法需要更高级的修补语义，例如添加到重复字段（repeated field）， 应该通过自定义方法提供 。
+- 如果Update方法只支持完整资源更新，则必须使用HTTP动词PUT 。 但是，极度不鼓励完全更新，因为它在添加新资源字段时存在向后兼容性问题。  
+- 响应消息必须是已更新的资源本身。
+
+如果API接受客户端分配的资源名称，则服务器可能允许客户端指定不存在的资源名称并创建新资源。 否则， Update方法应该失败并显示不存在的资源名称。 如果它是唯一的错误条件，则应该使用错误代码NOT_FOUND 。
+
+一个支持资源创建的Update方法的API也应该提供一个Create方法。
+
+
+- 删除（Delete）
+- API 不应该依赖任何由Delete方法返回的信息，因为它不能被重复调用。
+- 没有请求主体; API配置不能声明body子句。
+- 如果Delete方法立即删除资源，它应该返回一个空的响应。
+- 如果Delete方法启动一个长时间运行的操作，它应该返回长时间运行的操作。
+- 如果Delete方法只标记资源被删除，它应该返回更新的资源。
+
+调用Delete方法应该是幂等的，但不需要产生相同的响应。 任何数量的Delete请求都应该导致（最终）删除资源，但只有第一个请求才会导致成功代码。 随后的请求应该会导致google.rpc.Code.NOT_FOUND 。
+
+
 # 什么是统一接口(Uniform Interfaces)？
 [HTTP协议](https://tools.ietf.org/html/rfc2616)定义了由下列标准方法组成的统一接口：
   - OPTIONS
@@ -13,6 +89,7 @@
 
 REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`和`POST`.
 
+标准方法降低复杂性并增加一致性。
 
 
 # 安全与幂等
@@ -29,6 +106,9 @@ REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`
 |PATCH  |N        |N          |资源局部更新|
 
 
+
+
+
 ## 争议
 [Why PATCH method is not idempotent?](https://softwareengineering.stackexchange.com/questions/260818/why-patch-method-is-not-idempotent)  
 > Whether PATCH can be idempotent or not depends strongly on how the required changes are communicated. For example, if the patch format is in the form of {change: ‘Name’ from: ‘benjamin franklin’ to: ‘john doe’}, then any PATCH request after the first one would have a different effect (a failure response) than the first request.  
@@ -38,7 +118,8 @@ REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`
 
 "Get with Body"
 API标准中，在GET体必须在服务器端被忽略
-请求消息中只能有头，不能有消息体。
+请求消息中只能有头，不能有请求主体(request body)。
+
 
 
 # POST
@@ -133,6 +214,10 @@ DELTE通常应用于单个资源
 ```
 Allow: GET, PUT, DELETE
 ```
+
+
+
+
 
 # 为批量或批量请求（Batch or Bulk Requests）使用207
 出于性能原因，例如通信和处理效率，一些API须使用POST提供批次或批量请求.在这种情况下，服务可能需要为批量或批量请求的每个部分发送多个响应代码。

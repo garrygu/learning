@@ -7,6 +7,12 @@ URI可能很清晰地描述了一个资源模型，也可以是很难理解的�
 --Tim Berners-Lee http://www.w3.org/DesignIssues/Axioms.html
 
 
+一个API含有多个end points
+一组服务含有多个API
+一个Domain含有多组服务
+一个Tenant有多个Domain
+
+
 # 有效的URL
 ## URL长度  
 HTTP协议规范 没有对URL长度进行限制。但特定的浏览器及服务器可能会对它有所限制。IE对URL长度的限制是2083字符 。其他浏览器（Firefox、Safari等）理论上对URL长度没有限制。  
@@ -33,6 +39,38 @@ URI路径中含有变量(variables),通常用`{}`表示。
 
 # URI路径设计
 `/`隔开的URI路径的每一个部分（节点）都应该是有意义的名称，代表一个独立的资源。这样做有助于用户理解资源模型的层次结构。
+
+例如：
+
+|Domain|Version|Collection ID|Resource ID | Collection ID |
+|------|------|------|------|
+|/sales-order |/v1  |/order |/{order#} | |
+|/sales-order |/v1  |/customer |/{customer#} |/order |
+
+资源名称：
+  /sales-order/v1/order/{order#}  
+  /sales-order/v1/customer/{customer#}/order
+
+API生产者可以为资源和集合ID选择任何可接受的值，只要它们在资源层次结构中是唯一的。
+
+完整资源名称  "//library.googleapis.com/shelves/shelf1/books/book2"
+相对资源名称  "shelves/shelf1/books/book2"
+
+
+## 资源名称与URL
+尽管完整的资源名称与正常的URL类似，但它们并不是一回事。 一个资源可以通过不同的API版本，API协议或API网络端点公开。 完整的资源名称未指定此类信息，因此必须将其映射到特定的API版本和API协议以供实际使用。  
+
+要通过REST API使用完整资源名称， 必须将其转换为REST URL，方法是在服务名称前添加HTTPS方案，在资源路径前添加API主版本，以及URL转义资源路径。 例如：  
+```
+// This is a calendar event resource name.
+"//calendar.googleapis.com/users/john smith/events/123"
+
+// This is the corresponding HTTP URL.
+"https://calendar.googleapis.com/v3/users/john%20smith/events/123"
+```
+
+资源名称应该像普通文件路径一样处理，并且不支持％-encoding。
+
 
 ##  URI查询设计
 查询参数也是资源唯一标识符的一部分。和URI的其他元素不同，查询部分对客户应该是透明的。
