@@ -53,7 +53,7 @@ The concept of a “compound document” — in the API world at least —
 
 Instead of thinking of actions (verbs), it’s often helpful to think about putting a message in a letter box: e.g., instead of having the verb cancel in the url, think of sending a message to cancel an order to the cancellations letter box on the server side.
 
-## Sub-resources
+## Resource relations & Sub-resources
 某些API可能含有或者引用子资源。  
 每一个子路径都是对一个资源或者资源集合的有效引用。例如：
 如果/a/b/c/d是一个有效路径，那/a/b/c, /a/b, /a 原则上也应是有效的。
@@ -62,6 +62,9 @@ Instead of thinking of actions (verbs), it’s often helpful to think about putt
 
 资源能否被单独创建？还是必须和父资源一起创建？
 在一个事务中分别创建多个资源？
+
+
+If a resource is related to another resource use subresources.
 
 
 ## Misc

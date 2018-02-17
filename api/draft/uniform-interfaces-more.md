@@ -15,8 +15,8 @@
 对在单个API调用的时间跨度内未完成的请求，标准方法也可能会返回一个长时间运行的操作。
 
 ## 推荐返回格式
-- GET
-单个资源，返回的资源将映射到整个响应主体。
+- GET  
+单个资源，返回的资源将映射到整个响应主体。  
 ```
 get /sales-order/{so#}
 {
@@ -25,7 +25,6 @@ get /sales-order/{so#}
   sales_order: {
     ...
   }
-
 }
 ```
 
@@ -106,7 +105,10 @@ REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`
 |PATCH  |N        |N          |资源局部更新|
 
 
-
+do not use verbs
+- /getAllCars         GET /cars
+- /createNewCar       POST /cars
+- /deleteAllRedCars   DELETE /cars
 
 
 ## 争议
@@ -135,6 +137,9 @@ API标准中，在GET体必须在服务器端被忽略
 在不能使用其他方法的场景，使用POST。例如，复杂查询的GET.
 
 和POST请求相关的资源ID是由服务端创建和维护的，并通过响应的Payload返回。执行同样的POST请求多次可能会造成多个资源实例。如果外部URI可用于识别重复的请求，尽量实现幂等（idempotent ）。
+
+POST /cars/711 
+Method not allowed (405)
 
 
 # PUT
@@ -425,6 +430,9 @@ X-HTTP-Method-Override: PATCH
 Content-Type: application/xml
 ...
 ```
+Allow overriding HTTP method?
+Some proxies support only POST and GET methods. Use the custom HTTP Header X-HTTP-Method-Override to override the POST Method.
+
 
 **推荐做法：**  
 与其使用X-HTTP-Method-Override，不如利用一个单独的资源来POST同样的请求。因为任何客户和服务端之间的中间层都有可能忽略自定义头。

@@ -137,6 +137,9 @@ offset - 基于数字的开始页。和limit结合，可用page代替offset
 10） 考虑支持标题扩展功能以支持返回子对象更详细的信息  
 11） 文档化每一个查询参数  
 
+
+Provide filtering, sorting, field selection and paging for collections  
+
 # 分页（Pagination）
 如果列表含有几百个以上记录，应支持分页以获得最佳的客户端批处理和遍历体验。 两种页面遍历技术：
 - 基于Offset/Limit的分页: 用数字偏移标识第一个页面入口
@@ -161,6 +164,16 @@ offset - 基于数字的开始页。和limit结合，可用page代替offset
 
 当客户端除了页面令牌外还指定查询参数时，如果查询参数与页面令牌不一致，则该服务必须使请求失败。
 
+The default should be limit=20 and offset=0
+To send the total entries back to the user use the custom HTTP header: X-Total-Count.  ???
+
+Links to the next or previous page should be provided in the HTTP header link as well.  
+```
+Link: <https://blog.mwaysolutions.com/sample/api/v1/cars?offset=15&limit=5>; rel="next",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=50&limit=3>; rel="last",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=0&limit=5>; rel="first",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=5&limit=5>; rel="prev",
+```
 
   进一步阅读：
   - [Twitter](https://developer.twitter.com/en/docs/tweets/timelines/overview)
@@ -176,7 +189,13 @@ offset - 基于数字的开始页。和limit结合，可用page代替offset
 如果集合包含指向其他资源的链接，则集合名称应在适当时使用[IANA registered link relations](http://www.iana.org/assignments/link-relations/link-relations.xml)作为名称，但使用复数形式。
 
 
-# 结果排序（Result Ordering）
+# Filtering
+```
+GET /cars?color=red Returns a list of red cars
+GET /cars?seats<=2 Returns a list of cars with a maximum of 2 seats
+```
+
+# 结果排序（Result Ordering）(Sorting)
 
 排序顺序（Sorting Order）  
 如果API方法允许客户端为列表结果指定排序顺序，则请求消息应包含一个字段：string order_by = ...;
@@ -184,6 +203,11 @@ offset - 基于数字的开始页。和limit结合，可用page代替offset
 字符串值应遵循SQL语法：逗号分隔的字段列表。 例如： "foo,bar" 。 默认的排序顺序是升序。 要指定字段的" desc" 应在字段名称后附加后缀" desc" 。 例如： "foo desc,bar" 。
 
 语法中的冗余空格字符不重要。 "foo,bar desc"和" foo , bar desc "等价。
+
+`GET /cars?sort=-manufactorer,+model`
+
+
+# Field selection
 
 
 # 其他

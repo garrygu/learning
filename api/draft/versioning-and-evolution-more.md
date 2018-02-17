@@ -1,6 +1,7 @@
 在guideline之前的保持原状
 Publish后再修改需要检查兼容性
 
+Use a simple ordinal number and avoid dot notation such as 2.5.
 
 # 业界常用的版本控制方法
 - 使用HTTP ACCEPT头传递版本信息  

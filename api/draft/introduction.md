@@ -14,3 +14,13 @@ https://www.ietf.org/rfc/rfc2119.txt
 本指南重度参考了下列资料：
 - [Google Cloud APIs Design Guide](https://cloud.google.com/apis/design/)  
 - [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)  
+- [Design Guidelines](http://apistylebook.com/design/guidelines/)  
+
+
+
+
+https://swaggerhub.com/blog/api-design/api-design-guidelines/  
+[Atlassian REST API design guidelines version 1](https://developer.atlassian.com/server/framework/atlassian-sdk/atlassian-rest-api-design-guidelines-version-1/)  
+https://apiguide.readthedocs.io/en/latest/  
+https://github.com/interagent/http-api-design  
+https://swift.org/documentation/api-design-guidelines/  

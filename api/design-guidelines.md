@@ -6,7 +6,7 @@
 - [Google Cloud APIs Design Guide](https://cloud.google.com/apis/design/)
 - [PayPal API Design Guidelines](https://github.com/paypal/api-standards/blob/master/api-style-guide.md)
 - [https://apihandyman.io/](https://apihandyman.io/)
-- [http://apistylebook.com/design/guidelines/](http://apistylebook.com/design/guidelines/)
+- [Design Guidelines](http://apistylebook.com/design/guidelines/)
 - [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)
   - http://apistylebook.com/design/guidelines/microsoft-rest-api-guidelines  
   - https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design  

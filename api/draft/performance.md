@@ -12,7 +12,7 @@
 
 尽管gzip压缩可能是服务器有效负载的默认选择，服务器还应该通过[Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4)请求标头支持无压缩有效负载和客户端控制。服务器应通过Content-Encoding标头指示使用的gzip压缩。
 
-# 资源字段过滤
+# 资源字段过滤 (Field selection)
 可以通过支持对返回实体字段的过滤来显着降低网络带宽需求。在这里，客户端可以通过字段查询参数确定他想要接收的字段子集。 参见[Google AppEngine API’s partial response](https://cloud.google.com/appengine/docs/standard/python/taskqueue/rest/performance#partial-response)
 
 未过滤：
