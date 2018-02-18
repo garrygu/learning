@@ -48,6 +48,8 @@ The concept of a “compound document” — in the API world at least —
 为资源设计Controller可以将更新多个资源的操作作为原子操作处理，或者能够使客户触发一系列复杂的业务操作。例如：Void SO操作，假设需要1）更新Order资源，2）发送Email给客户，与其分别更新/order/{order#}资源和添加/order/{order#}/email资源，可以设计一个controller资源/order/cancellation/{order#}来处理Void SO 操作。
 
 
+
+
 尽量避免在资源中包含计算字段。它可能造成大量资源消耗。
 
 

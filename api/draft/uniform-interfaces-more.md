@@ -8,6 +8,7 @@
 |Create	|POST <collection URL>	|Resource	|Resource*
 |Update	|PUT or PATCH <resource URL>	|Resource	|Resource*
 |Delete	|DELETE <resource URL>	|N/A	|Empty**
+|Custom Methods |POST | | | |
 
 \*如果方法支持响应字段掩码（response field masks）（指定要返回的字段子集），则从List ， Get ， Create和Update方法返回的资源可能包含部分数据。
 \**从不立即删除资源的Delete方法返回的响应（例如更新标志或创建长时间运行的删除操作） 应包含长时间运行的操作或修改后的资源。
@@ -71,6 +72,18 @@ get /sales-order?dateFrom={x}&DateTo={x}
 - 如果Delete方法只标记资源被删除，它应该返回更新的资源。
 
 调用Delete方法应该是幂等的，但不需要产生相同的响应。 任何数量的Delete请求都应该导致（最终）删除资源，但只有第一个请求才会导致成功代码。 随后的请求应该会导致google.rpc.Code.NOT_FOUND 。
+
+
+# 非标准方法
+Send mail:创建一个email消息并不一定需要发送(draft)。和把消息移到Outbox集合相比，custom method更为直观更易为API用户发现（discoverable）。
+
+批处理方法：对性能要求很高的方法，提供批处理方法可能减少per request成本。
+
+- Cancel (POST)
+- BatchGet: batch get of multiple resources (GET)
+- Move (POST)
+- Search (GET)
+- Undelete (POST)   restore a resource
 
 
 # 什么是统一接口(Uniform Interfaces)？
@@ -138,7 +151,7 @@ API标准中，在GET体必须在服务器端被忽略
 
 和POST请求相关的资源ID是由服务端创建和维护的，并通过响应的Payload返回。执行同样的POST请求多次可能会造成多个资源实例。如果外部URI可用于识别重复的请求，尽量实现幂等（idempotent ）。
 
-POST /cars/711 
+POST /cars/711
 Method not allowed (405)
 
 
