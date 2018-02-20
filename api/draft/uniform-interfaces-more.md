@@ -105,7 +105,9 @@ REST一般只使用有限的HTTP操作集合，包括HTTP `GET`, `PUT`, `DELETE`
 
 
 # 安全与幂等
-在处理HTTP方法时，[RFC 2616规范](https://www.ietf.org/rfc/rfc2616.txt)定义了两个重要概念：[`Safe`和`Idempotent(幂等)`](https://tools.ietf.org/html/rfc7231#section-4.2)。`Safe`指方法不能修改资源的状态；`Idempotent`指将一个请求发送多次和发送一次的结果是一样的。
+在处理HTTP方法时，[RFC 2616规范](https://www.ietf.org/rfc/rfc2616.txt)定义了两个重要概念：[`Safe`和`Idempotent(幂等)`](https://tools.ietf.org/html/rfc7231#section-4.2)。
+- `Safe`指方法不能修改资源的状态；
+- `Idempotent`指将一个请求发送多次和发送一次的结果是一样的。实现这些请求的代码不应带来任何副作用。 在相同的资源上重复的相同的请求应该导致相同的状态。请注意，幂等性仅用服务器副作用(side-effects)表示，并未指定任何有关响应的内容。 例如，向同一个URI发送多个DELETE请求应该具有相同的效果，尽管响应消息中的HTTP状态码可能不同。 第一个DELETE请求可能会返回状态码204（无内容），而后续的DELETE请求可能会返回状态码404（未找到）。特别是对于不存在资源的DELETE 应该返回404 (Not Found) 。
 
 |方法   |Safe     |Idempotent |描述|
 |------ |:------: |:------:   |------|
@@ -122,6 +124,10 @@ do not use verbs
 - /getAllCars         GET /cars
 - /createNewCar       POST /cars
 - /deleteAllRedCars   DELETE /cars
+
+
+参考：
+http://blog.jonathanoliver.com/idempotency-patterns/
 
 
 ## 争议
@@ -171,8 +177,11 @@ Q: PUT请求消息必须和GET请求得到的消息一致吗？
 conditional PUT requests  
 为防止同步更新，应使用Etag和If-(None-)Match标头组合指示服务端暴露冲突，防止丢失更新。
 
+考虑实现可以批量更新集合中多个资源的批量HTTP PUT操作。 PUT请求应该指定集合的​​URI，并且请求主体应该指定要修改的资源的细节。 这种方法可以帮助减少恶意并提高性能。
 
 # PATCH
+通过PATCH请求，客户端以补丁文档（patch document）的形式向现有资源发送一组更新。
+
 PATCH通常用于单个资源（而不是集合资源）的局部更新（ partial update），即只有部分字段被更新。
 - 通常返回200 or 204 (if resources have been updated）
 - 返回或者不返回更新后的内容
@@ -184,6 +193,29 @@ PATCH通常用于单个资源（而不是集合资源）的局部更新（ parti
 - 使用POST，如果请求并不是按照媒体类型定义的方式来改变资源。
 
 为防止同步更新，应使用Etag和If-Match标头组合指示服务端暴露冲突，防止丢失更新。
+
+JSON可能是Web API最常用的数据格式。 There are two main JSON-based patch formats, called JSON patch and JSON merge patch.  
+JSON merge patch比较简单。 补丁文档与原始JSON资源具有相同的结构，但仅包含应更改或添加的字段的子集。 另外，可以通过在补丁文档中为字段值指定null来删除一个字段。 （这意味着如果原始资源可以具有显式空值，则合并补丁不适用。）。例如：
+```
+原始资源：
+{ "name":"gizmo", "category":"widgets", "color":"blue", "price":10 }
+可能的JSON patch:
+{ "price":12, "color":null, "size":"small" }
+```
+有关JSON合并修补程序的确切详细信息，请参阅[RFC 7396](https://tools.ietf.org/html/rfc7396) 。 JSON合并补丁的媒体类型是“application / merge-patch + json”。
+
+由于补丁文档中null的特殊含义，如果原始资源可以包含显式空值，则合并补丁不适用。 此外，修补程序文档不会指定服务器应用更新的顺序。 根据数据和域，这可能也可能不重要。
+
+JSON补丁在[RFC 6902](https://tools.ietf.org/html/rfc6902)中定义，更加灵活。 它将更改指定为要应用的一系列操作。 操作包括添加，删除，替换，复制和测试（以验证值）。 JSON补丁的媒体类型是“application / json-patch + json”。
+
+以下是处理PATCH请求时可能遇到的一些典型错误情况，以及相应的HTTP状态码。
+  错误情况 	HTTP状态码  
+  补丁文档格式不受支持。 	 415（不支持的媒体类型）  
+  格式错误的补丁文件。 	    400（坏请求）  
+  修补程序文档是有效的，但无法将更改应用于当前状态下的资源。 	409（冲突）  
+
+
+http://williamdurand.fr/2014/02/14/please-do-not-patch-like-an-idiot/  
 
 # DELETE
    A payload within a DELETE request message has no defined semantics;sending a payload body on a DELETE request might cause some existing implementations to reject the request.
@@ -272,6 +304,8 @@ Don’t confuse application state (the state of the user’s application of comp
 
 # 并发控制
 ## 条件请求（CONDITIONAL REQUEST）
+
+
 条件请求用于GET请求时，可以验证缓存是否过期；用于POST、PUT和DELETE时，可以提供并发控制。  
 服务端用Last-Modified和ETag（Entity Tag）响应头来驱动条件请求。  
 客户端：  
@@ -288,6 +322,25 @@ Last-Modified的刻度较粗（以秒为单位），因此属于“弱验证”�
 3）	如果资源呈现的数据量不大，可以将其进行MD5哈希后得到ETag值  
 
 http code 304
+
+
+### 使用ETags支持乐观并发（Optimistic Concurrency）
+https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation  
+- 客户端构造一个PUT请求，该请求包含资源的新细节，并为资源的当前缓存版本提供一个由If-Match HTTP标头引用的ETag。
+```
+PUT http://adventure-works.com/orders/1 HTTP/1.1
+If-Match: "2282343857"
+Content-Type: application/x-www-form-urlencoded
+Content-Length: ...
+productID=3&quantity=5&orderValue=250
+```
+- Web API中的PUT操作获取所请求数据的当前ETag（上例中的顺序1），并将其与If-Match标头中的值进行比较。
+- 如果请求数据的当前ETag与请求提供的ETag相匹配，则资源没有改变，Web API应该执行更新，如果成功则返回带有HTTP状态码204（无内容）的消息。 该响应可以包含用于资源更新版本的Cache-Control和ETag标头。 响应应始终包含引用新更新资源的URI的Location头。
+- 如果所请求数据的当前ETag与请求提供的ETag不匹配，则数据已被其他用户更改，因为它已被提取，并且Web API应返回一个HTTP响应，其中包含一个空的消息主体和一个状态码为412（先决条件失败）。
+- 如果要更新的资源不再存在，则Web API应返回状态码为404（未找到）的HTTP响应。
+- 客户端使用状态码和响应头来维护缓存。 如果数据已更新（状态码204），则对象可保持高速缓存（只要Cache-Control标头未指定无存储）但应更新ETag。 如果其他用户更改了数据（状态码412）或未找到（状态码404），则应放弃缓存的对象。
+
+If-Match头的使用完全是可选的，如果省略，Web API将总是尝试更新指定的顺序，可能会盲目覆盖其他用户所做的更新。 为避免因更新丢失而导致的问题，请始终提供一个If-Match标头。
 
 
 ### Best Practices： REST APIs的乐观锁定(Optimistic Locking)
@@ -455,6 +508,16 @@ Some proxies support only POST and GET methods. Use the custom HTTP Header X-HTT
 自定义HTTP Headers只用于提供信息目的（客户端可忽略）  
 习惯于使用`X-`前缀命名自定义HTTP头。
 
+# HTTP指南（HTTP Guidelines）
+## HTTP版本
+某些API功能可能只能由较新版本的HTTP协议支持，例如服务器推送和优先级; 有些仅完全用HTTP / 2指定，如全双工流媒体。 如果您需要将这些功能中的任何一个作为API规范的一部分，请注意不同HTTP版本的限制。
+
+通常我们推荐使用HTTP / 2来获得更好的性能以及对网络故障的恢复能力。
+
+## 长请求URL
+URL具有实际的长度限制，通常在2K到8K之间。如果您的API使用超过长度限制的URL的GET请求，则这些请求可能会被浏览器拒绝。 为了绕过这个限制，客户端代码应该使用带有Content-Type application/x-www-form-urlencoded和HTTP头X-HTTP-Method-Override: GET的POST请求。 这种方法也适用于DELETE请求。
+
 
 # References
 - [PUT vs PATCH vs JSON-PATCH](https://philsturgeon.uk/api/2016/05/03/put-vs-patch-vs-json-patch/)
+- https://apiguide.readthedocs.io/en/latest/build_and_publish/use_HTTP_methods.html

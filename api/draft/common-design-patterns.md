@@ -78,3 +78,15 @@ API可能需要区分客户端提供的字段作为输入和仅由服务器输�
 单身资源必须省略标准的Create和Delete方法; 在创建或删除其父项时隐式创建或删除该单例（如果没有父项，则隐式地存在）。 必须使用标准的Get和Update方法访问资源。
 
 例如，具有User资源的API可以将每个用户的设置作为Settings单例公开。
+
+
+# Mock behaviour
+在测试服务器上每个资源都接受一个mock参数。传递此参数应该返回一个模拟数据响应（绕过后端）。在开发早期实现此功能可确保API展现出一致的行为，支持测试驱动的开发方法。
+```
+GET /api/v1/magazines.json?mock=True HTTP/1.1
+Host: example.gov.au
+Accept: application/json, text/javascript
+```
+
+# Support cross-domain mashups with CORS
+应该通过默认提供启用跨源资源共享（CORS）的服务来支持这种模式。

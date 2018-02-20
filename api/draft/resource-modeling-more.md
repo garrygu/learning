@@ -1,5 +1,9 @@
+
+
+
+
 面向资源的设计（Resource Oriented Design）
-避免Action, 想想资源。
+避免Action(资源上的操作), 想想资源。
 
 资源(Resource)是REST架构的基础，是系统中所有可用URI来定位的具体或抽象实体。所有的操作都是面向资源而不是对象或活动。
 
@@ -10,6 +14,10 @@
 - 关联数据
 - 与其他资源的关系
 - 一组操作该资源的方法
+
+
+围绕资源组织API
+资源不必基于单个物理数据项。 例如，订单资源可能在内部实现为关系数据库中的多个表，但作为单个实体呈现给客户。 避免创建简单反映数据库内部结构的API。 REST的目的是模拟实体和应用程序可以在这些实体上执行的操作。 客户不应该接触到内部实现。
 
 
 # 识别资源
@@ -31,7 +39,7 @@
 资源有一些状态和零个或多个子资源。 每个子资源可以是简单资源或集合资源。
 
 - 集合资源(Collections)  （collection resource）
-集合包含相同类型的资源列表。 例如，用户拥有一组联系人。
+集合是集合中项目的单独资源，并且应该有自己的URI。集合包含相同类型的资源列表。 例如，用户拥有一组联系人。集合中的每个项目也有它自己的唯一URI。
 
 包含0到多个个体资源。例如所有Customers，一个客户的所有Sales Orders等。通常将集合作为一个工厂，通过向集合提交一个HTTP POST请求来创建一个新成员。  
 The concept of a “compound document” — in the API world at least — is the art of squashing related data into the main requested resources. This is done to reduce the number of HTTP calls a client has to make.

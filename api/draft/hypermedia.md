@@ -6,6 +6,9 @@
 - Must: Use Specific HTTP Status Codes
 
 # Use [REST Maturity Level 3](https://martinfowler.com/articles/richardsonMaturityModel.html#level3) - HATEOAS
+
+HATEOAS方法使客户能够从最初的起点导航和发现资源。 这通过使用包含URI的链接来实现; 当客户端发出HTTP GET请求以获取资源时，响应应该包含使客户端应用程序能够快速定位任何直接相关资源的URI。
+
 HATEOAS具有额外的API复杂性.。其对于我们的SOA架构的价值是有争议的。因此不推荐但也不限制使用它。
 
 深度阅读：

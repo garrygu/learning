@@ -47,7 +47,7 @@ Original-Message-ID
 结尾的斜线不能有特定的语义。有没有尾随斜线，资源路径必须提供相同的结果。
 
 10)	使用 ，或 ；表示平行资源。例如：POST /order/{order1},{order2} : 同时处理{order1}和{order2}。  
-11)	URI标识的是资源而不是操作。除了特殊的Controller资源外，URI中的资源尽量只有名词形式。例如，从一个账户转钱到另一个账户，不是使用动词transfer，而是把之看成是一次交易记录，使用名词形式transaction。例如：
+11)	URI标识的是资源而不是操作。 如有可能，资源URI应该基于名词（资源）而不是动词（资源上的操作）。除了特殊的Controller资源外，URI中的资源尽量只有名词形式。例如，从一个账户转钱到另一个账户，不是使用动词transfer，而是把之看成是一次交易记录，使用名词形式transaction。例如：
 ```
 Request
 POST /transactions HTTP/1.1
@@ -63,3 +63,12 @@ Location: http://foo.com/transactions/1
 {"transaction":{"id":1,"uri":"/transactions/1","type":"transfer"}}
 ```
 特别地，CRUD名字不要出现在URI中。
+
+
+还要考虑不同类型资源之间的关系以及如何揭示这些关联。
+```
+/customers/5/orders
+or
+/orders/99/customer
+```
+更好的解决方案是提供可导航链接到HTTP响应消息正文中的关联资源。

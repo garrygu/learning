@@ -137,8 +137,28 @@ offset - 基于数字的开始页。和limit结合，可用page代替offset
 10） 考虑支持标题扩展功能以支持返回子对象更详细的信息  
 11） 文档化每一个查询参数  
 
-
+offset=50 means, ‘skip the first 50 records’  
+limit=25 means, ‘return a maximum of 25 records’  
+If no limit is specified, return results with a default limit.  
 Provide filtering, sorting, field selection and paging for collections  
+
+Information about record limits and total available count should also be included in the response.
+```
+HTTP/1.1 200 OK
+Vary: Accept
+Content-Type: text/javascript
+
+{
+  "metadata": {
+    "resultset": {
+      "count": 227,
+      "offset": 25,
+      "limit": 25
+    }
+  },
+  "results": [...]
+}
+```
 
 # 分页（Pagination）
 如果列表含有几百个以上记录，应支持分页以获得最佳的客户端批处理和遍历体验。 两种页面遍历技术：
@@ -180,6 +200,8 @@ Link: <https://blog.mwaysolutions.com/sample/api/v1/cars?offset=15&limit=5>; rel
   - [Use the Index, Luke](http://use-the-index-luke.com/no-offset)
   - [Paging in PostgreSQL](https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/)
 
+为了协助客户端应用程序，返回分页数据的GET请求还应包含某种形式的元数据，用于指示集合中可用资源的总数。
+
 
 ### 在适用的地方使用分页链接
 实施[HATEOS]的API可能会使用简化的超文本控件在集合中进行分页。那些集合应该有一个items拥有当前页面项目的属性。当需要时，集合可能包含有关集合或当前页面的其他元数据（例如index，page_size）。
@@ -189,11 +211,19 @@ Link: <https://blog.mwaysolutions.com/sample/api/v1/cars?offset=15&limit=5>; rel
 如果集合包含指向其他资源的链接，则集合名称应在适当时使用[IANA registered link relations](http://www.iana.org/assignments/link-relations/link-relations.xml)作为名称，但使用复数形式。
 
 
+http://bizcoder.com/api-design-notes-smart-paging
+
 # Filtering
+限制任何单个请求返回的数据量
+
+例如，假设客户端应用程序需要以超过特定值的成本查找所有订单。 它可能会从/ orders URI中检索所有订单，然后在客户端过滤这些订单。 很明显，这个过程非常低效。 它浪费了托管Web API的服务器上的网络带宽和处理能力。   
+相反，API可以允许在URI的查询字符串中传递过滤器，例如/ orders？minCost = n   
 ```
 GET /cars?color=red Returns a list of red cars
 GET /cars?seats<=2 Returns a list of cars with a maximum of 2 seats
 ```
+
+
 
 # 结果排序（Result Ordering）(Sorting)
 
@@ -206,8 +236,11 @@ GET /cars?seats<=2 Returns a list of cars with a maximum of 2 seats
 
 `GET /cars?sort=-manufactorer,+model`
 
+通过提供一个将字段名称作为值的排序参数，例如/ orders？sort = ProductID ，您可以使用类似的策略对数据进行排序。 但是，这种方法会对缓存产生负面影响，因为查询字符串参数形成了许多缓存实现所使用的资源标识符的一部分，作为缓存数据的关键。
+
 
 # Field selection
-
+如果每个项目包含大量数据，则可以扩展此方法以限制为每个项目返回的字段。 例如，您可以使用查询字符串参数，该参数接受以逗号分隔的字段列表，例如/ orders？fields = ProductID，Quantity 。
 
 # 其他
+在查询字符串中给出所有可选参数有意义的默认值. 例如，如果您实现分页，则将limit参数设置为10，将offset参数设置为0;如果您执行排序，则将sort参数设置为资源的键;如果支持投影(projections)，则将fields参数设置为资源中的所有字段。

@@ -1,24 +1,54 @@
+由于一个API服务可能提供多个API接口（API interfaces），因此API版本控制策略适用于API接口级别，而不是API服务级别。 为了方便起见，术语API在以下章节中指的是API接口。
+
+MAJOR版本，当你做出不兼容的API更改时，
+MINOR版本以向后兼容的方式添加功能时，
+
 在guideline之前的保持原状
 Publish后再修改需要检查兼容性
 
 Use a simple ordinal number and avoid dot notation such as 2.5.
 
 # 业界常用的版本控制方法
-- 使用HTTP ACCEPT头传递版本信息  
+- 媒体类型版本控制(Media type versioning)  
+使用HTTP ACCEPT头传递版本信息  
 例如：
 GET /account/1 HTTP/1.1  
 #1： Accept: application/vnd.steveklabnik-v2+json  
 #2： Accept: application/xml; version=1.0  
 
-- 使用URI传递版本信息  
+
+- 题版本控制 （Header versioning）
+您可以实现一个自定义标题来指示资源的版本，而不是将版本号附加为查询字符串参数。这种方法要求客户端应用程序将适当的头添加到任何请求，尽管如果版本头被省略，处理客户端请求的代码可以使用默认值（版本1）。
+```
+GET http://adventure-works.com/customers/3 HTTP/1.1
+Custom-Header: api-version=1
+```
+```
+GET http://adventure-works.com/customers/3 HTTP/1.1
+Custom-Header: api-version=2
+```
+
+- 使用URI传递版本信息（URI versioning）    
 例如：  
 http://api.newegg.com / order_mgmt /order/v1/order  
 http://api.newegg.com /order_mgmt/claim/v1/claim
 
+- 查询字符串版本控制 （Query string versioning）  
+例如http://adventure-works.com/customers/3?version=2
+
+这种方法具有语义优势，即始终从相同的URI中检索相同的资源，但它取决于处理请求以解析查询字符串并发送相应的HTTP响应的代码。
+
+- 没有版本控制（No versioning）    
+这是最简单的方法。 重大变化可以表示为新资源或新链接。
+
+
 如果消费者还支持超媒体链接（hypermedia links）来驱动工作流程（HATEOAS），情况很快变得复杂。紧耦合和复杂的发布管理
 
+当您选择版本控制策略时，您还应该考虑对性能的影响，特别是Web服务器上的缓存。URI版本控制和查询字符串版本控制方案对缓存友好，因为每次相同的URI /查询字符串组合都引用相同的数据。
 
 - 关于版本控制的规定
+Versions should be integers, not decimal numbers, prefixed with ‘v’.  
+
 •	使用URI来传递版本信息  
 •	版本控制以Sub Domain为单位  
 •	如果API存在多版本，新旧版本必须同时支持  
@@ -127,6 +157,62 @@ API弃用是API定义的一部分。如果路径上的一个方法，一整条�
 ## 应该在响应中添加一个警告标头
 在弃用阶段，生产者应该添加一个Warning标头（https://tools.ietf.org/html/rfc7234#section-5.5）。 添加Warning标题时，warn-code必须为299，warn-text应该为"The path/operation/parameter/…​ {name} is deprecated and will be removed by {date}. Please see {link} for details."。该link链接到一个文档描述为什么API不再支持，以及客户应该如何处理。
 
+# https://cloud.google.com/apis/design/versioning
+新的主要版本的API 不能依赖于以前的主要版本的相同的API 。 API 可以依赖于其他API，并且了解与这些API相关的依赖性和稳定性风险。 稳定的API版本只能依赖其他API的最新稳定版本。
+
+在一段时间内，相同API的不同版本必须能够在单个客户端应用程序中同时工作。 这是为了帮助客户顺利从旧版本转换到新版本的API。
+
+只有在弃用期结束后才能删除较早的API版本。
+
+## 向后兼容性（Backwards compatibility）
+向后兼容（不间断 non-breaking)）更改：  
+- 将API接口添加到API服务  
+从协议的角度来看，这总是安全的。 唯一需要注意的是客户端库可能已经在手写代码中使用了新的API接口名称。
+
+- 将方法添加到API接口  
+除非你添加一个与客户端库中已经生成的方法冲突的方法，否则应该没问题。
+
+- 将HTTP绑定添加到方法  
+假设绑定不会引入任何歧义，使服务器对之前拒绝的URL做出响应是安全的。
+
+- 将字段添加到请求消息  
+只要未指定字段的客户端在新版本中的处理方式与旧版本中的处理方式相同，添加请求字段就可以不是破坏性的（non-breaking）。不正确的做法最明显的例子是分页： 如果API的v1.0不包含对集合进行分页，则不能在v1.1中添加分页操作，除非默认的page_size被视为无限（通常一个坏主意）。 否则，期望从单个请求中获得完整结果的v1.0客户端可能会收到截断结果，而不知道该集合包含更多资源。
+
+- 将字段添加到响应消息  
+一个不是资源的响应消息可以在不中断客户端的情况下进行扩展，只要这不会改变其他响应字段的行为。 任何以前填充到响应中的字段都应该以相同的语义继续填充，即使这会引入冗余（redundancy）。
+
+- 将值添加到枚举  
+仅在请求消息中使用的枚举可以自由扩展以包含新元素。 例如，使用资源视图模式，可以在新的次要版本中添加新视图。 客户永远不需要收到这个枚举，所以他们不必知道他们不关心的值。  
+对于资源消息和响应消息，默认的假设是客户端应该处理它们不知道的枚举值。  
+
+- 添加仅输出(output-only)资源字段  
+服务器可以验证请求中的任何客户端提供的值是否有效，但如果省略该值，则不能返回验证失败。
+
+
+向后不兼容（中断 breaking）的变化：
+- 删除或重命名服务，接口，字段，方法或枚举值  
+基本上，如果客户端代码可以引用某些内容，那么删除或重命名它就是一个重大改变，
+
+- 更改HTTP绑定
+这里的“更改”实际上是“删除并添加”。例如，如果您决定确实想要支持PATCH，但是您的发布版本支持PUT，或者您使用了错误的自定义动词名称，则可以添加新的绑定，但不能删除旧的绑定。
+
+- 更改字段的类型
+- 更改资源名称格式  
+资源不得更改其名称 - 这意味着集合名称不能更改。
+
+- 更改现有请求的可见行为（visible behavior）
+- 在HTTP定义中更改URL格式  
+除了上面列出的资源名称更改之外，资源参数名称：从v1/shelves/{shelf}/books/{book}到v1/shelves/{shelf_id}/books/{book_id}不会影响替换的资源名称，但可能会影响代码生成。
+
+- 将读/写字段添加到资源消息  
+客户通常会执行读取/修改/写入操作。 大多数客户不会提供他们不知道的字段的值。您可以指定消息类型（而不是基本类型）的任何缺失字段意味着更新不会应用于这些字段，但是这使得从实体中明确删除这样的字段值变得更加困难。
+
+原始类型（包括string和bytes ）不能用这种方式处理，因为proto3在明确指定int32字段为0和没有指定它之间没有区别。
+
+如果所有更新都使用字段掩码执行，则这不是问题，因为客户端不会隐式覆盖它不知道的字段。 但是，这将是一个不寻常的API决策：大多数API允许“全部资源”更新。
+
+
+并不总是很清楚什么是一个突破（不兼容）的变化。这里的指导应该被视为指示性的而不是每一个可能的变化的全面清单。
 
 
 

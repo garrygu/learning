@@ -79,3 +79,15 @@ message字段是面向开发人员的，并且必须使用英文。
  注 ：由于客户端无法修复服务器错误，因此生成其他错误详细信息无用。 为避免在错误情况下泄露敏感信息，建议不要生成任何错误消息，并只生成google.rpc.DebugInfo错误详细信息。 DebugInfo是专门为服务器端日志记录而设计的，不能发送给客户端。
 
  google.rpc包定义了一组标准错误有效载荷，它们比自定义错误有效载荷更受欢迎。
+
+
+Error responses examples:  
+```
+{
+  "developerMessage" : "Verbose, plain language description of the problem.
+             Provide developers suggestions about how to solve their problems here",
+  "userMessage" : "This is a message that can be passed along to end-users, if needed.",
+  "errorCode" : "444444",
+  "moreInfo" : "http://api.example.gov/v1/documentation/errors/444444.html"
+}
+```

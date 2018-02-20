@@ -2,18 +2,20 @@
 > Move beyond the database-oriented thinking and closer to a more RESTful design for your API
 
 ## Design Guidelines By Company
-- [API Design Guides](http://design.apievangelist.com/tools/design-guides/)
+- [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
+    - https://github.com/zalando/restful-api-guidelines  
 - [Google Cloud APIs Design Guide](https://cloud.google.com/apis/design/)
+
+
+- [API Design Guides](http://design.apievangelist.com/tools/design-guides/)
 - [PayPal API Design Guidelines](https://github.com/paypal/api-standards/blob/master/api-style-guide.md)
 - [https://apihandyman.io/](https://apihandyman.io/)
 - [Design Guidelines](http://apistylebook.com/design/guidelines/)
 - [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)
   - http://apistylebook.com/design/guidelines/microsoft-rest-api-guidelines  
   - https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design  
-- [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
-  - https://github.com/zalando/restful-api-guidelines  
 - [RESTful API guidelines](https://byrondover.github.io/post/restful-api-guidelines/)
-
+- [Haufe API style guide](https://github.com/Haufe-Lexware/api-style-guide)
 
 ## Links
 - [5 Basic REST API Design Guidelines (10/04/2016)](https://dzone.com/articles/5-basic-rest-api-design-guidelines)
@@ -74,6 +76,10 @@
 - [5 Basic REST API Design Guidelines](http://blog.restcase.com/5-basic-rest-api-design-guidelines/)
 - [RESTful API Designing guidelines — The best practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
 - [Thoughts on RESTful API Design](http://restful-api-design.readthedocs.io/en/latest/)
+- [REST CookBook](http://restcookbook.com/)
+- [The Web API Checklist -- 43 Things To Think About When Designing, Testing, and Releasing your API](https://mathieu.fenniak.net/the-api-checklist/)
+- [API design](https://deliveroo.engineering/guidelines/api-design/)
+
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)

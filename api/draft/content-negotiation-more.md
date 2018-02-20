@@ -1,10 +1,26 @@
 REST框架下资源呈现和资源本身是有区别的。资源具体呈现出来的形式，叫做它的"表现形式"（representation）。各种表现形式由已定义的媒体类型、字符集和编码的字节流构成。一个资源可以没有，或者有一个，或者有多个表现形式。如果有多个表现形式存在，则称该资源是可协商的(negotiable)。  
 
+# API Payload formats
+APIs may support multiple (open) payload formats.
+
+# API Payload format encoding
+为了和API交互，消费者需要知道Payload是如何编码（encoding）的。  
+不能仅仅依赖文档  
+
+指定payload编码格式常见的3种方式：
+- HTTP headers (e.g. Content-Type: and Accept:)
+- GET parameters (e.g. &format=json)
+- resource label (e.g. /foo.json)
+
+
 # 代理驱动 VS. 服务驱动（AGENT-DRIVEN VS. SERVER-DRIVEN NEGOTIATION）
 服务驱动的内容协商使用HTTP请求头来决定响应变体。服务驱动的局限：   
 - 内容协商不包括货币单位、距离单位、日期格式等区域设置。  
 - 有时候由于复杂的本地化需求，可能需要为不同的区域维护不同的资源。  
-- Web浏览器普遍会为Accept头设置一个范围很广的媒体类型选项，使得浏览器难以通过内容协商机制来呈现资源。  
+- Web浏览器普遍会为Accept头设置一个范围很广的媒体类型选项，使得浏览器难以通过内容协商机制来呈现资源。   
+
+使用HTTP headers来指定payload格式可以很方便，但不是所有的客户端对标头的处理都具有一致性。  
+
 
 代理驱动 的内容协商是对每种响应变体（资源呈现）都使用不同的URI。虽然可以为所有的`Accept-*`头实施代理协商，但最常使用的是媒体类型和语言。代理协商普遍使用的方法包括：    
 
@@ -15,6 +31,8 @@ REST框架下资源呈现和资源本身是有区别的。资源具体呈现出�
 |通过虚拟文件名扩展（virtual file extension）|在URI后面添加.xml或者.json等。不建议|
 
 通过查询参数的形式来指定media type实际上是一种tunneling: 使用URI传递元数据而不是HTTP倾向的Accept头。
+
+偶尔一些代理服务器会产生缓存行为方面的问题。
 
 Agent-driven Negotiation  
 https://tools.ietf.org/html/draft-ietf-httpbis-p3-payload-16#section-5.2
@@ -94,6 +112,10 @@ Vendor-Specific Media Types也可以通过IANA注册.
 |Accept-Encoding|	设置可接受的数据压缩方式。例如：Accept-Encoding: compress, gzip, deflate|
 |Accept-Language|	设置可接受的语言。例如：Accept-Language: da,en-gb;q=0.8,en;q=0.7|
 
+如果服务器无法匹配列出的任何媒体类型，则应返回HTTP状态码406（不可接受）。
+如果Accept头没有指定任何已知的媒体类型，则Web服务器可能会生成一个HTTP 406（Not Acceptable）响应消息或返回带有默认媒体类型的消息。
+
+
 服务响应中相关的HTTP头包括：  
 
 |HTTP响应头（Content-*）|	描述|	示例|
@@ -108,6 +130,8 @@ Vendor-Specific Media Types也可以通过IANA注册.
 |Content-Disposition  | 可以指示该表示应该被保存为文件，以及建议的文件名。 | |
 |Content-Location |指示body可以在其他地方找到。使用Content-Location时也必须设置Content-Type  | |
 |Content-Range  |用于范围请求的响应，以指示请求资源表示的哪一部分与正文一起传递| ||
+
+如果服务器不支持媒体类型，则应返回HTTP状态码415（不支持的媒体类型）。
 
 
 `Accept-*`通常指定的是一个范围 (Range) ； `Content-*`通常返回的是一个特定的值。
@@ -128,3 +152,7 @@ Content-Encoding: gzip
 Vary: Accept-Encoding
 ```  
 使用标准的HTTP头来使用/产生不同的MIME类型，在未来可以在不用改变服务接口的情况下很容易地支持新的内容类型。
+
+请求和响应应该共享相同的Content-Type，除非请求是GET或具有“ application/x-www-form-urlencoded body”的POST 。
+
+可以使用表单参数（ POST ）代替URL查询参数（ GET ）。 支持的Content-Type是application/x-www-form-urlencoded 。
