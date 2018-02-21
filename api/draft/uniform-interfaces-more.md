@@ -160,7 +160,8 @@ API标准中，在GET体必须在服务器端被忽略
 POST /cars/711
 Method not allowed (405)
 
-
+通常将集合作为一个工厂，通过向集合提交一个HTTP POST请求来创建一个新成员。  
+The concept of a “compound document” — in the API world at least — is the art of squashing related data into the main requested resources. This is done to reduce the number of HTTP calls a client has to make.
 # PUT
 语义：please put the enclosed representation at the resource mentioned by the URL, replacing any existing resource.
 
