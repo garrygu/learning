@@ -83,3 +83,19 @@ owner, 共享，边界
 - 与service不同
 - 多个端口
 - 合约
+
+
+- HTTP标头字段首选Hyphennated-Pascal-Case。例如：    
+```
+Accept-Encoding
+Apply-To-Redirect-Ref
+Disposition-Notification-Options
+Original-Message-ID
+```
+参阅[HTTP Headers are case-insensitive (RFC 7230).](https://tools.ietf.org/html/rfc7230#page-22)
+
+2)	模块化。Web服务的资源和方法可能增长很快。使用Domain和sub domain对资源进行分组或分隔。只使用规定的domain和sub domain名字。  
+
+1. 在设计阶段就要规划好URI结构：{host: port}/{ domain}/{version#}/{sub domain}/{resource}  
+
+CORS

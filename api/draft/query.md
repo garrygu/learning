@@ -244,3 +244,12 @@ GET /cars?seats<=2 Returns a list of cars with a maximum of 2 seats
 
 # 其他
 在查询字符串中给出所有可选参数有意义的默认值. 例如，如果您实现分页，则将limit参数设置为10，将offset参数设置为0;如果您执行排序，则将sort参数设置为资源的键;如果支持投影(projections)，则将fields参数设置为资源中的所有字段。
+
+
+##  URI查询设计
+查询参数也是资源唯一标识符的一部分。和URI的其他元素不同，查询部分对客户应该是透明的。
+应使用HTTP头，而不是查询参数来确定Cache行为。
+
+查询组件的作用：
+- 过滤
+- 分页
