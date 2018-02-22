@@ -91,3 +91,7 @@ Error responses examples:
   "moreInfo" : "http://api.example.gov/v1/documentation/errors/444444.html"
 }
 ```
+## 不要暴露Stack Traces
+Stack traces包含客户不需要的实施细节，或者泄露敏感信息，并可能向攻击者透露可能的系统漏洞
+
+- 尽量避免在资源中包含计算字段。它可能造成大量资源消耗。
