@@ -1,4 +1,4 @@
-REST框架下资源呈现和资源本身是有区别的。资源具体呈现出来的形式，叫做它的"表现形式"（representation）。各种表现形式由已定义的媒体类型、字符集和编码的字节流构成。一个资源可以没有，或者有一个，或者有多个表现形式。如果有多个表现形式存在，则称该资源是可协商的(negotiable)。  
+
 
 # API Payload formats
 APIs may support multiple (open) payload formats.
