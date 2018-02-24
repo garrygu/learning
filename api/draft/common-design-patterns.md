@@ -7,8 +7,6 @@
 表示范围的字段应使用半开间隔（half-open intervals）和遵守命名约定[start_xxx, end_xxx)，如[start_key, end_key)或[start_time, end_time) 。 PI 应避免使用其他表示范围的方式，例如(index, count)或[first, last] 。
 
 
-# 列表分页（List Pagination）
-
 # List Sub-Collections
 例如，图书馆API有一系列书架，每个书架都有一系列书籍，客户希望在所有书架上搜索书籍。  
 建议在子集合上使用标准List ，并为父集合指定通配符集合标识"-" 。注意：选择"-"而不是"\*"是为了避免URL转义。  
@@ -21,8 +19,7 @@ GET https://library.googleapis.com/v1/shelves/-/books/{id}
 
 响应此调用的资源名称必须使用资源的规范名称，并为每个父集合使用实际的父集合标识符而不是"-" 。 例如，上面的请求应该返回一个名称为shelves/shelf713/books/book8141 ，而不是shelves/-/books/book8141 。  
 
-# 排序顺序（Sorting Order）
-string order_by = ...;
+
 
 
 # 请求验证（Request Validation）
@@ -43,19 +40,6 @@ string request_id = ...;
 如果检测到重复请求，则服务器应返回先前成功请求的响应，因为客户端很可能没有收到先前的响应。
 
 
-# 部分响应(Partial Response)
-有时，API客户端只需要响应消息中的特定数据子集。Google API平台通过响应字段掩码支持它。对于任何REST API调用，都有一个隐式系统查询参数$fields ，它是google.protobuf.FieldMask值的JSON表示。响应消息在被发送回客户端之前将被$fields过滤。 API平台针对所有API方法自动处理该逻辑。  
-
-GET https://library.googleapis.com/v1/shelves?$fields=name
-
-# 资源视图（Resource View）
-为了减少网络流量，允许客户端限制服务器应在响应中返回资源的哪些部分是有用的，返回资源的视图而不是完整的资源表示。 API中的资源视图支持通过向方法请求添加一个参数来实现，该参数允许客户端指定它希望在响应中接收哪个资源视图。
-
-参数：
-    应该是enum类型
-    必须命名为view
-
-GET https://library.googleapis.com/v1/shelves/shelf1/books?view=BASIC
 
 # ETags
 ETag中允许的字符总结：

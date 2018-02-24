@@ -16,6 +16,7 @@
   - https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design  
 - [RESTful API guidelines](https://byrondover.github.io/post/restful-api-guidelines/)
 - [Haufe API style guide](https://github.com/Haufe-Lexware/api-style-guide)
+- [GitHub REST API v3](https://developer.github.com/v3/)
 
 ## Links
 - [5 Basic REST API Design Guidelines (10/04/2016)](https://dzone.com/articles/5-basic-rest-api-design-guidelines)
@@ -79,6 +80,8 @@
 - [REST CookBook](http://restcookbook.com/)
 - [The Web API Checklist -- 43 Things To Think About When Designing, Testing, and Releasing your API](https://mathieu.fenniak.net/the-api-checklist/)
 - [API design](https://deliveroo.engineering/guidelines/api-design/)
+- [REST Resource Naming Guide](https://restfulapi.net/resource-naming/)
+- [Learn REST: A RESTful Tutorial](http://www.restapitutorial.com/)
 
 
 ### Partials
