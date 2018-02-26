@@ -63,5 +63,28 @@ HATEOAS具有额外的API复杂性.。其对于我们的SOA架构的价值是有
 }
 ```
 
+
+
+
+Links to the next or previous page should be provided in the HTTP header link as well.  
+```
+Link: <https://blog.mwaysolutions.com/sample/api/v1/cars?offset=15&limit=5>; rel="next",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=50&limit=3>; rel="last",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=0&limit=5>; rel="first",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=5&limit=5>; rel="prev",
+```
+为了协助客户端应用程序，返回分页数据的GET请求还应包含某种形式的元数据，用于指示集合中可用资源的总数。
+X-Total-Count.
+
+#### 在适用的地方使用分页链接
+实施[HATEOS]的API可能会使用简化的超文本控件在集合中进行分页。那些集合应该有一个items拥有当前页面项目的属性。当需要时，集合可能包含有关集合或当前页面的其他元数据（例如index，page_size）。
+
+如果集合包含指向其他资源的链接，则集合名称应在适当时使用[IANA registered link relations](http://www.iana.org/assignments/link-relations/link-relations.xml)作为名称，但使用复数形式。
+
+
+http://bizcoder.com/api-design-notes-smart-paging
+
+
+
 # 不要使用Link标头
 不要将[Header defined by RFC 5988](https://tools.ietf.org/html/rfc5988#section-5)定义的Link标头和JSON媒体类型使用。直接在payload中嵌入链接。

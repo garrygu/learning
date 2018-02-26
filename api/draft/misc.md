@@ -57,4 +57,13 @@ https://knpuniversity.com/screencast/rest/rest#play
 
 6）使用Accept-Language头来指定和业务数据无关的一般语言偏好；使用查询参数languageCode来匹配实际业务数据中的语言类型。  
 7）如果服务不支持请求的语言类型，将使用客户或BU（Business Unit）默认使用的语言类型。  
-7. 内部客户总是使用Accept-Encoding: gzip （生产环境IIS的 gzip压缩是打开的）。 
+7. 内部客户总是使用Accept-Encoding: gzip （生产环境IIS的 gzip压缩是打开的）。
+
+
+
+分页操作参数：
+- String page_token: 客户端使用此字段来请求列表结果的特定页面。
+- Int32 page_size：客户端使用此字段来指定服务器返回的最大结果数量。 服务器可以进一步限制在单个页面中返回的最大结果数量。 如果page_size为0 ，服务器将决定要返回的结果数量。  
+- 响应消息中定义一个string字段next_page_token 。 该字段表示分页标记以检索结果的下一页。 如果值为"" ，则表示请求没有进一步的结果。
+
+当客户端除了页面令牌外还指定查询参数时，如果查询参数与页面令牌不一致，则该服务必须使请求失败。

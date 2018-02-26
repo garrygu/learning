@@ -17,6 +17,9 @@
 - [RESTful API guidelines](https://byrondover.github.io/post/restful-api-guidelines/)
 - [Haufe API style guide](https://github.com/Haufe-Lexware/api-style-guide)
 - [GitHub REST API v3](https://developer.github.com/v3/)
+- [Restful API Design: An Opinionated Guide](https://www.linkedin.com/pulse/restful-api-design-opinionated-guide-somenath-panda)
+- [Jira Cloud REST API](https://developer.atlassian.com/cloud/jira/platform/rest/)
+
 
 ## Links
 - [5 Basic REST API Design Guidelines (10/04/2016)](https://dzone.com/articles/5-basic-rest-api-design-guidelines)

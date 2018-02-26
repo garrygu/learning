@@ -107,3 +107,9 @@ message ListEventsResponse {
 - id (identifier)
 - spec (specification)
 - stats (statistics)
+
+
+
+return collections:
+- results
+- values

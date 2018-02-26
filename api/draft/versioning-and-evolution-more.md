@@ -216,6 +216,9 @@ API弃用是API定义的一部分。如果路径上的一个方法，一整条�
 
 
 
+对已存在的API添加分页支持是一种针对行为的破坏性更新（behavior-breaking change）.现有客户不知道分页会错误地认为他们收到完整的列表结果，而他们只接收第一页。
+
+
 [Postel's Law (Robustness Principle)](http://davepacheco.github.io/se411/distrib/postels-law.html)  
 be liberal in what you accept, and conservative in what you send  
 [TolerantReader](https://martinfowler.com/bliki/TolerantReader.html)  
