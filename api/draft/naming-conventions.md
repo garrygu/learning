@@ -113,3 +113,7 @@ message ListEventsResponse {
 return collections:
 - results
 - values
+
+
+- HTTP头相关  
+小写的HTTP头名称。例如：accept;??   

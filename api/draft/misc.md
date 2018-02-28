@@ -67,3 +67,31 @@ https://knpuniversity.com/screencast/rest/rest#play
 - 响应消息中定义一个string字段next_page_token 。 该字段表示分页标记以检索结果的下一页。 如果值为"" ，则表示请求没有进一步的结果。
 
 当客户端除了页面令牌外还指定查询参数时，如果查询参数与页面令牌不一致，则该服务必须使请求失败。
+
+
+## 查询数据返回
+- 服务需要对返回的记录总数进行限制（用户已指定最大返回记录数除外）。  
+请求单个资源，如果资源不存在，返回404
+请求集合资源，如果返回列表为空，返回200；如果列表缺少，返回404.
+请求集合资源时，应提供足够的过滤（filter)机制以及分页（Pagination）。 响应消息中包含资源List的字段的名称必须是资源名称本身的复数形式。
+
+
+Information about record limits and total available count should also be included in the response.
+```
+HTTP/1.1 200 OK
+Vary: Accept
+Content-Type: text/javascript
+
+{
+  "metadata": {
+    "resultset": {
+      "count": 227,
+      "offset": 25,
+      "limit": 25
+    }
+  },
+  "results": [...]
+}
+```
+
+请求和响应应该共享相同的Content-Type，除非请求是GET或具有“ application/x-www-form-urlencoded body”的POST 。
