@@ -95,3 +95,19 @@ Content-Type: text/javascript
 ```
 
 请求和响应应该共享相同的Content-Type，除非请求是GET或具有“ application/x-www-form-urlencoded body”的POST 。
+
+
+
+
+API enumerations  
+API slice and map elements    
+
+CORS  Cross Origin Resource Sharing  
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS  
+
+A user agent makes a cross-origin HTTP request when it requests a resource from a different domain, protocol, or port than the one from which the current document originated.  
+
+Resources are not storage items (or, at least, they aren’t always equivalent to some storage item on the back-end).   
+
+The same resource state can be overlayed by multiple resources, just as an XML document can be represented as a sequence of bytes or a tree of individually addressable nodes.
+Don’t confuse application state (the state of the user’s application of computing to a given task) with resource state (the state of the world as exposed by a given service). They are not the same thing.
