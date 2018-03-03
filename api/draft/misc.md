@@ -111,3 +111,10 @@ Resources are not storage items (or, at least, they aren’t always equivalent t
 
 The same resource state can be overlayed by multiple resources, just as an XML document can be represented as a sequence of bytes or a tree of individually addressable nodes.
 Don’t confuse application state (the state of the user’s application of computing to a given task) with resource state (the state of the world as exposed by a given service). They are not the same thing.
+
+
+
+更多阅读:  
+ https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation
+- http://xfhnever.com/2015/02/27/rws-conditionalrequest/
+- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Conditional_requests
