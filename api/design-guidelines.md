@@ -60,6 +60,7 @@
   - 5.Status Codes  
 - [RESTful API 设计与工程实践 (03/02/2017)](http://blog.m31271n.com/2017/03/02/RESTful-API-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/)
 - [服务端指南 | 良好的 API 设计指南](http://spring4all.com/article/172)
+- [HTTP 接口设计指北](https://github.com/bolasblack/http-api-guide)
 - [一种RESTful接口的约定](https://bungder.github.io/2017/07/24/REST/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 - [Commit to API Contracts](https://blog.apisyouwonthate.com/guessing-api-contracts-ac1b7eaebced)
@@ -85,10 +86,13 @@
 - [API design](https://deliveroo.engineering/guidelines/api-design/)
 - [REST Resource Naming Guide](https://restfulapi.net/resource-naming/)
 - [Learn REST: A RESTful Tutorial](http://www.restapitutorial.com/)
+- [Principles of good RESTful API Design (12/31/2013)](https://codeplanet.io/principles-good-restful-api-design/)
+- [我所认为的RESTful API最佳实践](http://www.scienjus.com/my-restful-api-best-practices/)
 
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)
+
 
 ## Examples
 - [How to GET a Cup of Coffee (10/02/2008)](https://www.infoq.com/articles/webber-rest-workflow)

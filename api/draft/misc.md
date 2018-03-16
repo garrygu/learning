@@ -3,7 +3,10 @@ REST可以利用HTTP content-types, caching, status codes, etc.
 JSON API has been properly registered with the IANA. Its media type designation is application/vnd.api+json.
 
 
+## Error Localization
+默认情况下，API服务应使用经过身份验证的用户的区域设置或HTTP Accept-Language标头来确定本地化的语言。
 
+API 服务应该默认使用认证用户的 locale 或 HTTP Accept-Language 头来决定本地化语言。
 
 ## JSON
 对于二进制数据（ Binary Data）或替代内容表示（Alternative Content Representations）使用非JSON媒体类型：
@@ -14,6 +17,8 @@ JSON API has been properly registered with the IANA. Its media type designation 
 - JSON： 参见json指南。
 - HTTP Headers  https://tools.ietf.org/html/rfc7231#section-7.1.1.1
 
+
+- 尽量避免在资源中包含计算字段。它可能造成大量资源消耗。
 
 ## 为Number和Integer类型定义格式(format)
 http://zalando.github.io/restful-api-guidelines/#171
@@ -113,6 +118,15 @@ The same resource state can be overlayed by multiple resources, just as an XML d
 Don’t confuse application state (the state of the user’s application of computing to a given task) with resource state (the state of the world as exposed by a given service). They are not the same thing.
 
 
+
+# support conditional PUT requests
+
+# Location must be used to specify the URI of a newly created resource
+
+Using header versioning should:
+
+include versions in request and response headers to increase visibility  
+include Content-Type in the Vary header to enable proxy caches to differ between versions  
 
 更多阅读:  
  https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation
