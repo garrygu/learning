@@ -88,7 +88,9 @@
 - [Learn REST: A RESTful Tutorial](http://www.restapitutorial.com/)
 - [Principles of good RESTful API Design (12/31/2013)](https://codeplanet.io/principles-good-restful-api-design/)
 - [我所认为的RESTful API最佳实践](http://www.scienjus.com/my-restful-api-best-practices/)
-
+- [HTTP API Design Guide](https://www.gitbook.com/book/geemus/http-api-design/details)
+  - https://github.com/interagent/http-api-design  
+  - https://github.com/ZhangBohan/http-api-design-ZH_CN
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)

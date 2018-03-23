@@ -128,7 +128,62 @@ Using header versioning should:
 include versions in request and response headers to increase visibility  
 include Content-Type in the Vary header to enable proxy caches to differ between versions  
 
+
+
+### 为分页（Pagination ）和自我引用（Self-References）使用简化的超文本控件
+超文本控制用于内部集合分页和自引用时，应该使用简单的URI值与它们相应的link relations（next，prev，first，last，self），而不是可扩展的普通超文本控件。
+```
+{
+  "self": "https://.../articles/xyz/authors/",
+  "index": 0,
+  "page_size": 5,
+  "items": [
+    {
+      "href": "https://...",
+      "id": "123e4567-e89b-12d3-a456-426655440000",
+      "name": "Kent Beck"
+    },
+    {
+      "href": "https://...",
+      "id": "987e2343-e89b-12d3-a456-426655440000",
+      "name": "Mike Beedle"
+    },
+    ...
+  ],
+  "first": "https://...",
+  "next": "https://...",
+  "prev": "https://...",
+  "last": "https://..."
+}
+```
+
+
+Links to the next or previous page should be provided in the HTTP header link as well.  
+```
+Link: <https://blog.mwaysolutions.com/sample/api/v1/cars?offset=15&limit=5>; rel="next",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=50&limit=3>; rel="last",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=0&limit=5>; rel="first",
+<https://blog.mwaysolutions.com/sample/api/v1/cars?offset=5&limit=5>; rel="prev",
+```
+为了协助客户端应用程序，返回分页数据的GET请求还应包含某种形式的元数据，用于指示集合中可用资源的总数。
+X-Total-Count.
+
+http://bizcoder.com/api-design-notes-smart-paging
+
+#### 在适用的地方使用分页链接
+实施[HATEOS]的API可能会使用简化的超文本控件在集合中进行分页。那些集合应该有一个items拥有当前页面项目的属性。当需要时，集合可能包含有关集合或当前页面的其他元数据（例如index，page_size）。
+
+如果集合包含指向其他资源的链接，则集合名称应在适当时使用[IANA registered link relations](http://www.iana.org/assignments/link-relations/link-relations.xml)作为名称，但使用复数形式。
+
+
+
+
 更多阅读:  
  https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-implementation
 - http://xfhnever.com/2015/02/27/rws-conditionalrequest/
 - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Conditional_requests
+
+
+
+- [Why I Hate HATEOAS](https://jeffknupp.com/blog/2014/06/03/why-i-hate-hateoas/)
+- [RESTistential Crisis over Hypermedia APIs](https://www.infoq.com/news/2014/03/rest-at-odds-with-web-apis)  

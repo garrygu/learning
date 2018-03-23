@@ -1,3 +1,8 @@
+
+http://zalando.github.io/restful-api-guidelines/#hypermedia
+We follow the API First principle with APIs explicitly defined outside the code with standard specification language. HATEOAS does not really add value for SOA client engineers in terms of API self-descriptiveness: a client engineer finds necessary links and usage description (depending on resource state) in the API reference definition anyway.
+
+
 精心设计的网络API应该旨在支持：
 - 平台独立性（Platform independence）  
 无论API如何在内部实现，任何客户端都应该能够调用API。
