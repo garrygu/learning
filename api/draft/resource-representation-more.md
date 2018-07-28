@@ -5,9 +5,6 @@ Rule: Additional envelopes must not be created
 A REST API must leverage the message “envelope” provided by HTTP. In other words, the body should contain a representation of the resource state, without any additional, transport-oriented wrappers.
 
 
-# Link & Link Relations
-
-
 # 资源呈现类型（资源的多重表述/数据格式）
 需要支持的类型有：
 
@@ -65,3 +62,5 @@ API可以定义具有扩展属性（extension properties）的自定义问题类
 
 ## 不要暴露Stack Traces
 Stack traces包含客户不需要的实施细节，或者泄露敏感信息，并可能向攻击者透露可能的系统漏洞
+
+- 尽量避免在资源中包含计算字段。它可能造成大量资源消耗。

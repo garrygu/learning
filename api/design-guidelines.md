@@ -2,17 +2,23 @@
 > Move beyond the database-oriented thinking and closer to a more RESTful design for your API
 
 ## Design Guidelines By Company
-- [API Design Guides](http://design.apievangelist.com/tools/design-guides/)
+- [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
+    - https://github.com/zalando/restful-api-guidelines  
 - [Google Cloud APIs Design Guide](https://cloud.google.com/apis/design/)
+
+
+- [API Design Guides](http://design.apievangelist.com/tools/design-guides/)
 - [PayPal API Design Guidelines](https://github.com/paypal/api-standards/blob/master/api-style-guide.md)
 - [https://apihandyman.io/](https://apihandyman.io/)
 - [Design Guidelines](http://apistylebook.com/design/guidelines/)
 - [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)
   - http://apistylebook.com/design/guidelines/microsoft-rest-api-guidelines  
   - https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design  
-- [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
-  - https://github.com/zalando/restful-api-guidelines  
 - [RESTful API guidelines](https://byrondover.github.io/post/restful-api-guidelines/)
+- [Haufe API style guide](https://github.com/Haufe-Lexware/api-style-guide)
+- [GitHub REST API v3](https://developer.github.com/v3/)
+- [Restful API Design: An Opinionated Guide](https://www.linkedin.com/pulse/restful-api-design-opinionated-guide-somenath-panda)
+- [Jira Cloud REST API](https://developer.atlassian.com/cloud/jira/platform/rest/)
 
 
 ## Links
@@ -54,6 +60,7 @@
   - 5.Status Codes  
 - [RESTful API 设计与工程实践 (03/02/2017)](http://blog.m31271n.com/2017/03/02/RESTful-API-%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/)
 - [服务端指南 | 良好的 API 设计指南](http://spring4all.com/article/172)
+- [HTTP 接口设计指北](https://github.com/bolasblack/http-api-guide)
 - [一种RESTful接口的约定](https://bungder.github.io/2017/07/24/REST/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 - [Commit to API Contracts](https://blog.apisyouwonthate.com/guessing-api-contracts-ac1b7eaebced)
@@ -74,9 +81,20 @@
 - [5 Basic REST API Design Guidelines](http://blog.restcase.com/5-basic-rest-api-design-guidelines/)
 - [RESTful API Designing guidelines — The best practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
 - [Thoughts on RESTful API Design](http://restful-api-design.readthedocs.io/en/latest/)
+- [REST CookBook](http://restcookbook.com/)
+- [The Web API Checklist -- 43 Things To Think About When Designing, Testing, and Releasing your API](https://mathieu.fenniak.net/the-api-checklist/)
+- [API design](https://deliveroo.engineering/guidelines/api-design/)
+- [REST Resource Naming Guide](https://restfulapi.net/resource-naming/)
+- [Learn REST: A RESTful Tutorial](http://www.restapitutorial.com/)
+- [Principles of good RESTful API Design (12/31/2013)](https://codeplanet.io/principles-good-restful-api-design/)
+- [我所认为的RESTful API最佳实践](http://www.scienjus.com/my-restful-api-best-practices/)
+- [HTTP API Design Guide](https://www.gitbook.com/book/geemus/http-api-design/details)
+  - https://github.com/interagent/http-api-design  
+  - https://github.com/ZhangBohan/http-api-design-ZH_CN
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)
+
 
 ## Examples
 - [How to GET a Cup of Coffee (10/02/2008)](https://www.infoq.com/articles/webber-rest-workflow)

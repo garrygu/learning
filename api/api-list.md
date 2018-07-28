@@ -21,3 +21,6 @@ https://api.slack.com/web
 
 - [mypurecloud](https://developer.mypurecloud.com/api/rest/v2/)
 - [Beyond API Documentation](http://docs.beyondshop.cloud/)
+- https://www.twilio.com/docs/api/rest
+- https://stripe.com/docs/api
+- https://developer.twitter.com/en/docs

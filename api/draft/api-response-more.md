@@ -29,3 +29,5 @@ All exceptions should be mapped in an error payload.
 }
 
 ```
+
+响应字段掩码（response field masks）

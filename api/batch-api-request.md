@@ -143,3 +143,4 @@ Connection: Keep-Alive
 
 ## References
 - http://apievangelist.com/2017/05/17/studying-how-providers-are-supporting-batch-api-requests/
+- https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/
