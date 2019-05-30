@@ -1,0 +1,82 @@
+Item
+  /product-manager
+  /item-owner
+  /division
+  /category
+  /sub-category
+  /sub-category-website
+  /sub-category-transfer
+  /manufacturer
+  /service
+    /warranty
+    /warranty-extended
+    /return-policy
+    /online-rma             // whether block online rma
+  /sales
+    /warning
+    /checkout-disclaimer
+    /payterm
+    /promotion-text
+      /template
+    /international
+    /subscription
+      /plan
+    /preorder
+    /backorder
+    /buy-along
+    /product-tree
+    /recommendation       // CREATE recommendation
+      /rule               // by subcategory
+      /block-item
+    /newegg-premier
+  /inventory
+    /allocation
+    /transfer
+  /fulfillment
+    /shipping-restriction
+    /vf                   // activate/deactivate vf fulfillment for item
+  /special-flag
+  /bom
+
+Content
+  /property
+  /property/value
+  /property/assign        // assign property to website subcategory
+  /property/group-by
+  /template
+  /item                   // m1: expand=full, price, ...; m2: view=general, full
+    /request              // GET, POST, PUT, DELETE
+          /finalize
+          /recall
+          /void           // soft delete
+          /approve
+          /decline
+          /close
+    /duplicate
+    /property-value       // assign property and value to item
+    /hscode
+    /eccn
+    /attachment
+  /image
+
+Pricing
+  /price
+    /schedule
+    /special              // maintain price type, such as R-1, student price, post logic, etc.
+    /map
+      /schedule
+      /vendor-rule
+    /markup
+  /shipping
+    /markup
+    /rate
+  /promotion
+    /price-lock
+    /combo
+    /aatc
+    /volume-discount
+
+Inventory
+
+Common
+  /shipvia
