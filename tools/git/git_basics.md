@@ -6,6 +6,8 @@ git config --global user.email you@example.com
 
 # HTTP proxy  
 git config --global http.proxy http://proxy.mycompany:80
+git config --global http.proxy http://mydomain\\myusername:mypassword@myproxyserver:8080/
+git config --get http.proxy
 ```
 
 

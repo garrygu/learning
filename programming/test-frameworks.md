@@ -9,3 +9,6 @@
 - Tape
 
 - AVA
+
+- [Bazel](https://bazel.build)
+> Build and test software of any size, quickly and reliably

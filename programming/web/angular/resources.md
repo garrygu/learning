@@ -8,6 +8,8 @@ https://angular.io/cheatsheet
 
 ## Tools
 - [Best VS Code Extensions for Angular v2+ Development](https://scotch.io/bar-talk/best-vs-code-extensions-for-angular-v2-development)
+- [angularfire2](https://github.com/angular/angularfire2)  
+> The official library for Firebase and Angular.
 
 ## Debugging
 - https://augury.angular.io/
@@ -19,3 +21,8 @@ https://angular.io/cheatsheet
 
 ## Links
 - [Angular 2 Cookbook](http://ngcookbook.herokuapp.com/)
+- [Angular Blog](https://blog.angular.io)
+- https://blog.angularindepth.com
+
+## Videos
+- [ng-conf 2019](https://www.youtube.com/watch?v=O0xx5SvjmnU&list=PLOETEcp3DkCpimylVKTDe968yNmNIajlR)

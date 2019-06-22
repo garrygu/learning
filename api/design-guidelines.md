@@ -91,6 +91,8 @@
 - [HTTP API Design Guide](https://www.gitbook.com/book/geemus/http-api-design/details)
   - https://github.com/interagent/http-api-design  
   - https://github.com/ZhangBohan/http-api-design-ZH_CN
+- [REST and long-running jobs](https://farazdagi.com/2014/rest-and-long-running-jobs/)
+
 
 ### Partials
 - [A Happy Compromise Between Customization and Cacheability (08/12/2017)](https://blog.apisyouwonthate.com/a-happy-compromise-between-customization-and-cacheability-e48dc083ed10)

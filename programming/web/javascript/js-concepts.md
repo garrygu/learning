@@ -3,8 +3,54 @@ An immediately invoked function expression (IIFE) is a function that's executed 
 An IIFE can also be described as a self-invoking anonymous function. Its most common usage is to limit the scope of a variable made via `var` or to encapsulate context to avoid name collisions.
 
 
+## Scope
+Scope is the `context environment` (also known as `lexical environment`) created when a function is written. This context defines what other data it has access to.  
+https://medium.com/free-code-camp/deep-dive-into-scope-chains-and-closures-21ee18b71dd9
+
+Identifier lookup works from the inside out and stops at the first match.
+
+There are two types of scope:
+- local
+- global  
+In JavaScript, if an identifier is not proceeded with a var, let, or const, it is implicitly declared in the global scope.
+
+###  Execution Context
+When function is invoked, it forms a new execution context.  
+
+Two types of execution context:   
+- global execution context
+- function execution context
+
+After execution context is formed:
+- Hoisting
+- An `Activation Object` is formed. This object holds all declared variables, functions, and parameters passed within that context (its scope or accessibility range).
+- Create a hidden `[[scope]]` property (This hidden [[Scope]] is a property of the function, created at declaration, not invocation.)
+- In the global execution context, a `Variable Object` is created, and if it is a function, it is an `Activation Object`. They are pretty much identical.
+
+Each execution context has an associated variable object.
+
+
+### Execution stack
+
+### Scope Chain
+The scope chain is created at function invocation and is based on where variables and/or blocks of code are written (lexical environment).
+
+
 ## Closures
-A closure in JavaScript is an inner function that has access to its outer function's scope, even after the outer function has returned control. A closure makes the variables of the inner function private.
+A closure in JavaScript is an inner function that has access to its outer function's scope, even after the outer function has returned control. A closure makes the variables of the inner function private. Closures are used in event handling and callbacks.
+
+[Example:](https://medium.com/free-code-camp/deep-dive-into-scope-chains-and-closures-21ee18b71dd9)
+```
+function firstName(first){
+    function fullName(last){
+        console.log(first + " " + last);
+    }
+    return fullName;
+}
+var name = firstName("Mister");
+name("Smith") // Mister Smith
+name("Jones"); //Mister Jones
+```
 
 
 ## Prototypes
