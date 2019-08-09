@@ -24,6 +24,10 @@ You'll love the slick user interface, extraordinary features and amazing perform
 - [Cloud 9](https://c9.io/) Your development environment, in the cloud
 
 
+## Sharing
+- [Bit](https://github.com/teambit/bit)
+> Easily share code between projects with your team. https://bit.dev
+
 ## Atom
 - Config Settings
 ```
