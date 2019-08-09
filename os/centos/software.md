@@ -80,3 +80,8 @@ yum install openssh-clients
 $sudo grubby --update-kernel=ALL --args="video=hyperv_fb:2560x1440"
 $sudo reboot
 ```
+
+- install all necessary multimedia plugins and codes from nux-dextop repository
+```
+
+```
