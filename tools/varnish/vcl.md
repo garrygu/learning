@@ -1,136 +1,59 @@
+# Varnish Configuration language
+Every written VCL code will be compiled to binary code when you start your Varnish Cache.
 
 
-## vcl - request flow
-https://book.varnish-software.com/3.0/VCL_Basics.html
-![](https://book.varnish-software.com/3.0/_images/vcl.png)
+## vcl syntax
+- Comments:  
+You can use `//`, `#`, or `/* your comment inside */`  
 
-## vcl_recv
-## vcl_hash
+- Assignment and logical operators:  
+Assignments: `=`  
+Comparisons: `==` or `!=`  
+Logical operations: `&&` for `AND`, `||` for `OR`
 
-## vcl_pipe & vcl_pass
-- `vcl_pipe` subroutine will transmit the bytes back and forth after a pipe instruction is executed at the `vcl_recv` subroutine (and the subsequent VCL code will not be processed),
-- `vcl_pass` subroutine will transmit the request to the backend without caching the generated response.
-- Piping or passing a request can be useful when users reach a protected section of the website.
-- Passing requests is the default action for protected or personalized sections of your website and requires no extra work.
-- By piping requests, you can stream large objects, but you need to be careful or all other subsequent requests for that same client will also be piped.
+- Regular expressions:  
+Varnish uses the **Perl-compatible regular expressions (PCRE Regex).**  
+contains: `~`  
+does not contain: `!~`
 
-Default `vcl_pipe` subroutine:  
+
+## vcl functions
+- regsub() and regsuball()  
+`regsub()` function replaces only the first match and the `regsuball()` function replaces all matching occurrences.
 ```
-sub vcl_pipe {
-      # Note that only the first request to the backend will have
-      # X-Forwarded-For set.  If you use X-Forwarded-For and want to
-      # have it set for all requests, make sure to have:
-      # set bereq.http.connection = "close";
-      # here. It is not set by default as it might
-  # break some broken web applications, like IIS with NTLM    
-  # authentication.
-      return (pipe);
+regsub(req.url, "\?.*", "");
+```
+Ref:
+  - [VCL regular expression cheat sheet](https://docs.fastly.com/en/guides/vcl-regular-expression-cheat-sheet)
+
+
+- purge   
+ Invalidate stale content. Send an HTTP `PURGE` request to Varnish Cache whenever your backend receives an HTTP `POST` or `DELETE`.
+
+- ban() and ban_url()   
+They create a filter, instructing if a cached object is supposed to be delivered or not. Adding a new filter to the ban list will not remove the content that is already cached—what it really does is exclude the matching cached objects from any subsequent requests, forcing a cache miss.
+```
+ban_url("\.xml$")
+ban("req.http.host ~ " + yourdomain.com )
+```
+Too many entries in the ban list will consume extra CPU space.
+
+- return()  
+ It determines to which subroutine the request should proceed to.
+```
+return(restart)
+return(lookup)
+return(pipe)
+return(pass)
+```
+
+- hash_data()  
+It is responsible for setting the hash key used to store an object and it is only available inside the `vcl_hash` subroutine. The default value for the `hash_data` variable is `req.url` (requested URL).  In a multi-domain website, concatenating the value of the `req.http.Host` variable would add the domain name to the hash key, making it unique.
+
+- error  
+The first argument is the HTTP error code and the second is a string with the error code message.
+```
+if (!client.ip ~ purge) {
+  error 405 "Not allowed.";
 }
 ```
-
-Default `vcl_pass` subroutine:
-```
-sub vcl_pass {
-      return (pass);   //The request will be passed to the backend and the generated response will not be cached.
-}
-```
-
-Add a `connection` header to piped requests:  
-```
-sub vcl_pipe {
-      set bereq.http.connection = "close";
-      return (pipe);
-}
-```
-
-## vcl_fetch
-When dealing with a legacy system that does not provide a `cache-control` header, you can hardcode a `time to live (ttl)` value to the content that should be cached.  
-
-While you can manipulate requests based on client-provided data using the `req.*` variable in the `vcl_recv` subroutine, you can do the same data manipulation in the `vcl_fetch` subroutine, but with data provided by a backend server using the `beresp.*` variable (beresp = backend response).  
-
-
-Default `vcl_fetch` subroutine:  
-```
-sub vcl_fetch {
-      if (beresp.ttl <= 0s ||
-          beresp.http.Set-Cookie ||
-          beresp.http.Vary == "*") {
-                    /*
-                     * Mark as "Hit-For-Pass" for the next 2 minutes
-                     */
-                    set beresp.ttl = 120 s;
-                    return (hit_for_pass);  
-      }
-      return (deliver);
-}
-```
- The default vcl_fetch behavior will not cache the response if your backend server provides a zero or negative `ttl` value, a `Set-cookie` header, or a `Vary` header.  Instead, Varnish will cache a dummy object that instructs the next requests for this URL to be passed for the next two minutes. This is called `hit-for-pass`.
-
-
-Overriding the default time to live of a cached object:  
-```
-if ( req.url ~ "\.(png|gif|jpeg|jpg|ico|css|js|txt|xml)(\?[a-z0-9=]+)?$"){
-  set beresp.ttl = 1d;
-}
-```
-If our backend server provides an HTTP cache-control or expires header with a different time frame, we will override it with the set command.  
-
-Stripping cookies for static content:  
-```
-if ( req.url ~ "/static/") {
-  set beresp.ttl = 30m;
-  unset beresp.http.set-cookie;
-}
-```
-Removing the HTTP `set-cookie` header from the response allows us to sanitize the object before inserting it into memory.
-
-
-Restart requests that failed:  
-```
-if ( beresp.status>= 500 &&req.request != "POST") {
-  return(restart);
-}
-```
-
-Restarting will take the request back to the `vcl_recv` subroutine. Let the restarted request pick another backend instead of our original failed server:  
-```
-sub vcl_recv {
-  if (req.restarts == 0) {
-    # Try the director first.
-    set req.backend = director1;
-  } else if (req.restarts == 1) {
-    # Director has failed and we will try the backend 1.
-    set req.backend = b1;
-  } else if (req.restarts == 2) {
-    # Backend 1 has failed. Try backend 2.
-    set req.backend = b2;
-  } else {
-    # All backend servers have failed. Go to error page.
-    error 503 "Service unavailable";
-  }
-}
-```
-
-Inspecting why the response was not cached:  
-```
-sub vcl_fetch {
-  if (beresp.ttl<= 0s) {
-    # Cannot cache. Backend provided an expired TTL
-    set beresp.http.X-Cacheable = "NO:ExpiredTTL";
-  } elsif (req.http.Cookie) {
-    # Presence of cookies.
-    set beresp.http.X-Cacheable = "NO:Cookies";
-  } elsif (beresp.http.Cache-Control ~ "private") {
-    # Cache-control is private
-    set beresp.http.X-Cacheable = "NO:Cache-Control=private";
-  } else {
-    set beresp.http.X-Cacheable = "YES";
-  }
-  return(deliver);
-}
-```
-Sending a debug header alongside the response can help you understand the behavior of the cache and why a specific content was not cached.
-
-
-## References
-- https://book.varnish-software.com/3.0/VCL_functions.html
