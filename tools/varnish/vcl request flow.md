@@ -171,7 +171,7 @@ sub vcl_pipe {
 
 
 ## vcl_fetch
-The `vcl_fetch` subroutine is the first subroutine to deal with the response phase and it plays an important role on caching policies and [Edge-side Include (ESI)](https://www.w3.org/TR/esi-lang).
+The `vcl_fetch` subroutine is the first subroutine to deal with the response phase (called when the response has been gathered from the backend before placing it in the cache) and it plays an important role on caching policies and [Edge-side Include (ESI)](https://www.w3.org/TR/esi-lang).
 
 When dealing with a legacy system that does not provide a `cache-control` header, you can hardcode a `time to live (ttl)` value to the content that should be cached.  
 

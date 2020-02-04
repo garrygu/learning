@@ -2,8 +2,10 @@
 
 
 ## Specifications
-- [HTTP/1.1, part 3: Message Payload and Content Negotiation](https://tools.ietf.org/html/draft-ietf-httpbis-p3-payload-20)
-
+- [HTTP/1.1, part 3: Message Payload and Content Negotiation](https://tools.ietf.org/html/draft-ietf-httpbis-p3-payload-20)  
+- [hcli.io](http://hcli.io)  
+https://github.com/cometaj2/I-D/tree/master/hcli
+> hcli.io is the home of the hypertext command line interface (HCLI) specification; an Internet Draft that defines simple semantics for exposing and consuming command line interfaces (CLIs) as hypertext, via REST APIs.
 
 ## OpenAPI
 - [www.openapis.org](https://www.openapis.org/)

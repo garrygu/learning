@@ -21,7 +21,8 @@ You'll love the slick user interface, extraordinary features and amazing perform
 - [CodePad](https://codepad.remoteinterview.io/)
 - [JS Bin](https://jsbin.com)
 - [StackBlitz](https://stackblitz.com) Online VS Code IDE for Angular & React.  
-- [Cloud 9](https://c9.io/) Your development environment, in the cloud
+- [Cloud 9](https://c9.io/) Your development environment, in the cloud  
+- [Bit](https://bit.dev)  Bit helps your team share components and collaborate to build faster together.  
 
 
 ## Sharing
