@@ -8,6 +8,9 @@ git config --global user.email you@example.com
 git config --global http.proxy http://proxy.mycompany:80
 git config --global http.proxy http://mydomain\\myusername:mypassword@myproxyserver:8080/
 git config --get http.proxy
+
+# Tell git to not perform the validation of the certificate
+git config --global http.sslVerify false
 ```
 
 
