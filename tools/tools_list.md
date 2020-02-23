@@ -28,6 +28,10 @@ You'll love the slick user interface, extraordinary features and amazing perform
 - https://cloud.google.com/shell/
 
 
+## Sharing
+- [Bit](https://github.com/teambit/bit)
+> Easily share code between projects with your team. https://bit.dev
+
 ## Atom
 - Config Settings
 ```

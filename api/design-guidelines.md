@@ -105,3 +105,5 @@
 ## Discussions
 - [REST APIs must be hypertext-driven (10/20/2008)](http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven)
 > In other words, if the engine of application state (and hence the API) is not being driven by hypertext, then it cannot be RESTful and cannot be a REST API.
+
+- [Let's Stop Building APIs Around a Network Hack](https://apisyouwonthate.com/blog/lets-stop-building-apis-around-a-network-hack)

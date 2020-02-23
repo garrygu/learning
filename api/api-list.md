@@ -24,3 +24,4 @@ https://api.slack.com/web
 - https://www.twilio.com/docs/api/rest
 - https://stripe.com/docs/api
 - https://developer.twitter.com/en/docs
+- [12 Top APIs for Business](https://www.programmableweb.com/news/12-top-apis-business/brief/2019/08/14)

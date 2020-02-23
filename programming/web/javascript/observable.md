@@ -37,3 +37,7 @@ const total$=value$
 
 total$.subscribe(total=>document.getElemenyById('counter').innerText=total.toString());
 ```
+
+
+## ref
+- [What Is a Higher-Order Observable?](https://blogs.msmvps.com/deborahk/higher-order-observable/)
