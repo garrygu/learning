@@ -22,7 +22,8 @@ The Progressive JavaScript Framework https://github.com/vuejs/vue
 
 - [RE:DOM](https://redom.js.org/)
 
-
+- [CryptoJS – JavaScript Library of Crypto Standards](https://github.com/brix/crypto-js)
+> CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
 
 ## Visualization
 - [ECharts](https://github.com/ecomfe/echarts)  
@@ -71,3 +72,7 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## Spaces
 - https://mathiasbynens.be
+
+
+## Books
+- [JavaScript for impatient programmers](https://exploringjs.com/impatient-js/toc.html)
