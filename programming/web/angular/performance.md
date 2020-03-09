@@ -36,3 +36,6 @@ https://twitter.com/MikeRyanDev/status/954151139968249857
 - Don’t listen to everything: subscribe to only the items that are visible, and subscribe to only one global event listener
 
 https://www.youtube.com/watch?v=Tlmx1PbP8Qw&t=6s
+
+
+## [Faster Angular Applications - Understanding Differs. Developing a Custom IterableDiffer](https://blog.mgechev.com/2017/11/14/angular-iterablediffer-keyvaluediffer-custom-differ-track-by-fn-performance/)

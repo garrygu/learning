@@ -22,6 +22,8 @@ The Progressive JavaScript Framework https://github.com/vuejs/vue
 
 - [RE:DOM](https://redom.js.org/)
 
+- [Vanilla JS](http://vanilla-js.com)  
+> Vanilla JS is a fast, lightweight, cross-platform framework for building incredible, powerful JavaScript applications.
 
 
 ## Visualization
