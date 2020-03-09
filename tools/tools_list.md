@@ -16,13 +16,16 @@ You'll love the slick user interface, extraordinary features and amazing perform
 
 ## Online Web Dev Tools
 - http://plnkr.co/
-- https://jsfiddle.net/
 - [Online Javascript Editor](https://js.do/)
 - [CodePad](https://codepad.remoteinterview.io/)
 - [JS Bin](https://jsbin.com)
 - [StackBlitz](https://stackblitz.com) Online VS Code IDE for Angular & React.  
-- [Cloud 9](https://c9.io/) Your development environment, in the cloud  
-- [Bit](https://bit.dev)  Bit helps your team share components and collaborate to build faster together.  
+- [Cloud 9](https://c9.io/) Your development environment, in the cloud
+- [CodeTable](https://code.hackerearth.com/)   ref: [Top 5 JavaScript IDEs You Should Know in 2020](https://morioh.com/p/bf61a47948dd)  
+- [jsfiddle](https://jsfiddle.net/)
+- https://codepen.io/
+- https://observablehq.com/
+- https://cloud.google.com/shell/
 
 
 ## Sharing
@@ -66,3 +69,6 @@ setx EC2_CERT "%USERPROFILE%\aws\cert.pem"
 
 ## Logo
 - https://logomakr.com/
+
+## Misc
+- https://www.visual-paradigm.com/

@@ -18,6 +18,12 @@ mkdir /data
 mount /dev/sdb1 /data
 ```
 
+## Mount NAS
+```
+sudo mount -t cifs //*.*.*.*/garry -o username=admin,password=***,rw,noauto /mnt/mynas/...
+
+```
+
 ## Configuring CentOS to Automatically Mount a File System
 In order to set up the system so that the new file system is automatically mounted at boot time an entry needs to be added to the `/etc/fstab` file.
 http://pclosmag.com/html/issues/200709/page07.html

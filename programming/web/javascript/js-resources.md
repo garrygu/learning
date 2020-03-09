@@ -25,6 +25,9 @@ The Progressive JavaScript Framework https://github.com/vuejs/vue
 - [Vanilla JS](http://vanilla-js.com)  
 > Vanilla JS is a fast, lightweight, cross-platform framework for building incredible, powerful JavaScript applications.
 
+- [CryptoJS](https://github.com/brix/crypto-js) – JavaScript Library of Crypto Standards
+> CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
+
 
 ## Visualization
 - [ECharts](https://github.com/ecomfe/echarts)  
@@ -73,3 +76,7 @@ A powerful, interactive charting and visualization library for browser http://ec
 
 ## Spaces
 - https://mathiasbynens.be
+
+
+## Books
+- [JavaScript for impatient programmers](https://exploringjs.com/impatient-js/toc.html)
