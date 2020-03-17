@@ -136,7 +136,7 @@ class CountdownComponent {
   - subscribe()  
 
 
-## ## Lifecycle hooks
+## Lifecycle hooks
 https://angular.io/guide/lifecycle-hooks  
 
 - `ngOnInit` - Gets fired when the component's data-bound properties are initialized but before the view initialization starts

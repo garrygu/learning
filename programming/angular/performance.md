@@ -1,4 +1,21 @@
 
+
+
+# Tree Shaking
+Tree shaking is a step in a build process that removes unused code from a code base.   
+## [Tree Shakeable Providers and Services in Angular](https://coryrylan.com/blog/tree-shakeable-providers-and-services-in-angular)
+- TSP syntax:
+```
+import { Injectable } from '@angular/core';
+@Injectable({
+  providedIn: 'root'
+})
+export class SharedService {
+  constructor() {}
+}
+```
+
+
 # Articles
 ## [Top Reasons Why Your Angular App Is Slow](https://blog.bitsrc.io/top-reasons-why-your-angular-app-is-slow-c36780a0a289)
 #### Your app is rendering too often  
