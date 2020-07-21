@@ -13,6 +13,8 @@ You'll love the slick user interface, extraordinary features and amazing perform
 - [Notepad++](https://notepad-plus-plus.org/)
 > Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. Running in the MS Windows environment, its use is governed by GPL License.
 
+- [https://prettier.io/](https://prettier.io/)
+> An opinionated code formatter
 
 ## Online Web Dev Tools
 - http://plnkr.co/
