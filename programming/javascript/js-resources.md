@@ -22,8 +22,12 @@ The Progressive JavaScript Framework https://github.com/vuejs/vue
 
 - [RE:DOM](https://redom.js.org/)
 
-- [CryptoJS – JavaScript Library of Crypto Standards](https://github.com/brix/crypto-js)
+- [Vanilla JS](http://vanilla-js.com)  
+> Vanilla JS is a fast, lightweight, cross-platform framework for building incredible, powerful JavaScript applications.
+
+- [CryptoJS](https://github.com/brix/crypto-js) – JavaScript Library of Crypto Standards
 > CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
+
 
 ## Visualization
 - [ECharts](https://github.com/ecomfe/echarts)  
