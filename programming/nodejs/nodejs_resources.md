@@ -47,6 +47,7 @@ https://github.com/fastify/fastify
 - https://nestjs.com
 > A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
 
+- [23 Insanely Useful NodeJs Libraries You Should Know in 2020](https://blog.bitsrc.io/23-insanely-useful-nodejs-libraries-you-should-know-in-2020-5a9b570d5416)
 
 ## Links
 - [The most clicked Node links of 2017](https://medium.com/dailyjs/the-most-clicked-node-links-of-2017-7361a471551d)
