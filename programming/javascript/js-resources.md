@@ -28,6 +28,9 @@ The Progressive JavaScript Framework https://github.com/vuejs/vue
 - [CryptoJS](https://github.com/brix/crypto-js) – JavaScript Library of Crypto Standards
 > CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns. They are fast, and they have a consistent and simple interface.
 
+- [Redux](https://redux.js.org/)
+- [React Redux](https://react-redux.js.org/)
+
 
 ## Visualization
 - [ECharts](https://github.com/ecomfe/echarts)  
