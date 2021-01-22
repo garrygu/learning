@@ -1,6 +1,10 @@
 ## Environment
 ```
-# configure user name and email address
+# List config items
+git config --List
+git config --list --show-origin
+
+# Configure user name and email address
 git config --global user.name "Your Name"
 git config --global user.email you@example.com
 
@@ -11,8 +15,10 @@ git config --get http.proxy
 
 # Tell git to not perform the validation of the certificate
 git config --global http.sslVerify false
-```
 
+# Setting $HOME and the startup directory
+https://danlimerick.wordpress.com/2011/07/11/git-for-windows-tip-setting-home-and-the-startup-directory/
+```
 
 ## Commands
 - https://twitter.com/profulsadangi/status/1298236182245982210/photo/1
