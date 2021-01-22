@@ -23,3 +23,12 @@
   # restart the docker machine
   docker-machine restart default
 ```
+
+
+## Install Docker on CentOS
+- ls -l /var/lib/docker/
+- systemctl status docker  
+- systemctl start docker  
+- systemctl enable docker  
+- docker version  
+- docker info

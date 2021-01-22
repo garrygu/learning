@@ -86,5 +86,30 @@ look at all the network settings of a container:
 `docker inspect -f "{{ .NetworkSettings }}" f20`
 
 
-### Links
+### Create a Docker Overlay Network
+https://learning.oreilly.com/scenarios/create-a-docker/9781492062660/  
+Overlay networks allow containers to communicate as if they're on the same host. Under the covers they use VxLan features of the Linux Kernel.  
+
+- Initialize swarm mode  
+`docker swarm init`
+- Join swarm mode  
+`docker swarm join --token SWMTKN-1-4ecfp982nyzlur7sjtb9da09okx3bksaw1oktcgq0i3fcfdpd0-85702pqdvaykoful1qd9rqxem 172.17.0.23:2377`  
+or  
+`token=$(ssh -o StrictHostKeyChecking=no 172.17.0.23 "docker swarm join-token -q worker") && docker swarm join 172.17.0.23:2377 --token $token`  
+- Create the overlay network
+`docker network create -d overlay app1-network`  
+`docker network ls`
+- Deploy backend
+`docker service create --name redis --network app1-network redis:alpine`  
+`docker service ls`
+- Deploy frontend
+`docker service create \
+    --network app1-network -p 80:3000 \
+    --replicas 1 --name app1-web \
+    katacoda/redis-node-docker-example`  
+`docker ps`  
+`curl host01`
+
+
+### References
 - [Docker Networking 101 – The defaults](http://www.dasblinkenlichten.com/docker-networking-101/)

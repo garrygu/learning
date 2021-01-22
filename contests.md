@@ -1,0 +1,12 @@
+
+- https://www.mycplus.com/featured-articles/programming-contests-and-challenges/
+  - https://icpc.global/
+  - https://www.topcoder.com/
+  - https://codingcompetitions.withgoogle.com/
+  - http://www.icfpconference.org/contest.html
+  - http://www.challenge24.org/
+  - http://www0.us.ioccc.org/index.html
+  - https://ipsc.ksp.sk/
+  - https://imaginecup.microsoft.com/en-us/Events?id=0
+  - https://codewarscentral.org/
+  - https://www.openchallenge.org/

@@ -59,6 +59,7 @@
 
 - Searching for image  
 `docker search <image_name>`  
+`docker search --filter=stars=3 <image_name>`
 
   "Stars" indicates the popularity of the images; "Official" images are those in the root namespace; "Automated" images are built automatically by the Docker Hub
 
@@ -226,12 +227,13 @@ Remove all volumes on file system:
 `docker logs --tail 1`  
 
 - Inspect docker container   
-`docker inspect <containerID`  
-`docker inspect <containerID | jq .`  # parsing JSON with the shell  
+`docker inspect <containerID>`  
+`docker inspect <containerID> | jq .`  # parsing JSON with the shell  
 `docker inspect --format '{{ json .Created }}' <containerID>`  
 `docker inspect --format '{{ .NetworkSettings.IPAddress}}' <containerID>`  
 The expression starts with a dot representing the JSON object  
 The optional json keyword asks for valid JSON output. (e.g. here it adds the surrounding double-quotes.)
+
 
 - Get real time events from the server
 `docker events`
@@ -245,6 +247,40 @@ The optional json keyword asks for valid JSON output. (e.g. here it adds the sur
 - Copy files/folders between a container and the local file system  
 `docker cp <container:path> <hostpath>`  
 Use `docker cp` instead of `export` if only one directory or file is needed from a container
+
+
+### Metadata & Labels
+- Add a single label  
+`docker run -l user=12345 -d redis`  
+- Add multiple labels using external file (The file needs to have a label on each line)  
+`docker run --label-file=labels -d redis`
+
+- Add a single label to images  
+`LABEL vendor=Katacoda`
+- Add multiple labels to images  
+```
+LABEL vendor=Katacoda   
+ \ com.katacoda.version=0.0.5   
+ \ com.katacoda.build-date=2016-07-01T10:47:29Z
+ \ com.katacoda.course=Docker
+ ```
+
+- Inspect image   
+`docker inspect -f "{{json .Config.Labels }}" rd`
+- Inspect container   
+`docker inspect -f "{{json .ContainerConfig.Labels }}" <containerID>`
+
+- Filter containers  
+`docker ps --filter "label=user=scrapbook"`
+- Filer images  
+`docker images --filter "label=vendor=Katacoda"`
+- Daemon labels  
+```
+docker -d \
+  -H unix:///var/run/docker.sock \
+  --label com.katacoda.environment="production" \
+  --label com.katacoda.storage="ssd"
+```
 
 
 ### Automatic restarts  
