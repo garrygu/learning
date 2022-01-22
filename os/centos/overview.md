@@ -25,6 +25,9 @@ reboot
 - Find all socket files on your system
 `sudo find / -type s`
 
+- boot log
+`cat /var/log/boot | more`
+
 
 ## Frequently Used Tools
 ### Text Editor
